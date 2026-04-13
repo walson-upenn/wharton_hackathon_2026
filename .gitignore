@@ -1,0 +1,6 @@
+venv
+.env
+
+package-lock.json
+
+.vscode
