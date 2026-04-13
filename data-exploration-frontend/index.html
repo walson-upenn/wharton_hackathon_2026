@@ -158,6 +158,34 @@
     .pill-2 { background: #fee2e2; color: #991b1b; }
     .pill-1 { background: #fecaca; color: #7f1d1d; }
 
+
+    .review-toolbar {
+      display: flex; align-items: end; justify-content: space-between; gap: 12px;
+      flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .review-toolbar-left { display:flex; flex-wrap:wrap; gap:12px; align-items:end; }
+    .review-control-group { display:flex; flex-direction:column; gap:6px; }
+    .review-control-group label { font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: .4px; }
+    .review-control-group select, .review-control-group input {
+      padding: 7px 10px; border:1px solid #cbd5e1; border-radius: 6px; background:#fff;
+      font-size:12px; color:#0f172a; min-width: 140px;
+    }
+    .review-toolbar-meta { font-size:12px; color:#64748b; }
+    .review-footer {
+      margin-top: 14px; display:flex; align-items:center; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
+    }
+    .review-page-summary { font-size: 12px; color:#64748b; }
+    .pagination-controls { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .pager-btn {
+      padding: 7px 12px; border:1px solid #cbd5e1; border-radius:6px; background:#fff; cursor:pointer;
+      font-size:12px; font-weight:600; color:#1e3a8a;
+    }
+    .pager-btn:disabled { cursor:not-allowed; opacity:.45; }
+    .page-jump-form { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .page-jump-form label { font-size:12px; color:#64748b; }
+    .page-jump-form input { width:78px; padding: 7px 10px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px; }
+
     /* Amenities */
     .amenity-section { margin-bottom: 16px; }
     .amenity-section h4 { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
@@ -224,8 +252,15 @@
 const DESC_PATH  = '../sources/Description_PROC.csv';
 const REV_PATH   = '../sources/Reviews_PROC.csv';
 
-const RATING_DIMS = ['overall','roomcleanliness','service','roomcomfort','hotelcondition','valueformoney','convenienceoflocation','roomamenitiesscore','ecofriendliness'];
-const DIM_LABELS  = ['Overall','Cleanliness','Service','Comfort','Condition','Value','Location','Room Amenities','Eco-Friendly'];
+const RATING_DIMS = ['overall','roomcleanliness','service','hotelcondition','roomamenitiesscore'];
+const DIM_LABELS  = ['Overall','Cleanliness','Service','Condition','Room Amenities'];
+const REVIEW_PAGE_SIZE = 200;
+const REVIEW_SORT_OPTIONS = {
+  newest: 'Newest first',
+  oldest: 'Oldest first',
+  highest: 'Highest score first',
+  lowest: 'Lowest score first',
+};
 
 const AMENITY_CATS = [
   ['popular_amenities_list',          'Highlights'],
@@ -247,6 +282,7 @@ let overviewChart = null;
 let radarChart    = null;
 let timelineChart = null;
 let distChart     = null;
+const reviewUIState = {}; // propertyId -> { page, scoreFilter, sort }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function tryJSON(s) {
@@ -303,6 +339,62 @@ function monthKey(s) {
 }
 
 function destroyChart(c) { if (c) c.destroy(); }
+
+function getReviewState(propertyId) {
+  if (!reviewUIState[propertyId]) {
+    reviewUIState[propertyId] = { page: 1, scoreFilter: 'all', sort: 'newest' };
+  }
+  return reviewUIState[propertyId];
+}
+
+function getUsefulStatCards(p) {
+  const preferred = [
+    ['overall', 'Avg Overall (/5)'],
+    ['roomcleanliness', 'Avg Cleanliness'],
+    ['service', 'Avg Service'],
+    ['hotelcondition', 'Avg Condition'],
+    ['roomamenitiesscore', 'Avg Room Amenities'],
+  ];
+
+  return preferred.map(([dim, label]) => ({ dim, label, value: p.avgRatings[dim] }))
+    .filter(card => card.value && card.value > 0);
+}
+
+function getFilteredSortedReviews(p, state) {
+  let list = [...p.reviews];
+  if (state.scoreFilter !== 'all') {
+    const target = Number(state.scoreFilter);
+    list = list.filter(r => Math.ceil(r._rating.overall || 0) === target);
+  }
+
+  list.sort((a, b) => {
+    if (state.sort === 'newest') return new Date(b.acquisition_date) - new Date(a.acquisition_date);
+    if (state.sort === 'oldest') return new Date(a.acquisition_date) - new Date(b.acquisition_date);
+    if (state.sort === 'highest') return (b._rating.overall || 0) - (a._rating.overall || 0) || (new Date(b.acquisition_date) - new Date(a.acquisition_date));
+    if (state.sort === 'lowest') return (a._rating.overall || 0) - (b._rating.overall || 0) || (new Date(b.acquisition_date) - new Date(a.acquisition_date));
+    return 0;
+  });
+  return list;
+}
+
+function renderReviewPagination(totalItems, currentPage, totalPages, propertyId) {
+  if (!totalItems) return '';
+  const prevDisabled = currentPage <= 1 ? 'disabled' : '';
+  const nextDisabled = currentPage >= totalPages ? 'disabled' : '';
+  return `
+    <div class="review-footer">
+      <div class="review-page-summary">Page ${currentPage} of ${totalPages} · ${totalItems} matching reviews</div>
+      <div class="pagination-controls">
+        <button class="pager-btn" onclick="changeReviewPage('${propertyId}', -1)" ${prevDisabled}>Previous</button>
+        <form class="page-jump-form" onsubmit="jumpToReviewPage(event, '${propertyId}', ${totalPages})">
+          <label for="page-input-${propertyId}">Go to page</label>
+          <input id="page-input-${propertyId}" type="number" min="1" max="${totalPages}" value="${currentPage}">
+          <button class="pager-btn" type="submit">Go</button>
+        </form>
+        <button class="pager-btn" onclick="changeReviewPage('${propertyId}', 1)" ${nextDisabled}>Next</button>
+      </div>
+    </div>`;
+}
 
 // ── Load data ────────────────────────────────────────────────────────────────
 async function loadCSV(path) {
@@ -624,14 +716,17 @@ function renderDetail(p) {
   `;
 
   // Stats row
-  const avgOverall = p.avgRatings.overall ? p.avgRatings.overall.toFixed(2) : '—';
-  const avgService = p.avgRatings.service ? p.avgRatings.service.toFixed(2) : '—';
-  const avgValue   = p.avgRatings.valueformoney ? p.avgRatings.valueformoney.toFixed(2) : '—';
+  const metricCards = getUsefulStatCards(p)
+    .map(card => `
+      <div class="stat-card">
+        <div class="val">${card.value.toFixed(2)}</div>
+        <div class="lbl">${card.label}</div>
+      </div>`)
+    .join('');
+
   const pct5 = p.reviewCount ? Math.round(p.reviews.filter(r=>r._rating.overall>=4.5).length/p.reviewCount*100) : 0;
   document.getElementById('det-stats').innerHTML = `
-    <div class="stat-card"><div class="val">${avgOverall}</div><div class="lbl">Avg Overall (/5)</div></div>
-    <div class="stat-card"><div class="val">${avgService}</div><div class="lbl">Avg Service</div></div>
-    <div class="stat-card"><div class="val">${avgValue}</div><div class="lbl">Avg Value</div></div>
+    ${metricCards}
     <div class="stat-card"><div class="val">${pct5}%</div><div class="lbl">Rated 4.5–5</div></div>
     <div class="stat-card"><div class="val">${p.reviewCount}</div><div class="lbl">Total Reviews</div></div>
   `;
@@ -759,13 +854,20 @@ function renderRatingsTab(p) {
 
 function renderReviewsTab(p) {
   const el = document.getElementById('tab-reviews');
-  const sorted = [...p.reviews].sort((a,b) => new Date(b.acquisition_date)-new Date(a.acquisition_date));
-  const rows = sorted.slice(0, 200).map(r => {
+  const state = getReviewState(p.eg_property_id);
+  const filteredReviews = getFilteredSortedReviews(p, state);
+  const totalPages = Math.max(1, Math.ceil(filteredReviews.length / REVIEW_PAGE_SIZE));
+  state.page = Math.min(Math.max(1, state.page), totalPages);
+
+  const startIndex = (state.page - 1) * REVIEW_PAGE_SIZE;
+  const pageRows = filteredReviews.slice(startIndex, startIndex + REVIEW_PAGE_SIZE);
+
+  const rows = pageRows.map(r => {
     const ov = r._rating.overall;
     const pill = ov > 0 ? `<span class="overall-pill pill-${Math.min(5,Math.ceil(ov))}">${ov}</span>` : '—';
-    const dims = ['roomcleanliness','service','hotelcondition','valueformoney']
+    const dims = ['roomcleanliness','service','hotelcondition','roomamenitiesscore']
       .filter(d => r._rating[d] > 0)
-      .map(d => `<span class="badge badge-gray" title="${DIM_LABELS[RATING_DIMS.indexOf(d)]}">${DIM_LABELS[RATING_DIMS.indexOf(d)].split(' ')[0]} ${r._rating[d]}</span>`)
+      .map(d => `<span class="badge badge-gray" title="${DIM_LABELS[RATING_DIMS.indexOf(d)]}">${DIM_LABELS[RATING_DIMS.indexOf(d)]} ${r._rating[d]}</span>`)
       .join(' ');
     const text = (r.review_text||'').slice(0,180) + ((r.review_text||'').length>180?'…':'');
     const title = r.review_title ? `<strong>${r.review_title}</strong><br>` : '';
@@ -773,19 +875,83 @@ function renderReviewsTab(p) {
       <td>${pill}</td>
       <td style="color:#64748b;white-space:nowrap">${formatDate(r.acquisition_date)}</td>
       <td>${title}<span style="color:#475569;font-size:12px">${text || '<em style="color:#94a3b8">No text</em>'}</span></td>
-      <td style="white-space:nowrap">${dims}</td>
+      <td style="white-space:nowrap">${dims || '<span style="color:#94a3b8">—</span>'}</td>
     </tr>`;
   }).join('');
 
+  const scoreOptions = [
+    ['all', 'All scores'],
+    ['5', '5-star reviews'],
+    ['4', '4-star reviews'],
+    ['3', '3-star reviews'],
+    ['2', '2-star reviews'],
+    ['1', '1-star reviews'],
+  ].map(([value, label]) => `<option value="${value}" ${state.scoreFilter === value ? 'selected' : ''}>${label}</option>`).join('');
+
+  const sortOptions = Object.entries(REVIEW_SORT_OPTIONS)
+    .map(([value, label]) => `<option value="${value}" ${state.sort === value ? 'selected' : ''}>${label}</option>`).join('');
+
+  const rangeStart = filteredReviews.length ? startIndex + 1 : 0;
+  const rangeEnd = Math.min(startIndex + REVIEW_PAGE_SIZE, filteredReviews.length);
+
   el.innerHTML = `
     <div style="background:white;border-radius:10px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.07);overflow-x:auto">
-      <div style="font-size:12px;color:#64748b;margin-bottom:10px">Showing up to 200 most recent reviews (${p.reviewCount} total)</div>
+      <div class="review-toolbar">
+        <div class="review-toolbar-left">
+          <div class="review-control-group">
+            <label for="review-score-filter">Filter by overall score</label>
+            <select id="review-score-filter" onchange="updateReviewFilter('${p.eg_property_id}', this.value)">${scoreOptions}</select>
+          </div>
+          <div class="review-control-group">
+            <label for="review-sort">Sort reviews</label>
+            <select id="review-sort" onchange="updateReviewSort('${p.eg_property_id}', this.value)">${sortOptions}</select>
+          </div>
+        </div>
+        <div class="review-toolbar-meta">Showing ${rangeStart}-${rangeEnd} of ${filteredReviews.length} matching reviews (${p.reviewCount} total)</div>
+      </div>
       <table class="reviews-table">
         <thead><tr><th>Score</th><th>Date</th><th>Review</th><th>Sub-scores</th></tr></thead>
-        <tbody>${rows || '<tr><td colspan="4" style="color:#94a3b8;text-align:center;padding:20px">No reviews</td></tr>'}</tbody>
+        <tbody>${rows || '<tr><td colspan="4" style="color:#94a3b8;text-align:center;padding:20px">No reviews match the current filter</td></tr>'}</tbody>
       </table>
+      ${renderReviewPagination(filteredReviews.length, state.page, totalPages, p.eg_property_id)}
     </div>
   `;
+}
+
+function updateReviewFilter(propertyId, value) {
+  const state = getReviewState(propertyId);
+  state.scoreFilter = value;
+  state.page = 1;
+  const property = properties.find(x => x.eg_property_id === propertyId);
+  if (property) renderReviewsTab(property);
+}
+
+function updateReviewSort(propertyId, value) {
+  const state = getReviewState(propertyId);
+  state.sort = value;
+  state.page = 1;
+  const property = properties.find(x => x.eg_property_id === propertyId);
+  if (property) renderReviewsTab(property);
+}
+
+function changeReviewPage(propertyId, delta) {
+  const state = getReviewState(propertyId);
+  const property = properties.find(x => x.eg_property_id === propertyId);
+  if (!property) return;
+  const totalPages = Math.max(1, Math.ceil(getFilteredSortedReviews(property, state).length / REVIEW_PAGE_SIZE));
+  state.page = Math.min(Math.max(1, state.page + delta), totalPages);
+  renderReviewsTab(property);
+}
+
+function jumpToReviewPage(event, propertyId, totalPages) {
+  event.preventDefault();
+  const input = event.target.querySelector('input');
+  const requestedPage = Number(input.value);
+  if (!Number.isFinite(requestedPage)) return;
+  const state = getReviewState(propertyId);
+  state.page = Math.min(Math.max(1, requestedPage), totalPages);
+  const property = properties.find(x => x.eg_property_id === propertyId);
+  if (property) renderReviewsTab(property);
 }
 
 function renderAmenitiesTab(p) {
