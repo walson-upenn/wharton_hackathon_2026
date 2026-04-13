@@ -653,21 +653,26 @@ function renderDetail(p) {
 }
 
 function renderRatingsTab(p) {
+  // Destroy before overwriting the DOM so Chart.js can properly clean up
+  destroyChart(radarChart);  radarChart = null;
+  destroyChart(distChart);   distChart  = null;
+  destroyChart(timelineChart); timelineChart = null;
+
   const el = document.getElementById('tab-ratings');
   el.innerHTML = `
     <div class="chart-row">
       <div class="chart-card" style="flex:1;min-width:260px">
         <h3>Rating Dimensions (avg)</h3>
-        <canvas id="det-radar" height="260"></canvas>
+        <div style="position:relative;height:260px"><canvas id="det-radar"></canvas></div>
       </div>
       <div class="chart-card" style="flex:1;min-width:260px">
         <h3>Overall Score Distribution</h3>
-        <canvas id="det-dist" height="260"></canvas>
+        <div style="position:relative;height:260px"><canvas id="det-dist"></canvas></div>
       </div>
     </div>
     <div class="chart-card">
       <h3>Review Volume Over Time</h3>
-      <canvas id="det-timeline" height="140"></canvas>
+      <div style="position:relative;height:160px"><canvas id="det-timeline"></canvas></div>
     </div>
   `;
 
@@ -675,7 +680,6 @@ function renderRatingsTab(p) {
   const availDims = RATING_DIMS.filter((d,i) => p.avgRatings[d]);
   const availLabels = availDims.map(d => DIM_LABELS[RATING_DIMS.indexOf(d)]);
   const availVals = availDims.map(d => p.avgRatings[d]);
-  destroyChart(radarChart);
   radarChart = new Chart(document.getElementById('det-radar'), {
     type: 'radar',
     data: {
@@ -706,7 +710,6 @@ function renderRatingsTab(p) {
       buckets[k] = (buckets[k]||0)+1;
     }
   });
-  destroyChart(distChart);
   distChart = new Chart(document.getElementById('det-dist'), {
     type: 'bar',
     data: {
@@ -731,7 +734,6 @@ function renderRatingsTab(p) {
     if (r._dateKey) monthCounts[r._dateKey] = (monthCounts[r._dateKey]||0)+1;
   });
   const months = Object.keys(monthCounts).sort();
-  destroyChart(timelineChart);
   timelineChart = new Chart(document.getElementById('det-timeline'), {
     type: 'line',
     data: {
@@ -748,7 +750,7 @@ function renderRatingsTab(p) {
       }],
     },
     options: {
-      responsive: true, maintainAspectRatio: true,
+      responsive: true, maintainAspectRatio: false,
       plugins: { legend:{display:false} },
       scales: { x:{ticks:{maxTicksLimit:14, font:{size:10}}}, y:{ticks:{font:{size:11}}} },
     },
