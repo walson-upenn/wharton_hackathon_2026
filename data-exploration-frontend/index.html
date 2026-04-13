@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Data Explorer</title>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #1e3a8a;
+      color: white;
+      padding: 0 20px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    header h1 { font-size: 16px; font-weight: 700; letter-spacing: .3px; }
+    .header-stats { display: flex; gap: 20px; }
+    .hstat { font-size: 12px; opacity: .8; }
+    .hstat strong { font-size: 15px; font-weight: 700; opacity: 1; margin-right: 4px; }
+
+    /* ── Layout ── */
+    .app { display: flex; flex: 1; overflow: hidden; }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 270px;
+      background: white;
+      border-right: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .sidebar-controls {
+      padding: 10px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .sidebar-controls label { font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: .5px; }
+    .sidebar-controls select {
+      width: 100%; padding: 6px 8px;
+      border: 1px solid #cbd5e1; border-radius: 6px;
+      font-size: 12px; background: #f8fafc; color: #0f172a; cursor: pointer;
+    }
+    .sidebar-controls select:focus { outline: 2px solid #3b82f6; border-color: transparent; }
+
+    .prop-list { flex: 1; overflow-y: auto; padding: 6px; display: flex; flex-direction: column; gap: 3px; }
+
+    .prop-card {
+      padding: 9px 11px; border-radius: 7px; cursor: pointer;
+      border: 2px solid transparent; transition: background .12s, border-color .12s;
+    }
+    .prop-card:hover { background: #f8fafc; }
+    .prop-card.active { border-color: #3b82f6; background: #eff6ff; }
+    .prop-card .city { font-size: 13px; font-weight: 600; }
+    .prop-card .country { font-size: 11px; color: #64748b; }
+    .prop-card .badges { display: flex; gap: 5px; margin-top: 5px; flex-wrap: wrap; }
+    .badge {
+      display: inline-flex; align-items: center; padding: 2px 7px;
+      border-radius: 99px; font-size: 11px; font-weight: 600;
+    }
+    .badge-blue  { background: #dbeafe; color: #1d4ed8; }
+    .badge-gold  { background: #fef3c7; color: #92400e; }
+    .badge-green { background: #dcfce7; color: #15803d; }
+    .badge-gray  { background: #f1f5f9; color: #475569; }
+    .badge-red   { background: #fee2e2; color: #b91c1c; }
+
+    /* ── Main content ── */
+    .content { flex: 1; overflow-y: auto; padding: 16px; }
+
+    .panel-title { font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+
+    /* Cards row */
+    .stat-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .stat-card {
+      background: white; border-radius: 10px; padding: 14px 18px;
+      flex: 1; min-width: 130px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    .stat-card .val { font-size: 26px; font-weight: 700; color: #1e40af; }
+    .stat-card .lbl { font-size: 11px; color: #64748b; margin-top: 2px; text-transform: uppercase; letter-spacing: .4px; }
+
+    /* Chart cards */
+    .chart-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .chart-card {
+      background: white; border-radius: 10px; padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.07);
+      flex: 1; min-width: 280px;
+    }
+    .chart-card h3 { font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .4px; }
+    .chart-card canvas { display: block; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 0; border-bottom: 2px solid #e2e8f0; margin-bottom: 16px; }
+    .tab {
+      padding: 9px 18px; font-size: 13px; font-weight: 600; color: #64748b;
+      cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px;
+      transition: color .12s, border-color .12s;
+    }
+    .tab:hover { color: #1e40af; }
+    .tab.active { color: #1e40af; border-bottom-color: #1e40af; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Detail property header */
+    .detail-header {
+      background: white; border-radius: 10px; padding: 16px 20px;
+      margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.07);
+      display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    }
+    .detail-header h2 { font-size: 20px; font-weight: 700; }
+    .detail-header .sub { font-size: 13px; color: #64748b; margin-top: 2px; }
+    .expedia-score {
+      background: #1e40af; color: white;
+      border-radius: 8px; padding: 8px 14px; text-align: center;
+      flex-shrink: 0;
+    }
+    .expedia-score .score { font-size: 24px; font-weight: 800; }
+    .expedia-score .lbl { font-size: 10px; opacity: .8; }
+
+    /* Reviews table */
+    .reviews-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .reviews-table th {
+      text-align: left; padding: 8px 10px; font-size: 11px; font-weight: 600;
+      color: #64748b; text-transform: uppercase; letter-spacing: .4px;
+      border-bottom: 2px solid #e2e8f0; background: #f8fafc;
+    }
+    .reviews-table td { padding: 9px 10px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+    .reviews-table tr:last-child td { border-bottom: none; }
+    .reviews-table tr:hover td { background: #f8fafc; }
+    .overall-pill {
+      display: inline-block; width: 32px; text-align: center;
+      padding: 2px 0; border-radius: 5px; font-weight: 700; font-size: 12px;
+    }
+    .pill-5 { background: #dcfce7; color: #15803d; }
+    .pill-4 { background: #d1fae5; color: #065f46; }
+    .pill-3 { background: #fef3c7; color: #92400e; }
+    .pill-2 { background: #fee2e2; color: #991b1b; }
+    .pill-1 { background: #fecaca; color: #7f1d1d; }
+
+    /* Amenities */
+    .amenity-section { margin-bottom: 16px; }
+    .amenity-section h4 { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+    .amenity-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .amenity-tag {
+      padding: 4px 10px; border-radius: 99px; font-size: 12px;
+      background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0;
+    }
+
+    /* Loading / error */
+    .loader {
+      position: fixed; inset: 0; background: rgba(255,255,255,.9);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; font-size: 15px; color: #475569; z-index: 100;
+    }
+    .spinner {
+      width: 36px; height: 36px; border: 3px solid #e2e8f0;
+      border-top-color: #1e40af; border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error-box {
+      background: #fee2e2; color: #991b1b; padding: 16px 20px;
+      border-radius: 10px; font-size: 14px; margin: 20px;
+    }
+    .error-box code { background: #fecaca; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+  </style>
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <div class="spinner"></div>
+  <span>Loading data…</span>
+</div>
+
+<header>
+  <h1>Hotel Data Explorer</h1>
+  <div class="header-stats" id="header-stats"></div>
+</header>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar-controls">
+      <label>Sort by</label>
+      <select id="sort-select">
+        <option value="expedia">Expedia Rating</option>
+        <option value="reviews">Review Count</option>
+        <option value="stars">Star Rating</option>
+        <option value="avg">Avg Review Score</option>
+      </select>
+      <label>Filter country</label>
+      <select id="country-filter"><option value="">All Countries</option></select>
+    </div>
+    <div class="prop-list" id="prop-list"></div>
+  </aside>
+
+  <main class="content" id="content">
+    <!-- filled by JS -->
+  </main>
+</div>
+
+<script>
+// ── Config ──────────────────────────────────────────────────────────────────
+const DESC_PATH  = '../sources/Description_PROC.csv';
+const REV_PATH   = '../sources/Reviews_PROC.csv';
+
+const RATING_DIMS = ['overall','roomcleanliness','service','roomcomfort','hotelcondition','valueformoney','convenienceoflocation','roomamenitiesscore','ecofriendliness'];
+const DIM_LABELS  = ['Overall','Cleanliness','Service','Comfort','Condition','Value','Location','Room Amenities','Eco-Friendly'];
+
+const AMENITY_CATS = [
+  ['popular_amenities_list',          'Highlights'],
+  ['property_amenity_food_and_drink', 'Food & Drink'],
+  ['property_amenity_activities_nearby','Nearby Activities'],
+  ['property_amenity_spa',            'Spa'],
+  ['property_amenity_outdoor',        'Outdoor'],
+  ['property_amenity_business_services','Business'],
+  ['property_amenity_family_friendly','Family'],
+  ['property_amenity_internet',       'Internet'],
+  ['property_amenity_langs_spoken',   'Languages'],
+  ['property_amenity_accessibility',  'Accessibility'],
+];
+
+// ── State ────────────────────────────────────────────────────────────────────
+let properties = [];          // [{desc fields, reviews, avgRatings, reviewCount}]
+let selectedId = null;
+let overviewChart = null;
+let radarChart    = null;
+let timelineChart = null;
+let distChart     = null;
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function tryJSON(s) {
+  if (!s) return [];
+  try { return JSON.parse(s); } catch { return []; }
+}
+
+function parseRating(s) {
+  if (!s) return {};
+  try { return JSON.parse(s); } catch { return {}; }
+}
+
+function avgDim(reviews, dim) {
+  const vals = reviews.map(r => r._rating[dim]).filter(v => v && v > 0);
+  if (!vals.length) return 0;
+  return vals.reduce((a,b) => a+b, 0) / vals.length;
+}
+
+function ratingColor(v) {
+  if (v >= 4.5) return '#16a34a';
+  if (v >= 3.5) return '#2563eb';
+  if (v >= 2.5) return '#d97706';
+  return '#dc2626';
+}
+
+function ratingBadgeClass(v) {
+  if (v >= 4.5) return 'badge-green';
+  if (v >= 3.5) return 'badge-blue';
+  if (v >= 2.5) return 'badge-gold';
+  return 'badge-red';
+}
+
+function stars(n) {
+  if (!n) return '';
+  return '★'.repeat(Math.floor(n)) + (n % 1 >= .5 ? '½' : '');
+}
+
+function displayName(p) {
+  const loc = p.city + (p.province ? `, ${p.province}` : '') + ` · ${p.country}`;
+  return loc;
+}
+
+function formatDate(s) {
+  if (!s) return '';
+  const d = new Date(s);
+  if (isNaN(d)) return s;
+  return d.toLocaleDateString('en-US', { month:'short', year:'numeric' });
+}
+
+function monthKey(s) {
+  const d = new Date(s);
+  if (isNaN(d)) return '';
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+}
+
+function destroyChart(c) { if (c) c.destroy(); }
+
+// ── Load data ────────────────────────────────────────────────────────────────
+async function loadCSV(path) {
+  return new Promise((res, rej) => {
+    Papa.parse(path, {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete: r => res(r.data),
+      error: e => rej(e),
+    });
+  });
+}
+
+async function init() {
+  let descRows, revRows;
+  try {
+    [descRows, revRows] = await Promise.all([loadCSV(DESC_PATH), loadCSV(REV_PATH)]);
+  } catch (err) {
+    document.getElementById('loader').innerHTML = `
+      <div class="error-box">
+        <strong>Could not load CSV files.</strong><br><br>
+        Serve this app via a local HTTP server from the project root:<br><br>
+        <code>python3 -m http.server 8000</code><br><br>
+        Then open <code>http://localhost:8000/data-exploration-frontend/</code>
+      </div>`;
+    return;
+  }
+
+  // Build review map: id -> [reviews]
+  const revMap = {};
+  for (const r of revRows) {
+    const id = r.eg_property_id;
+    if (!revMap[id]) revMap[id] = [];
+    r._rating = parseRating(r.rating);
+    r._dateKey = monthKey(r.acquisition_date);
+    revMap[id].push(r);
+  }
+
+  // Build property objects
+  properties = descRows.map(d => {
+    const id = d.eg_property_id;
+    const reviews = revMap[id] || [];
+    const avgRatings = {};
+    for (let i = 0; i < RATING_DIMS.length; i++) {
+      const v = avgDim(reviews, RATING_DIMS[i]);
+      if (v > 0) avgRatings[RATING_DIMS[i]] = +v.toFixed(2);
+    }
+    return { ...d, reviews, avgRatings, reviewCount: reviews.length };
+  });
+
+  // Sort: include any review-only properties (ones in reviews but not descriptions) — skip for now
+  populateCountryFilter();
+  render();
+  document.getElementById('loader').style.display = 'none';
+}
+
+// ── UI ───────────────────────────────────────────────────────────────────────
+function populateCountryFilter() {
+  const countries = [...new Set(properties.map(p => p.country).filter(Boolean))].sort();
+  const sel = document.getElementById('country-filter');
+  countries.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c; o.textContent = c;
+    sel.appendChild(o);
+  });
+}
+
+function filteredSorted() {
+  const sortBy = document.getElementById('sort-select').value;
+  const country = document.getElementById('country-filter').value;
+  let list = country ? properties.filter(p => p.country === country) : [...properties];
+  list.sort((a,b) => {
+    if (sortBy === 'expedia') return (+b.guestrating_avg_expedia||0) - (+a.guestrating_avg_expedia||0);
+    if (sortBy === 'reviews') return b.reviewCount - a.reviewCount;
+    if (sortBy === 'stars')   return (+b.star_rating||0) - (+a.star_rating||0);
+    if (sortBy === 'avg')     return (b.avgRatings.overall||0) - (a.avgRatings.overall||0);
+    return 0;
+  });
+  return list;
+}
+
+function render() {
+  renderSidebar();
+  updateHeaderStats();
+  if (selectedId) {
+    const p = properties.find(x => x.eg_property_id === selectedId);
+    if (p) renderDetail(p); else renderOverview();
+  } else {
+    renderOverview();
+  }
+}
+
+function updateHeaderStats() {
+  const total = properties.reduce((s,p) => s+p.reviewCount, 0);
+  const countries = new Set(properties.map(p=>p.country)).size;
+  const avgExp = (properties.reduce((s,p)=>s+(+p.guestrating_avg_expedia||0),0)/properties.length).toFixed(1);
+  document.getElementById('header-stats').innerHTML = `
+    <div class="hstat"><strong>${properties.length}</strong> properties</div>
+    <div class="hstat"><strong>${total.toLocaleString()}</strong> reviews</div>
+    <div class="hstat"><strong>${countries}</strong> countries</div>
+    <div class="hstat"><strong>${avgExp}</strong> avg Expedia rating</div>
+  `;
+}
+
+function renderSidebar() {
+  const list = filteredSorted();
+  const el = document.getElementById('prop-list');
+  el.innerHTML = '';
+  list.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'prop-card' + (p.eg_property_id === selectedId ? ' active' : '');
+    card.onclick = () => selectProperty(p.eg_property_id);
+
+    const exp = p.guestrating_avg_expedia ? `<span class="badge badge-blue">${p.guestrating_avg_expedia} Expedia</span>` : '';
+    const starsStr = p.star_rating ? `<span class="badge badge-gold">${stars(+p.star_rating)}</span>` : '';
+    const revBadge = `<span class="badge badge-gray">${p.reviewCount} reviews</span>`;
+    const avgStr = p.avgRatings.overall ? `<span class="badge ${ratingBadgeClass(p.avgRatings.overall)}">${p.avgRatings.overall.toFixed(1)} avg</span>` : '';
+
+    card.innerHTML = `
+      <div class="city">${p.city || 'Unknown'}</div>
+      <div class="country">${[p.province, p.country].filter(Boolean).join(', ')}</div>
+      <div class="badges">${exp}${starsStr}${revBadge}${avgStr}</div>
+    `;
+    el.appendChild(card);
+  });
+}
+
+function selectProperty(id) {
+  selectedId = id === selectedId ? null : id;
+  render();
+}
+
+// ── Overview panel ───────────────────────────────────────────────────────────
+function renderOverview() {
+  const content = document.getElementById('content');
+  content.innerHTML = `
+    <div class="panel-title">All Properties Overview</div>
+    <div class="stat-row" id="ov-stats"></div>
+    <div class="chart-row">
+      <div class="chart-card" style="flex:2;min-width:340px">
+        <h3>Expedia Guest Rating by Property</h3>
+        <canvas id="ov-bar" height="220"></canvas>
+      </div>
+      <div class="chart-card" style="flex:1;min-width:240px">
+        <h3>Reviews by Country</h3>
+        <canvas id="ov-donut" height="220"></canvas>
+      </div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-card" style="flex:1">
+        <h3>Expedia Rating vs Avg Review Score</h3>
+        <canvas id="ov-scatter" height="200"></canvas>
+      </div>
+      <div class="chart-card" style="flex:1">
+        <h3>Review Volume Over Time (all properties)</h3>
+        <canvas id="ov-timeline" height="200"></canvas>
+      </div>
+    </div>
+  `;
+
+  // Stats
+  const withRating = properties.filter(p => p.avgRatings.overall > 0);
+  const avgOverall = withRating.length
+    ? (withRating.reduce((s,p)=>s+p.avgRatings.overall,0)/withRating.length).toFixed(2) : '—';
+  const totalReviews = properties.reduce((s,p)=>s+p.reviewCount,0);
+  const topProp = [...properties].sort((a,b)=>( +b.guestrating_avg_expedia||0)-( +a.guestrating_avg_expedia||0))[0];
+
+  document.getElementById('ov-stats').innerHTML = `
+    <div class="stat-card"><div class="val">${properties.length}</div><div class="lbl">Properties</div></div>
+    <div class="stat-card"><div class="val">${totalReviews.toLocaleString()}</div><div class="lbl">Total Reviews</div></div>
+    <div class="stat-card"><div class="val">${avgOverall}</div><div class="lbl">Avg Review Score</div></div>
+    <div class="stat-card"><div class="val">${new Set(properties.map(p=>p.country)).size}</div><div class="lbl">Countries</div></div>
+    <div class="stat-card" style="cursor:pointer" onclick="selectProperty('${topProp.eg_property_id}')">
+      <div class="val">${topProp.guestrating_avg_expedia}</div>
+      <div class="lbl">Top: ${topProp.city}</div>
+    </div>
+  `;
+
+  const sorted = [...properties].sort((a,b)=>(+b.guestrating_avg_expedia||0)-(+a.guestrating_avg_expedia||0));
+
+  // Bar chart
+  destroyChart(overviewChart);
+  overviewChart = new Chart(document.getElementById('ov-bar'), {
+    type: 'bar',
+    data: {
+      labels: sorted.map(p => p.city),
+      datasets: [{
+        label: 'Expedia Rating',
+        data: sorted.map(p => +p.guestrating_avg_expedia || null),
+        backgroundColor: sorted.map(p => ratingColor(+p.guestrating_avg_expedia/2)),
+        borderRadius: 5,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { min: 6, max: 10, ticks: { font: { size: 11 } } },
+        x: { ticks: { font: { size: 11 } } },
+      },
+      onClick(e, els) {
+        if (els.length) selectProperty(sorted[els[0].index].eg_property_id);
+      },
+    },
+  });
+
+  // Donut — reviews per country
+  const countryCount = {};
+  properties.forEach(p => {
+    const c = p.country || 'Unknown';
+    countryCount[c] = (countryCount[c]||0) + p.reviewCount;
+  });
+  const COLORS = ['#3b82f6','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899','#06b6d4','#84cc16'];
+  const countries = Object.keys(countryCount);
+  new Chart(document.getElementById('ov-donut'), {
+    type: 'doughnut',
+    data: {
+      labels: countries,
+      datasets: [{ data: countries.map(c=>countryCount[c]), backgroundColor: COLORS }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend: { position: 'right', labels: { font:{size:11}, boxWidth:12 } } },
+    },
+  });
+
+  // Scatter
+  const scatterData = properties
+    .filter(p => p.guestrating_avg_expedia && p.avgRatings.overall)
+    .map(p => ({ x: +p.guestrating_avg_expedia, y: p.avgRatings.overall, label: p.city }));
+  new Chart(document.getElementById('ov-scatter'), {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        label: 'Properties',
+        data: scatterData,
+        backgroundColor: '#3b82f6',
+        pointRadius: 7,
+        pointHoverRadius: 9,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.raw.label}: Expedia ${ctx.raw.x}, Review avg ${ctx.raw.y}`,
+          },
+        },
+      },
+      scales: {
+        x: { title: { display:true, text:'Expedia Rating', font:{size:11} }, min:7, max:10 },
+        y: { title: { display:true, text:'Avg Review Score (1–5)', font:{size:11} }, min:3, max:5 },
+      },
+    },
+  });
+
+  // Timeline — all reviews by month
+  const monthCounts = {};
+  properties.forEach(p => p.reviews.forEach(r => {
+    if (r._dateKey) monthCounts[r._dateKey] = (monthCounts[r._dateKey]||0) + 1;
+  }));
+  const months = Object.keys(monthCounts).sort();
+  new Chart(document.getElementById('ov-timeline'), {
+    type: 'line',
+    data: {
+      labels: months.map(m => { const [y,mo]=m.split('-'); return new Date(y,mo-1).toLocaleDateString('en-US',{month:'short',year:'2-digit'}); }),
+      datasets: [{
+        label: 'Reviews',
+        data: months.map(m => monthCounts[m]),
+        fill: true,
+        backgroundColor: 'rgba(59,130,246,.12)',
+        borderColor: '#3b82f6',
+        borderWidth: 2,
+        pointRadius: 2,
+        tension: .35,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: { x: { ticks: { maxTicksLimit: 12, font:{size:10} } }, y: { ticks: { font:{size:11} } } },
+    },
+  });
+}
+
+// ── Detail panel ─────────────────────────────────────────────────────────────
+function renderDetail(p) {
+  const starsStr = p.star_rating ? `${stars(+p.star_rating)} (${p.star_rating})` : 'No star rating';
+  const name = displayName(p);
+
+  document.getElementById('content').innerHTML = `
+    <div class="detail-header">
+      <div>
+        <h2>${name}</h2>
+        <div class="sub">${starsStr} &nbsp;·&nbsp; ${p.reviewCount} reviews</div>
+        <div class="badges" style="margin-top:8px">
+          ${tryJSON(p.popular_amenities_list).slice(0,6).map(a=>`<span class="badge badge-gray">${a.replace(/_/g,' ')}</span>`).join('')}
+        </div>
+      </div>
+      ${p.guestrating_avg_expedia ? `<div class="expedia-score"><div class="score">${p.guestrating_avg_expedia}</div><div class="lbl">Expedia Rating</div></div>` : ''}
+    </div>
+
+    <div class="stat-row" id="det-stats"></div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="ratings">Ratings</div>
+      <div class="tab" data-tab="reviews">Reviews</div>
+      <div class="tab" data-tab="amenities">Amenities</div>
+      <div class="tab" data-tab="info">Property Info</div>
+    </div>
+
+    <div class="tab-panel active" id="tab-ratings"></div>
+    <div class="tab-panel" id="tab-reviews"></div>
+    <div class="tab-panel" id="tab-amenities"></div>
+    <div class="tab-panel" id="tab-info"></div>
+  `;
+
+  // Stats row
+  const avgOverall = p.avgRatings.overall ? p.avgRatings.overall.toFixed(2) : '—';
+  const avgService = p.avgRatings.service ? p.avgRatings.service.toFixed(2) : '—';
+  const avgValue   = p.avgRatings.valueformoney ? p.avgRatings.valueformoney.toFixed(2) : '—';
+  const pct5 = p.reviewCount ? Math.round(p.reviews.filter(r=>r._rating.overall>=4.5).length/p.reviewCount*100) : 0;
+  document.getElementById('det-stats').innerHTML = `
+    <div class="stat-card"><div class="val">${avgOverall}</div><div class="lbl">Avg Overall (/5)</div></div>
+    <div class="stat-card"><div class="val">${avgService}</div><div class="lbl">Avg Service</div></div>
+    <div class="stat-card"><div class="val">${avgValue}</div><div class="lbl">Avg Value</div></div>
+    <div class="stat-card"><div class="val">${pct5}%</div><div class="lbl">Rated 4.5–5</div></div>
+    <div class="stat-card"><div class="val">${p.reviewCount}</div><div class="lbl">Total Reviews</div></div>
+  `;
+
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(t => {
+    t.onclick = () => {
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('tab-'+t.dataset.tab).classList.add('active');
+    };
+  });
+
+  renderRatingsTab(p);
+  renderReviewsTab(p);
+  renderAmenitiesTab(p);
+  renderInfoTab(p);
+}
+
+function renderRatingsTab(p) {
+  const el = document.getElementById('tab-ratings');
+  el.innerHTML = `
+    <div class="chart-row">
+      <div class="chart-card" style="flex:1;min-width:260px">
+        <h3>Rating Dimensions (avg)</h3>
+        <canvas id="det-radar" height="260"></canvas>
+      </div>
+      <div class="chart-card" style="flex:1;min-width:260px">
+        <h3>Overall Score Distribution</h3>
+        <canvas id="det-dist" height="260"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Review Volume Over Time</h3>
+      <canvas id="det-timeline" height="140"></canvas>
+    </div>
+  `;
+
+  // Radar
+  const availDims = RATING_DIMS.filter((d,i) => p.avgRatings[d]);
+  const availLabels = availDims.map(d => DIM_LABELS[RATING_DIMS.indexOf(d)]);
+  const availVals = availDims.map(d => p.avgRatings[d]);
+  destroyChart(radarChart);
+  radarChart = new Chart(document.getElementById('det-radar'), {
+    type: 'radar',
+    data: {
+      labels: availLabels,
+      datasets: [{
+        label: 'Avg Rating',
+        data: availVals,
+        backgroundColor: 'rgba(59,130,246,.15)',
+        borderColor: '#3b82f6',
+        borderWidth: 2,
+        pointBackgroundColor: '#3b82f6',
+        pointRadius: 4,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: { r: { min:0, max:5, ticks:{ stepSize:1, font:{size:10} }, pointLabels:{font:{size:11}} } },
+      plugins: { legend: { display: false } },
+    },
+  });
+
+  // Distribution bar
+  const buckets = {1:0, 2:0, 3:0, 4:0, 5:0};
+  p.reviews.forEach(r => {
+    const v = r._rating.overall;
+    if (v > 0) {
+      const k = Math.min(5, Math.ceil(v));
+      buckets[k] = (buckets[k]||0)+1;
+    }
+  });
+  destroyChart(distChart);
+  distChart = new Chart(document.getElementById('det-dist'), {
+    type: 'bar',
+    data: {
+      labels: ['1','2','3','4','5'],
+      datasets: [{
+        label: 'Reviews',
+        data: [buckets[1],buckets[2],buckets[3],buckets[4],buckets[5]],
+        backgroundColor: ['#ef4444','#f97316','#eab308','#22c55e','#16a34a'],
+        borderRadius: 5,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend:{display:false} },
+      scales: { x:{ title:{display:true,text:'Overall Score',font:{size:11}} }, y:{ticks:{font:{size:11}}} },
+    },
+  });
+
+  // Timeline
+  const monthCounts = {};
+  p.reviews.forEach(r => {
+    if (r._dateKey) monthCounts[r._dateKey] = (monthCounts[r._dateKey]||0)+1;
+  });
+  const months = Object.keys(monthCounts).sort();
+  destroyChart(timelineChart);
+  timelineChart = new Chart(document.getElementById('det-timeline'), {
+    type: 'line',
+    data: {
+      labels: months.map(m => { const [y,mo]=m.split('-'); return new Date(y,mo-1).toLocaleDateString('en-US',{month:'short',year:'2-digit'}); }),
+      datasets: [{
+        label: 'Reviews',
+        data: months.map(m=>monthCounts[m]),
+        fill: true,
+        backgroundColor: 'rgba(59,130,246,.1)',
+        borderColor: '#3b82f6',
+        borderWidth: 2,
+        pointRadius: 3,
+        tension: .35,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend:{display:false} },
+      scales: { x:{ticks:{maxTicksLimit:14, font:{size:10}}}, y:{ticks:{font:{size:11}}} },
+    },
+  });
+}
+
+function renderReviewsTab(p) {
+  const el = document.getElementById('tab-reviews');
+  const sorted = [...p.reviews].sort((a,b) => new Date(b.acquisition_date)-new Date(a.acquisition_date));
+  const rows = sorted.slice(0, 200).map(r => {
+    const ov = r._rating.overall;
+    const pill = ov > 0 ? `<span class="overall-pill pill-${Math.min(5,Math.ceil(ov))}">${ov}</span>` : '—';
+    const dims = ['roomcleanliness','service','hotelcondition','valueformoney']
+      .filter(d => r._rating[d] > 0)
+      .map(d => `<span class="badge badge-gray" title="${DIM_LABELS[RATING_DIMS.indexOf(d)]}">${DIM_LABELS[RATING_DIMS.indexOf(d)].split(' ')[0]} ${r._rating[d]}</span>`)
+      .join(' ');
+    const text = (r.review_text||'').slice(0,180) + ((r.review_text||'').length>180?'…':'');
+    const title = r.review_title ? `<strong>${r.review_title}</strong><br>` : '';
+    return `<tr>
+      <td>${pill}</td>
+      <td style="color:#64748b;white-space:nowrap">${formatDate(r.acquisition_date)}</td>
+      <td>${title}<span style="color:#475569;font-size:12px">${text || '<em style="color:#94a3b8">No text</em>'}</span></td>
+      <td style="white-space:nowrap">${dims}</td>
+    </tr>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div style="background:white;border-radius:10px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.07);overflow-x:auto">
+      <div style="font-size:12px;color:#64748b;margin-bottom:10px">Showing up to 200 most recent reviews (${p.reviewCount} total)</div>
+      <table class="reviews-table">
+        <thead><tr><th>Score</th><th>Date</th><th>Review</th><th>Sub-scores</th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="4" style="color:#94a3b8;text-align:center;padding:20px">No reviews</td></tr>'}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderAmenitiesTab(p) {
+  const el = document.getElementById('tab-amenities');
+  const sections = AMENITY_CATS.map(([field, label]) => {
+    const items = tryJSON(p[field]);
+    if (!items.length) return '';
+    const tags = items.map(a => `<span class="amenity-tag">${a}</span>`).join('');
+    return `<div class="amenity-section"><h4>${label}</h4><div class="amenity-tags">${tags}</div></div>`;
+  }).join('');
+
+  el.innerHTML = `<div style="background:white;border-radius:10px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.07)">${sections || '<p style="color:#94a3b8">No amenity data</p>'}</div>`;
+}
+
+function renderInfoTab(p) {
+  const el = document.getElementById('tab-info');
+  const desc = (p.property_description||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+  const area = (p.area_description||'').trim();
+
+  const policies = [
+    ['Check-in',  `${p.check_in_start_time||'—'} – ${p.check_in_end_time||'—'}`],
+    ['Check-out', p.check_out_time||'—'],
+    ['Pets',      tryJSON(p.pet_policy).slice(0,2).join(' · ') || '—'],
+  ];
+
+  const policyRows = policies.map(([k,v]) => `
+    <tr>
+      <td style="font-size:12px;font-weight:600;color:#64748b;padding:8px 12px;white-space:nowrap">${k}</td>
+      <td style="font-size:13px;padding:8px 12px">${v}</td>
+    </tr>`).join('');
+
+  el.innerHTML = `
+    <div class="chart-row" style="flex-wrap:wrap">
+      <div class="chart-card" style="flex:2;min-width:280px">
+        <h3>Area Description</h3>
+        <p style="font-size:13px;line-height:1.6;color:#334155">${area||'—'}</p>
+        <br>
+        <h3>Property Description</h3>
+        <p style="font-size:13px;line-height:1.6;color:#334155">${desc||'—'}</p>
+      </div>
+      <div class="chart-card" style="flex:1;min-width:220px">
+        <h3>Policies</h3>
+        <table style="width:100%;border-collapse:collapse">${policyRows}</table>
+      </div>
+    </div>
+  `;
+}
+
+// ── Wire controls ────────────────────────────────────────────────────────────
+document.getElementById('sort-select').addEventListener('change', render);
+document.getElementById('country-filter').addEventListener('change', () => {
+  selectedId = null;
+  render();
+});
+
+// ── Boot ─────────────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>
