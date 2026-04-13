@@ -4,3 +4,5 @@ venv
 package-lock.json
 
 .vscode
+
+__pycache__
