@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 from .openai_caller import init_openai
-from .routes.app import main_bp
+from .routes.main import main_bp
 from .routes.ai import ai_bp
 
 load_dotenv()  # loads variables from .env into environment
