@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 export default function SimpleChat() {
+  const [clickNum, setClickNum] = useState(0);
+
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
     { role: "assistant", text: "Hi! Ask me anything." },
@@ -123,6 +125,11 @@ export default function SimpleChat() {
           }}
         >
           Send
+        </button>
+        <button
+          onClick={() => setClickNum(clickNum + 1)}
+        >
+          click {clickNum}
         </button>
       </div>
     </div>
