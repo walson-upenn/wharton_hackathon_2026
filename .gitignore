@@ -4,5 +4,6 @@ venv
 package-lock.json
 
 .vscode
+.DS_Store
 
 __pycache__
