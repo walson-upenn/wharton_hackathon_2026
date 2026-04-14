@@ -1,7 +1,7 @@
 from flask import Blueprint
 
-main_bp = Blueprint("main", __name__)
+default_bp = Blueprint("main", __name__)
 
-@main_bp.route("/")
+@default_bp.route("/")
 def home():
     return "Hello, Flask!"
