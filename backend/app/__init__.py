@@ -6,7 +6,7 @@ from .routes.default import default_bp
 from .routes.ai import ai_bp
 
 load_dotenv()  # loads variables from .env into environment
-# oi vercel i have perms
+
 def create_app():
     app = Flask(__name__)
     app.config["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
