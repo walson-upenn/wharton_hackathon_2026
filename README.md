@@ -7,4 +7,4 @@ frontend
 
 backend
 - run with python main.py in the backend directory
-- would recommend making venv `python -m venv venv` and `pip install -r requirements.txt`
+- would recommend making venv `python -m venv venv` and `pip install -r requirements.txt` 
