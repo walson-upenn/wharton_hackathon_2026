@@ -6,7 +6,7 @@ import OverallRating from "./components/OverallRating";
 import QuestionCard from "./components/QuestionCard";
 import VoiceReviewPanel from "./components/VoiceReviewPanel";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function buildQuestionsForUsage(session, stayUsage) {
   const selected = session.targetAmenities.filter((target) =>
