@@ -295,18 +295,10 @@ const handleNoneOfThese = () => {
     return (
       <div className="page-shell">
         <ReviewHeader />
-        <div className="mode-toggle-bar">
-          <button
-            className="mode-toggle-btn"
-            onClick={() => setAppMode("guest")}
-          >
-            Guest view
-          </button>
-          <button
-            className="mode-toggle-btn mode-toggle-btn--active"
-            disabled
-          >
-            Manager view
+        <div className="view-switcher view-switcher--left">
+          <button className="view-switcher__btn" onClick={() => setAppMode("guest")}>
+            <div className="view-switcher__arrow">←</div>
+            <span className="view-switcher__label">Guest view</span>
           </button>
         </div>
         <ManagerView
@@ -322,18 +314,10 @@ const handleNoneOfThese = () => {
     <div className="page-shell">
       <ReviewHeader />
 
-      <div className="mode-toggle-bar">
-        <button
-          className="mode-toggle-btn mode-toggle-btn--active"
-          disabled
-        >
-          Guest view
-        </button>
-        <button
-          className="mode-toggle-btn"
-          onClick={() => setAppMode("manager")}
-        >
-          Manager view
+      <div className="view-switcher view-switcher--right">
+        <button className="view-switcher__btn" onClick={() => setAppMode("manager")}>
+          <div className="view-switcher__arrow">→</div>
+          <span className="view-switcher__label">Manager view</span>
         </button>
       </div>
 

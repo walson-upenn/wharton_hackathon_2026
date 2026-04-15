@@ -976,38 +976,92 @@ textarea {
 
 /* ── Mode toggle bar ───────────────────────────────────────────────────── */
 
-.mode-toggle-bar {
+/* ── View switcher edge tabs ───────────────────────────────────────────── */
+
+.view-switcher {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.view-switcher--right {
+  right: 0;
+}
+
+.view-switcher--left {
+  left: 0;
+}
+
+.view-switcher__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 18px;
+  background: #fff;
+  color: var(--text);
+  border: 1.5px solid #d0d5dd;
+  cursor: pointer;
+  font-family: inherit;
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: -4px 8px 32px rgba(0,0,0,0.12);
+  outline: none;
+}
+
+/* flat on the screen edge, rounded on the inner side */
+.view-switcher--right .view-switcher__btn {
+  border-radius: 12px 0 0 12px;
+}
+
+.view-switcher--left .view-switcher__btn {
+  border-radius: 0 12px 12px 0;
+}
+
+.view-switcher__btn:hover {
+  background: #fffdf0;
+  box-shadow: -4px 12px 40px rgba(0,0,0,0.16);
+}
+
+.view-switcher__btn:active {
+  transition-duration: 0.1s;
+  opacity: 0.9;
+}
+
+.view-switcher__label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  color: rgba(0,0,0,0.55);
+  transition: color 0.2s;
+}
+
+.view-switcher__btn:hover .view-switcher__label {
+  color: rgba(0,0,0,0.9);
+}
+
+.view-switcher--right .view-switcher__label {
+  transform: rotate(180deg);
+}
+
+.view-switcher__arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--yellow);
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 8px 24px;
-  border-bottom: 1px solid var(--border);
-  background: #fff;
-}
-
-.mode-toggle-btn {
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--muted);
-  border-radius: 999px;
-  padding: 7px 16px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
-}
-
-.mode-toggle-btn:hover:not(:disabled) {
-  border-color: #cfd4dc;
+  justify-content: center;
+  font-size: 14px;
   color: var(--text);
-  background: #fafbfc;
+  transition: background 0.2s;
+  flex-shrink: 0;
 }
 
-.mode-toggle-btn--active {
-  background: var(--text);
-  color: #fff;
-  border-color: var(--text);
-  cursor: default;
+.view-switcher__btn:hover .view-switcher__arrow {
+  background: var(--yellow-hover);
 }
 
 /* ── Manager hero ──────────────────────────────────────────────────────── */
@@ -1218,18 +1272,15 @@ textarea {
 
 .amenity-card {
   padding: 14px 16px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  margin-bottom: 10px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #f2f4f7;
+  margin-bottom: 8px;
 }
 
-.amenity-card--good {
-  border-left: 3px solid #12b76a;
-}
+.amenity-card--good {}
 
-.amenity-card--warn {
-  border-left: 3px solid #f04438;
-}
+.amenity-card--warn {}
 
 .amenity-card__top {
   display: flex;
@@ -1273,22 +1324,21 @@ textarea {
 
 .amenity-card__quote {
   font-size: 12px;
-  color: var(--muted);
+  color: #4b5565;
   margin-top: 4px;
   padding: 5px 8px;
-  background: #f9fafb;
+  background: #fff;
   border-radius: 6px;
+  border: 1px solid #f2f4f7;
   line-height: 1.4;
 }
 
 .amenity-card__quote--pos {
   color: #027a48;
-  background: #ecfdf3;
 }
 
 .amenity-card__quote--neg {
   color: #b42318;
-  background: #fff5f4;
 }
 
 /* ── Per-review pipeline diagram ──────────────────────────────────────────  */
