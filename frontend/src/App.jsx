@@ -6,6 +6,7 @@ import OverallRating from "./components/OverallRating";
 import QuestionCard from "./components/QuestionCard";
 import VoiceReviewPanel from "./components/VoiceReviewPanel";
 import ProgressBar from "./components/ProgressBar";
+import ManagerView from "./components/ManagerView";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -26,6 +27,7 @@ function buildQuestionsForUsage(session, stayUsage) {
 }
 
 export default function App() {
+  const [appMode, setAppMode] = useState("guest");
   const [session, setSession] = useState(null);
   const [properties, setProperties] = useState([]);
   const [selectedPropertyId, setSelectedPropertyId] = useState("");
@@ -261,9 +263,51 @@ const handleNoneOfThese = () => {
     );
   }
 
+  if (appMode === "manager") {
+    return (
+      <div className="page-shell">
+        <ReviewHeader />
+        <div className="mode-toggle-bar">
+          <button
+            className="mode-toggle-btn"
+            onClick={() => setAppMode("guest")}
+          >
+            Guest view
+          </button>
+          <button
+            className="mode-toggle-btn mode-toggle-btn--active"
+            disabled
+          >
+            Manager view
+          </button>
+        </div>
+        <ManagerView
+          propertyId={selectedPropertyId}
+          properties={properties}
+          onPropertyChange={setSelectedPropertyId}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="page-shell">
       <ReviewHeader />
+
+      <div className="mode-toggle-bar">
+        <button
+          className="mode-toggle-btn mode-toggle-btn--active"
+          disabled
+        >
+          Guest view
+        </button>
+        <button
+          className="mode-toggle-btn"
+          onClick={() => setAppMode("manager")}
+        >
+          Manager view
+        </button>
+      </div>
 
       <main className="page-content">
         <div className="top-meta-line">

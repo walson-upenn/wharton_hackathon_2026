@@ -6,8 +6,10 @@ from flask import Blueprint, jsonify, render_template, request
 from ..openai_caller import get_openai_client
 from ..pipeline_data import (
     ROOT_DIR,
+    ask_reason,
     build_review_session,
     criticality_tier,
+    get_raw_amenity_pruning,
     load_pipeline_data,
     property_summary,
 )
@@ -231,6 +233,48 @@ def demo_review_sample(property_id):
     })
 
 
+@pipeline_bp.route("/api/manager/review-sample/<property_id>", methods=["GET"])
+def manager_review_sample(property_id):
+    data = load_pipeline_data()
+    reviews = data["review_profiles"].get(property_id, [])
+    if not reviews:
+        return _json_error("No review data for this property.", 404)
+
+    skip = request.args.get("skip", 0, type=int)
+
+    # Sort all reviews by richness, then pick by offset so the user can cycle through them
+    def richness(r):
+        amenities = r.get("amenities", {})
+        return len(amenities) * 2 + sum(
+            1 for a in amenities.values() if a.get("sentiment") not in (None, 0)
+        )
+
+    ranked = sorted(reviews, key=richness, reverse=True)
+    review = ranked[skip % len(ranked)]
+
+    amenities = sorted(
+        [
+            {
+                "amenity": am,
+                "sentiment": info.get("sentiment"),
+                "detail": info.get("detail", 0),
+                "reasons": info.get("reasons", [])[:2],
+            }
+            for am, info in review.get("amenities", {}).items()
+        ],
+        key=lambda x: -abs(x.get("sentiment") or 0),
+    )
+
+    return jsonify({
+        "date": review.get("date", ""),
+        "title": review.get("title", ""),
+        "text": review.get("text", ""),
+        "amenities": amenities,
+        "skip": skip,
+        "total_reviews": len(reviews),
+    })
+
+
 @pipeline_bp.route("/api/reviews/voice/extract", methods=["POST"])
 def extract_voice_review():
     payload = request.get_json(silent=True) or {}
@@ -313,6 +357,157 @@ Only include amenities from the target list. Use detail_score from 0 to 4."""
         file.write(json.dumps(record, ensure_ascii=False) + "\n")
 
     return jsonify(extraction)
+
+
+@pipeline_bp.route("/api/manager/overview/<property_id>", methods=["GET"])
+def manager_overview(property_id):
+    data = load_pipeline_data()
+    prop = property_summary(property_id)
+    ask_scores_list = data["ask_scores"].get(property_id, [])
+    review_profiles_list = data["review_profiles"].get(property_id, [])
+    amenity_profiles_map = data["amenity_profiles"].get(property_id, {})
+    aggregated_reasons_map = data["aggregated_reasons"].get(property_id, {})
+
+    if not ask_scores_list:
+        return _json_error("No score data for this property.", 404)
+
+    review_count = len(review_profiles_list)
+
+    # Best amenities: highest positive sentiment, well-documented
+    best = []
+    for item in ask_scores_list:
+        stats = item.get("stats", {})
+        sentiment = stats.get("mean_sentiment")
+        mentions = stats.get("num_mentions", 0)
+        if sentiment is not None and sentiment > 0.1 and mentions >= 2:
+            reasons = aggregated_reasons_map.get(item["amenity"], {})
+            best.append({
+                "amenity": item["amenity"],
+                "avg_sentiment": round(sentiment, 2),
+                "num_mentions": mentions,
+                "ask_score": round(item.get("score", 0), 3),
+                "positive_reasons": reasons.get("positive", [])[:3],
+            })
+    best.sort(key=lambda x: (-x["avg_sentiment"], -x["num_mentions"]))
+    best = best[:3]
+
+    # Needs attention: highest ask_score
+    attention = []
+    for item in ask_scores_list[:3]:
+        stats = item.get("stats", {})
+        reasons = aggregated_reasons_map.get(item["amenity"], {})
+        sentiment = stats.get("mean_sentiment")
+        attention.append({
+            "amenity": item["amenity"],
+            "avg_sentiment": round(sentiment, 2) if sentiment is not None else None,
+            "num_mentions": stats.get("num_mentions", 0),
+            "ask_score": round(item.get("score", 0), 3),
+            "ask_reason": ask_reason(item),
+            "negative_reasons": reasons.get("negative", [])[:3],
+            "positive_reasons": reasons.get("positive", [])[:2],
+            "components": {k: round(v, 3) for k, v in item.get("components", {}).items()},
+        })
+
+    # Pipeline Step 1: Amenity pruning — raw strings from Description_PROC → taxonomy
+    step1_pruning = get_raw_amenity_pruning(property_id)
+
+    # Pipeline Step 2: Importance ranking — sorted by criticality
+    step2_list = sorted(
+        [
+            {
+                "amenity": item["amenity"],
+                "criticality": round(item.get("criticality", 0), 3),
+                "tier": criticality_tier(item.get("criticality", 0)),
+            }
+            for item in ask_scores_list
+        ],
+        key=lambda x: -x["criticality"],
+    )
+
+    # Pipeline Step 3: Richest sample review
+    sample_review = None
+    if review_profiles_list:
+        richest = max(
+            review_profiles_list,
+            key=lambda r: len(r.get("amenities", {})) * 2
+            + sum(
+                1
+                for a in r.get("amenities", {}).values()
+                if a.get("sentiment") not in (None, 0)
+            ),
+        )
+        extracted = sorted(
+            [
+                {
+                    "amenity": am,
+                    "sentiment": info.get("sentiment"),
+                    "detail": info.get("detail", 0),
+                    "reasons": info.get("reasons", [])[:2],
+                }
+                for am, info in richest.get("amenities", {}).items()
+            ],
+            key=lambda x: -abs(x.get("sentiment") or 0),
+        )
+        sample_review = {
+            "date": richest.get("date", ""),
+            "title": richest.get("title", ""),
+            "text": richest.get("text", ""),
+            "amenities": extracted,
+        }
+
+    # Pipeline Step 4: AskScore computation
+    step4_list = [
+        {
+            "amenity": item["amenity"],
+            "score": round(item.get("score", 0), 4),
+            "criticality": round(item.get("criticality", 0), 3),
+            "tier": criticality_tier(item.get("criticality", 0)),
+            "components": {
+                "knowledge_gap": round(item.get("components", {}).get("knowledge_gap_score", 0), 3),
+                "controversy": round(item.get("components", {}).get("controversy_score", 0), 3),
+                "decline": round(item.get("components", {}).get("decline_score", 0), 3),
+                "staleness": round(item.get("components", {}).get("staleness_score", 0), 3),
+            },
+            "stats": {
+                "num_mentions": item.get("stats", {}).get("num_mentions", 0),
+                "avg_sentiment": (
+                    round(item.get("stats", {}).get("mean_sentiment"), 2)
+                    if item.get("stats", {}).get("mean_sentiment") is not None
+                    else None
+                ),
+            },
+        }
+        for item in ask_scores_list
+    ]
+
+    return jsonify({
+        "property": prop,
+        "overview": {
+            "review_count": review_count,
+            "amenity_count": len(ask_scores_list),
+            "best_amenities": best,
+            "needs_attention": attention,
+        },
+        "pipeline": {
+            "step1": step1_pruning,
+            "step2": {
+                "ranked_amenities": step2_list,
+            },
+            "step3": {
+                "sample_review": sample_review,
+                "total_reviews": review_count,
+            },
+            "step4": {
+                "scored_amenities": step4_list,
+                "weights": {
+                    "knowledge_gap": 0.40,
+                    "controversy": 0.20,
+                    "decline": 0.20,
+                    "staleness": 0.15,
+                },
+            },
+        },
+    })
 
 
 @pipeline_bp.route("/pipeline-demo", methods=["GET"])

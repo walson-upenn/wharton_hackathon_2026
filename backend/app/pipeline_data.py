@@ -8,6 +8,35 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 SOURCES_DIR = ROOT_DIR / "sources"
 SCORING_DIR = ROOT_DIR / "scoring"
 FINAL_PREPROCESSING_DIR = ROOT_DIR / "final-preprocessing"
+TAXONOMY_PATH = ROOT_DIR.parent / "preprocessing" / "amenity_taxonomy.json"
+
+AMENITY_FIELDS = [
+    "popular_amenities_list",
+    "property_amenity_accessibility",
+    "property_amenity_activities_nearby",
+    "property_amenity_business_services",
+    "property_amenity_conveniences",
+    "property_amenity_family_friendly",
+    "property_amenity_food_and_drink",
+    "property_amenity_guest_services",
+    "property_amenity_internet",
+    "property_amenity_langs_spoken",
+    "property_amenity_more",
+    "property_amenity_outdoor",
+    "property_amenity_parking",
+    "property_amenity_spa",
+    "property_amenity_things_to_do",
+]
+
+
+def _parse_json_field(raw: str) -> list[str]:
+    if not raw or not raw.strip():
+        return []
+    try:
+        val = json.loads(raw)
+        return [str(v) for v in val] if isinstance(val, list) else []
+    except json.JSONDecodeError:
+        return []
 
 
 def _load_json(path: Path, default):
@@ -40,6 +69,66 @@ def load_pipeline_data() -> dict:
         "review_profiles": _load_json(FINAL_PREPROCESSING_DIR / "review_profiles.json", {}),
         "amenity_profiles": _load_json(FINAL_PREPROCESSING_DIR / "amenity_profiles.json", {}),
         "aggregated_reasons": _load_json(FINAL_PREPROCESSING_DIR / "aggregated_reasons.json", {}),
+        "amenity_taxonomy": _load_json(TAXONOMY_PATH, {}),
+    }
+
+
+def get_raw_amenity_pruning(property_id: str) -> dict:
+    """
+    Returns the raw amenity strings from Description_PROC for a property,
+    each annotated with what the taxonomy does to it (kept, normalized, or pruned).
+    """
+    data = load_pipeline_data()
+    row = data["properties"].get(property_id, {})
+    taxonomy = data["amenity_taxonomy"]
+
+    seen_raw: set[str] = set()
+    raw_list: list[str] = []
+    for field in AMENITY_FIELDS:
+        for item in _parse_json_field(row.get(field, "")):
+            item = item.strip()
+            if item and item.lower() not in seen_raw:
+                seen_raw.add(item.lower())
+                raw_list.append(item)
+
+    seen_canonical: set[str] = set()
+    entries = []
+    for raw in raw_list:
+        if raw in taxonomy:
+            canonical = taxonomy[raw]
+            if canonical is None:
+                status = "pruned"
+            elif canonical.lower() == raw.lower():
+                status = "kept"
+                if canonical.lower() not in seen_canonical:
+                    seen_canonical.add(canonical.lower())
+            else:
+                status = "normalized"
+                if canonical.lower() not in seen_canonical:
+                    seen_canonical.add(canonical.lower())
+        else:
+            # Not in taxonomy — passes through as-is
+            canonical = raw
+            status = "kept"
+            if canonical.lower() not in seen_canonical:
+                seen_canonical.add(canonical.lower())
+
+        entries.append({
+            "raw": raw,
+            "canonical": canonical,
+            "status": status,
+        })
+
+    pruned_count = sum(1 for e in entries if e["status"] == "pruned")
+    normalized_count = sum(1 for e in entries if e["status"] == "normalized")
+    kept_count = len(seen_canonical)
+
+    return {
+        "entries": entries,
+        "total_raw": len(entries),
+        "pruned": pruned_count,
+        "normalized": normalized_count,
+        "kept": kept_count,
     }
 
 
