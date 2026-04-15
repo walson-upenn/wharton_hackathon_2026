@@ -4,7 +4,7 @@ from functools import lru_cache
 from pathlib import Path
 
 
-ROOT_DIR = Path(__file__).resolve().parents[2]
+ROOT_DIR = Path(__file__).resolve().parents[1]
 SOURCES_DIR = ROOT_DIR / "sources"
 SCORING_DIR = ROOT_DIR / "scoring"
 FINAL_PREPROCESSING_DIR = ROOT_DIR / "final-preprocessing"
