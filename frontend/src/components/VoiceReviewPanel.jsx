@@ -15,18 +15,24 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000
   img.src = url;
 });
 
+function stripToneDirections(text) {
+  return text.replace(/\[[^\]]*\]/g, "").replace(/\s{2,}/g, " ").trim();
+}
+
 function getMessageText(message) {
   if (!message) return "";
-  if (typeof message === "string") return message;
-  return (
-    message.message ||
-    message.text ||
-    message.transcript ||
-    message.content ||
-    message.data?.text ||
-    message.data?.transcript ||
-    ""
-  ).trim();
+  if (typeof message === "string") return stripToneDirections(message);
+  return stripToneDirections(
+    (
+      message.message ||
+      message.text ||
+      message.transcript ||
+      message.content ||
+      message.data?.text ||
+      message.data?.transcript ||
+      ""
+    ).trim()
+  );
 }
 
 function isFinalUserTranscript(message) {

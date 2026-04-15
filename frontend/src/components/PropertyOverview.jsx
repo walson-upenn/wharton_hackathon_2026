@@ -1,3 +1,12 @@
+function formatAmenityLabel(amenity) {
+  if (!amenity) return "";
+  return amenity
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 const SENTIMENT_COLOR = (score) => {
   if (score === null || score === undefined) return "#98a2b3";
   if (score >= 0.3) return "#12b76a";
@@ -25,14 +34,14 @@ function AmenityCard({ am, variant }) {
   return (
     <div className={`amenity-card amenity-card--${variant}`}>
       <div className="amenity-card__top">
-        <span className="amenity-card__name">{am.amenity}</span>
+        <span className="amenity-card__name">{formatAmenityLabel(am.amenity)}</span>
         {variant === "good" ? (
           <span className="amenity-card__score" style={{ color: SENTIMENT_COLOR(am.avg_sentiment) }}>
             {am.avg_sentiment >= 0 ? "+" : ""}
             {am.avg_sentiment}
           </span>
         ) : (
-          <span className="amenity-card__ask-score">ask {am.ask_score}</span>
+          <span className="amenity-card__ask-score">Ask Score: {am.ask_score}</span>
         )}
       </div>
 
@@ -87,13 +96,13 @@ export default function PropertyOverview({ data }) {
         </div>
         <div className="overview-stat">
           <div className="overview-stat__value">
-            {data.best_amenities.length > 0 ? data.best_amenities[0].amenity : "—"}
+            {data.best_amenities.length > 0 ? formatAmenityLabel(data.best_amenities[0].amenity) : "—"}
           </div>
           <div className="overview-stat__label">Top positive</div>
         </div>
         <div className="overview-stat">
           <div className="overview-stat__value">
-            {data.needs_attention.length > 0 ? data.needs_attention[0].amenity : "—"}
+            {data.needs_attention.length > 0 ? formatAmenityLabel(data.needs_attention[0].amenity) : "—"}
           </div>
           <div className="overview-stat__label">Top ask</div>
         </div>
