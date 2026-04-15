@@ -10,7 +10,7 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 SOURCES_DIR = ROOT_DIR / "sources"
 SCORING_DIR = ROOT_DIR / "scoring"
 FINAL_PREPROCESSING_DIR = ROOT_DIR / "final-preprocessing"
-TAXONOMY_PATH = ROOT_DIR.parent / "preprocessing" / "amenity_taxonomy.json"
+TAXONOMY_PATH = SOURCES_DIR / "amenity_taxonomy.json"
 
 AMENITY_FIELDS = [
     "popular_amenities_list",
