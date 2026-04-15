@@ -6,6 +6,7 @@ from flask import Blueprint, jsonify, render_template, request
 from ..openai_caller import get_openai_client
 from ..pipeline_data import (
     ROOT_DIR,
+    build_all_review_sessions,
     build_review_session,
     criticality_tier,
     load_pipeline_data,
@@ -51,6 +52,14 @@ def get_review_session(property_id=None):
     if not session:
         return _json_error("No precomputed ask-score data is available.", 404)
     return jsonify(session)
+
+
+@pipeline_bp.route("/api/review-sessions", methods=["GET"])
+def get_review_sessions():
+    sessions = build_all_review_sessions()
+    if not sessions:
+        return _json_error("No precomputed ask-score data is available.", 404)
+    return jsonify({"sessions": sessions})
 
 
 @pipeline_bp.route("/api/demo/properties", methods=["GET"])
