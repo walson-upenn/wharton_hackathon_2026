@@ -145,9 +145,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+            "primaryQuestion": "How was the air conditioning during your stay?",
+            "placeholder": "E.g., was it cool enough?",
+            "selectionReason": "Guests get mixed signals about the air conditioning, so a concrete moment helps.",
+            "amenity": "air conditioning",
+            "source": "llm"
           }
         },
         {
@@ -183,9 +185,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+            "primaryQuestion": "What was your experience with the wifi quality?",
+            "placeholder": "E.g., fast or slow?",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -218,9 +222,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you parked, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about free parking may be out of date, so your recent experience helps."
+            "primaryQuestion": "Did you use the free parking? Anything stand out?",
+            "placeholder": "E.g., easy access or space?",
+            "selectionReason": "Recent details on free parking are unclear, so your experience is valuable.",
+            "amenity": "free parking",
+            "source": "llm"
           }
         },
         {
@@ -261,9 +267,11 @@
             "ask whether it felt worse or changed recently"
           ],
           "formQuestion": {
-            "primaryQuestion": "When housekeeping came up, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about housekeeping, so one concrete example helps."
+            "primaryQuestion": "How did you find the cleanliness of your room?",
+            "placeholder": "E.g., details about the upkeep?",
+            "selectionReason": "Housekeeping experiences vary, so one moment can clarify expectations.",
+            "amenity": "housekeeping",
+            "source": "llm"
           }
         },
         {
@@ -303,9 +311,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "During check-in or checkout, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about front desk, so one concrete example helps."
+            "primaryQuestion": "How was your interaction with the front desk staff?",
+            "placeholder": "E.g., helpfulness or response time?",
+            "selectionReason": "Experiences with front desk service vary, so a specific moment helps.",
+            "amenity": "front desk",
+            "source": "llm"
           }
         }
       ],
@@ -325,18 +335,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "air conditioning",
-          "label": "When you used air conditioning, what was your actual experience?",
-          "askReason": "Guests get mixed signals about air conditioning, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "How was the air conditioning during your stay?",
+          "askReason": "Guests get mixed signals about the air conditioning, so a concrete moment helps.",
+          "placeholder": "E.g., was it cool enough?",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "wifi",
-          "label": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+          "label": "What was your experience with the wifi quality?",
           "askReason": "Details about wifi may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "E.g., fast or slow?",
           "required": false
         }
       ],
@@ -401,9 +411,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps."
+            "primaryQuestion": "How was your connection to the Wi-Fi during your stay?",
+            "placeholder": "e.g., had no issues, slow connection",
+            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -439,9 +451,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used accessible parking, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about accessible parking may be out of date, so your recent experience helps."
+            "primaryQuestion": "What was your experience finding accessible parking?",
+            "placeholder": "e.g., enough spaces, difficult to find",
+            "selectionReason": "Details about accessible parking may be out of date, so your recent experience helps.",
+            "amenity": "accessible parking",
+            "source": "llm"
           }
         },
         {
@@ -482,9 +496,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+            "primaryQuestion": "How did the air conditioning perform in your room?",
+            "placeholder": "e.g., worked great, didn't cool well",
+            "selectionReason": "Traveler feedback on air conditioning is mixed, so specifics would clarify.",
+            "amenity": "air conditioning",
+            "source": "llm"
           }
         },
         {
@@ -520,9 +536,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When getting around the property, did any issue come up?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Future guests need concrete details about accessibility, not just whether it was good."
+            "primaryQuestion": "Can you describe the accessibility features of your room?",
+            "placeholder": "e.g., easy access, no elevators",
+            "selectionReason": "Future guests need concrete details about accessibility, not just whether it was good.",
+            "amenity": "accessibility",
+            "source": "llm"
           }
         },
         {
@@ -555,9 +573,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used laundry, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about laundry may be out of date, so your recent experience helps."
+            "primaryQuestion": "Did you use the laundry facilities? What was your impression?",
+            "placeholder": "e.g., easy to use, crowded",
+            "selectionReason": "Details on laundry facilities are rare, so a recent experience would be insightful.",
+            "amenity": "laundry",
+            "source": "llm"
           }
         }
       ],
@@ -577,18 +597,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "wifi",
-          "label": "When you tried the Wi-Fi, what was your actual experience?",
+          "label": "How was your connection to the Wi-Fi during your stay?",
           "askReason": "Guests get mixed signals about wifi, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "e.g., had no issues, slow connection",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "accessible parking",
-          "label": "When you used accessible parking, did it match what the hotel seemed to promise?",
+          "label": "What was your experience finding accessible parking?",
           "askReason": "Details about accessible parking may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "e.g., enough spaces, difficult to find",
           "required": false
         }
       ],
@@ -649,9 +669,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When getting around the property, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about accessibility may be out of date, so your recent experience helps."
+            "primaryQuestion": "Can you share a specific moment about the accessibility of transportation?",
+            "placeholder": "Describe your experience",
+            "selectionReason": "Details about accessibility may be out of date, so your recent experience helps.",
+            "amenity": "accessibility",
+            "source": "llm"
           }
         },
         {
@@ -686,9 +708,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, did any issue come up?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Future guests need concrete details about wifi, not just whether it was good."
+            "primaryQuestion": "Did you experience any issues with Wi-Fi during your stay?",
+            "placeholder": "Detail any connectivity problems",
+            "selectionReason": "Future guests need concrete details about wifi, not just whether it was good.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -724,9 +748,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you parked, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about free parking may be out of date, so your recent experience helps."
+            "primaryQuestion": "What was your experience with parking availability or condition?",
+            "placeholder": "Explain the parking situation",
+            "selectionReason": "Details about free parking may be out of date, so your recent experience helps.",
+            "amenity": "free parking",
+            "source": "llm"
           }
         },
         {
@@ -766,9 +792,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "During check-in or checkout, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about front desk, so one concrete example helps."
+            "primaryQuestion": "Can you recall a specific interaction you had at the front desk?",
+            "placeholder": "Describe your interaction",
+            "selectionReason": "Experiences at the front desk can differ, so a concrete moment is insightful.",
+            "amenity": "front desk",
+            "source": "llm"
           }
         },
         {
@@ -810,9 +838,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "At the restaurant, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about restaurant, so one concrete example helps."
+            "primaryQuestion": "What was your impression of the restaurant during your visit?",
+            "placeholder": "Share a specific dining experience",
+            "selectionReason": "Restaurant quality can shift, so a recent example helps clarify.",
+            "amenity": "restaurant",
+            "source": "llm"
           }
         }
       ],
@@ -832,18 +862,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "accessibility",
-          "label": "When getting around the property, did it match what the hotel seemed to promise?",
+          "label": "Can you share a specific moment about the accessibility of transportation?",
           "askReason": "Details about accessibility may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "Describe your experience",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "wifi",
-          "label": "When you tried the Wi-Fi, did any issue come up?",
+          "label": "Did you experience any issues with Wi-Fi during your stay?",
           "askReason": "Future guests need concrete details about wifi, not just whether it was good.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "Detail any connectivity problems",
           "required": false
         }
       ],
@@ -906,9 +936,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps."
+            "primaryQuestion": "How was the Wi-Fi speed during your stay?",
+            "placeholder": "e.g., fast, slow, inconsistent",
+            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -943,9 +975,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used conference space, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about conference space may be out of date, so your recent experience helps."
+            "primaryQuestion": "What did you think of the conference space's condition during your event?",
+            "placeholder": "e.g., clean, well-equipped",
+            "selectionReason": "Details about the conference space change quickly, so a recent example helps set expectations.",
+            "amenity": "conference space",
+            "source": "llm"
           }
         },
         {
@@ -981,9 +1015,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used the shuttle, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about area shuttle may be out of date, so your recent experience helps."
+            "primaryQuestion": "Can you describe your experience with the area shuttle service?",
+            "placeholder": "e.g., on-time, friendly driver",
+            "selectionReason": "Details about area shuttle may be out of date, so your recent experience helps.",
+            "amenity": "area shuttle",
+            "source": "llm"
           }
         },
         {
@@ -1024,9 +1060,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used bar, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about bar, so one concrete example helps."
+            "primaryQuestion": "What was your experience like with the bar service during your visit?",
+            "placeholder": "e.g., prompt, friendly",
+            "selectionReason": "Traveler experiences at the bar can differ widely, so a detailed moment is helpful.",
+            "amenity": "bar",
+            "source": "llm"
           }
         },
         {
@@ -1067,9 +1105,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "At breakfast, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about breakfast, so one concrete example helps."
+            "primaryQuestion": "What did you notice about the breakfast offerings during your stay?",
+            "placeholder": "e.g., variety, temperature",
+            "selectionReason": "Breakfast details change quickly, so a recent example helps set expectations.",
+            "amenity": "breakfast",
+            "source": "llm"
           }
         }
       ],
@@ -1089,18 +1129,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "wifi",
-          "label": "When you tried the Wi-Fi, what was your actual experience?",
+          "label": "How was the Wi-Fi speed during your stay?",
           "askReason": "Guests get mixed signals about wifi, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "e.g., fast, slow, inconsistent",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "conference space",
-          "label": "When you used conference space, did it match what the hotel seemed to promise?",
-          "askReason": "Details about conference space may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "What did you think of the conference space's condition during your event?",
+          "askReason": "Details about the conference space change quickly, so a recent example helps set expectations.",
+          "placeholder": "e.g., clean, well-equipped",
           "required": false
         }
       ],
@@ -1159,9 +1199,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+            "primaryQuestion": "What stood out about the Wi-Fi during your stay?",
+            "placeholder": "e.g., speed, connectivity",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -1194,9 +1236,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When getting around the property, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about accessibility may be out of date, so your recent experience helps."
+            "primaryQuestion": "Can you share a specific moment regarding accessibility during your visit?",
+            "placeholder": "e.g., ease of movement, facilities",
+            "selectionReason": "Details on accessibility can vary widely, so a concrete example is helpful.",
+            "amenity": "accessibility",
+            "source": "llm"
           }
         },
         {
@@ -1229,9 +1273,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you parked, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about free parking may be out of date, so your recent experience helps."
+            "primaryQuestion": "What was your experience with the free parking at the hotel?",
+            "placeholder": "e.g., availability, ease of use",
+            "selectionReason": "Details about free parking may be out of date, so your recent experience helps.",
+            "amenity": "free parking",
+            "source": "llm"
           }
         },
         {
@@ -1266,9 +1312,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used hiking, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about hiking may be out of date, so your recent experience helps."
+            "primaryQuestion": "What specific hiking experience stood out to you?",
+            "placeholder": "e.g., trails, conditions",
+            "selectionReason": "Details about hiking may be out of date, so your recent experience helps.",
+            "amenity": "hiking",
+            "source": "llm"
           }
         },
         {
@@ -1301,9 +1349,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used no smoking, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about no smoking may be out of date, so your recent experience helps."
+            "primaryQuestion": "Can you describe your experience with the no smoking policy?",
+            "placeholder": "e.g., conditions, enforcement",
+            "selectionReason": "Details about no smoking may be out of date, so your recent experience helps.",
+            "amenity": "no smoking",
+            "source": "llm"
           }
         }
       ],
@@ -1323,18 +1373,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "wifi",
-          "label": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+          "label": "What stood out about the Wi-Fi during your stay?",
           "askReason": "Details about wifi may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "e.g., speed, connectivity",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "accessibility",
-          "label": "When getting around the property, did it match what the hotel seemed to promise?",
-          "askReason": "Details about accessibility may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "Can you share a specific moment regarding accessibility during your visit?",
+          "askReason": "Details on accessibility can vary widely, so a concrete example is helpful.",
+          "placeholder": "e.g., ease of movement, facilities",
           "required": false
         }
       ],
@@ -1400,9 +1450,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used the shuttle, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about area shuttle, so one concrete example helps."
+            "primaryQuestion": "What time did you use the area shuttle, and how was the service?",
+            "placeholder": "e.g., 3 PM, helpful staff",
+            "selectionReason": "Guests get mixed signals about the area shuttle, so one usage example helps.",
+            "amenity": "area shuttle",
+            "source": "llm"
           }
         },
         {
@@ -1438,9 +1490,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+            "primaryQuestion": "Did you experience any issues with the Wi-Fi during your stay?",
+            "placeholder": "e.g., slow connection, sometimes down",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -1478,9 +1532,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "At the fitness center, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about fitness center, so one concrete example helps."
+            "primaryQuestion": "What was your experience like in the fitness center?",
+            "placeholder": "e.g., clean, crowded, good equipment",
+            "selectionReason": "Guests mention mixed experiences in the fitness center, so a specific moment helps.",
+            "amenity": "fitness center",
+            "source": "llm"
           }
         },
         {
@@ -1519,9 +1575,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you parked, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about parking, so one concrete example helps."
+            "primaryQuestion": "How was the parking situation when you arrived?",
+            "placeholder": "e.g., easy to find, spaces tight",
+            "selectionReason": "Travelers have differing views on parking, so your experience informs others.",
+            "amenity": "parking",
+            "source": "llm"
           }
         },
         {
@@ -1561,9 +1619,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+            "primaryQuestion": "Did you notice any issues with the air conditioning during your stay?",
+            "placeholder": "e.g., loud, kept cool",
+            "selectionReason": "There are different experiences with air conditioning, so a specific moment is useful.",
+            "amenity": "air conditioning",
+            "source": "llm"
           }
         }
       ],
@@ -1583,18 +1643,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "area shuttle",
-          "label": "When you used the shuttle, what was your actual experience?",
-          "askReason": "Guests get mixed signals about area shuttle, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "What time did you use the area shuttle, and how was the service?",
+          "askReason": "Guests get mixed signals about the area shuttle, so one usage example helps.",
+          "placeholder": "e.g., 3 PM, helpful staff",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "wifi",
-          "label": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+          "label": "Did you experience any issues with the Wi-Fi during your stay?",
           "askReason": "Details about wifi may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "e.g., slow connection, sometimes down",
           "required": false
         }
       ],
@@ -1653,9 +1713,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used air conditioning, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about air conditioning may be out of date, so your recent experience helps."
+            "primaryQuestion": "What stands out about the air conditioning during your stay?",
+            "placeholder": "e.g., temperature control, noise levels",
+            "selectionReason": "Details about air conditioning may be out of date, so your recent experience helps.",
+            "amenity": "air conditioning",
+            "source": "llm"
           }
         },
         {
@@ -1691,9 +1753,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+            "primaryQuestion": "How was your Wi-Fi experience? Did it meet your needs?",
+            "placeholder": "e.g., connection quality, speed issues",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -1726,9 +1790,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you parked, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about free parking may be out of date, so your recent experience helps."
+            "primaryQuestion": "What was your experience with the free parking at the hotel?",
+            "placeholder": "e.g., availability, location, convenience",
+            "selectionReason": "Details on free parking are limited, so a recent example can clarify.",
+            "amenity": "free parking",
+            "source": "llm"
           }
         },
         {
@@ -1763,9 +1829,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "At breakfast, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about breakfast may be out of date, so your recent experience helps."
+            "primaryQuestion": "What did you think about the breakfast offerings during your stay?",
+            "placeholder": "e.g., variety, taste, quality",
+            "selectionReason": "Breakfast details change quickly, so a recent example helps set expectations.",
+            "amenity": "breakfast",
+            "source": "llm"
           }
         },
         {
@@ -1798,9 +1866,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "During check-in or checkout, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about front desk may be out of date, so your recent experience helps."
+            "primaryQuestion": "How was your interaction with the front desk staff?",
+            "placeholder": "e.g., responsiveness, helpfulness",
+            "selectionReason": "Experiences with the front desk can vary, so one specific moment is useful.",
+            "amenity": "front desk",
+            "source": "llm"
           }
         }
       ],
@@ -1820,18 +1890,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "air conditioning",
-          "label": "When you used air conditioning, did it match what the hotel seemed to promise?",
+          "label": "What stands out about the air conditioning during your stay?",
           "askReason": "Details about air conditioning may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "e.g., temperature control, noise levels",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "wifi",
-          "label": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+          "label": "How was your Wi-Fi experience? Did it meet your needs?",
           "askReason": "Details about wifi may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "e.g., connection quality, speed issues",
           "required": false
         }
       ],
@@ -1893,9 +1963,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps."
+            "primaryQuestion": "How was your Wi-Fi experience during your stay?",
+            "placeholder": "Details about connection and usage",
+            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -1933,9 +2005,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+            "primaryQuestion": "What was your air conditioning experience like?",
+            "placeholder": "Details about performance and noise",
+            "selectionReason": "Air conditioning reports vary, so your specific experience is helpful.",
+            "amenity": "air conditioning",
+            "source": "llm"
           }
         },
         {
@@ -1968,9 +2042,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used business center, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about business center may be out of date, so your recent experience helps."
+            "primaryQuestion": "Did you use the business center? What stood out?",
+            "placeholder": "Details about the equipment and accessibility",
+            "selectionReason": "Current details about the business center are scarce, so your input will clarify.",
+            "amenity": "business center",
+            "source": "llm"
           }
         },
         {
@@ -2010,9 +2086,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used reception, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about reception, so one concrete example helps."
+            "primaryQuestion": "What was your experience at the reception area?",
+            "placeholder": "Details about service and offerings",
+            "selectionReason": "Reception experiences seem varied, so a specific moment is useful.",
+            "amenity": "reception",
+            "source": "llm"
           }
         },
         {
@@ -2048,9 +2126,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When getting around the property, did any issue come up?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "There are practical concerns around accessibility, so your recent example adds clarity."
+            "primaryQuestion": "Did you encounter any accessibility issues during your stay?",
+            "placeholder": "Details about stairs or facilities",
+            "selectionReason": "Recent feedback highlights accessibility concerns, so your insight can clarify.",
+            "amenity": "accessibility",
+            "source": "llm"
           }
         }
       ],
@@ -2070,18 +2150,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "wifi",
-          "label": "When you tried the Wi-Fi, what was your actual experience?",
+          "label": "How was your Wi-Fi experience during your stay?",
           "askReason": "Guests get mixed signals about wifi, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "Details about connection and usage",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "air conditioning",
-          "label": "When you used air conditioning, what was your actual experience?",
-          "askReason": "Guests get mixed signals about air conditioning, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "What was your air conditioning experience like?",
+          "askReason": "Air conditioning reports vary, so your specific experience is helpful.",
+          "placeholder": "Details about performance and noise",
           "required": false
         }
       ],
@@ -2146,9 +2226,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you parked, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about free parking, so one concrete example helps."
+            "primaryQuestion": "Can you share your parking experience when you arrived?",
+            "placeholder": "Details about where you parked",
+            "selectionReason": "Guests get mixed signals about free parking, so one concrete example helps.",
+            "amenity": "free parking",
+            "source": "llm"
           }
         },
         {
@@ -2190,9 +2272,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "During check-in or checkout, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about front desk, so one concrete example helps."
+            "primaryQuestion": "What was your check-in experience like?",
+            "placeholder": "Details about wait time or staff interaction",
+            "selectionReason": "Front desk service can vary greatly, so a recent example helps clarify expectations.",
+            "amenity": "front desk",
+            "source": "llm"
           }
         },
         {
@@ -2233,9 +2317,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+            "primaryQuestion": "How did the air conditioning perform during your stay?",
+            "placeholder": "Details about temperature or issues",
+            "selectionReason": "Air conditioning reliability can differ, so a specific moment is useful.",
+            "amenity": "air conditioning",
+            "source": "llm"
           }
         },
         {
@@ -2277,9 +2363,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "At the pool, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about pool, so one concrete example helps."
+            "primaryQuestion": "What was your experience using the pool like?",
+            "placeholder": "Details about cleanliness or crowding",
+            "selectionReason": "Pool conditions can change, so recent insights help set accurate expectations.",
+            "amenity": "pool",
+            "source": "llm"
           }
         },
         {
@@ -2315,9 +2403,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+            "primaryQuestion": "Did you face any issues with the Wi-Fi during your stay?",
+            "placeholder": "Details about connectivity or speed",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         }
       ],
@@ -2337,18 +2427,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "free parking",
-          "label": "When you parked, what was your actual experience?",
+          "label": "Can you share your parking experience when you arrived?",
           "askReason": "Guests get mixed signals about free parking, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "Details about where you parked",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "front desk",
-          "label": "During check-in or checkout, what was your actual experience?",
-          "askReason": "Guests get mixed signals about front desk, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "What was your check-in experience like?",
+          "askReason": "Front desk service can vary greatly, so a recent example helps clarify expectations.",
+          "placeholder": "Details about wait time or staff interaction",
           "required": false
         }
       ],
@@ -2410,9 +2500,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "At the fitness center, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about fitness center may be out of date, so your recent experience helps."
+            "primaryQuestion": "What was your experience using the fitness center during your stay?",
+            "placeholder": "e.g., equipment condition, cleanliness",
+            "selectionReason": "Details about the fitness center are limited, so your account helps clarify.",
+            "amenity": "fitness center",
+            "source": "llm"
           }
         },
         {
@@ -2445,9 +2537,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you parked, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about free parking may be out of date, so your recent experience helps."
+            "primaryQuestion": "Can you describe your experience with the free parking availability?",
+            "placeholder": "e.g., ease of access, space availability",
+            "selectionReason": "Details about free parking may be out of date, so your recent experience helps.",
+            "amenity": "free parking",
+            "source": "llm"
           }
         },
         {
@@ -2480,9 +2574,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used meeting room, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about meeting room may be out of date, so your recent experience helps."
+            "primaryQuestion": "Did you use the meeting room? What stood out during your time there?",
+            "placeholder": "e.g., space condition, amenities",
+            "selectionReason": "There's no recent feedback about the meeting room, so your insight is valuable.",
+            "amenity": "meeting room",
+            "source": "llm"
           }
         },
         {
@@ -2520,9 +2616,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+            "primaryQuestion": "How did the air conditioning perform during your stay?",
+            "placeholder": "e.g., temperature, noise level",
+            "selectionReason": "Experiences with air conditioning can vary significantly, so your details are important.",
+            "amenity": "air conditioning",
+            "source": "llm"
           }
         },
         {
@@ -2563,9 +2661,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "At the pool, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about pool, so one concrete example helps."
+            "primaryQuestion": "What was your experience like at the pool during your stay?",
+            "placeholder": "e.g., cleanliness, hours of operation",
+            "selectionReason": "The pool's condition seems inconsistent, so your account helps paint a clearer picture.",
+            "amenity": "pool",
+            "source": "llm"
           }
         }
       ],
@@ -2585,18 +2685,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "fitness center",
-          "label": "At the fitness center, did it match what the hotel seemed to promise?",
-          "askReason": "Details about fitness center may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "What was your experience using the fitness center during your stay?",
+          "askReason": "Details about the fitness center are limited, so your account helps clarify.",
+          "placeholder": "e.g., equipment condition, cleanliness",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "free parking",
-          "label": "When you parked, did it match what the hotel seemed to promise?",
+          "label": "Can you describe your experience with the free parking availability?",
           "askReason": "Details about free parking may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "e.g., ease of access, space availability",
           "required": false
         }
       ],
@@ -2661,9 +2761,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+            "primaryQuestion": "How was the air conditioning during your stay?",
+            "placeholder": "Details about temperature or comfort",
+            "selectionReason": "Guests get mixed signals about air conditioning, so a specific moment helps clarify.",
+            "amenity": "air conditioning",
+            "source": "llm"
           }
         },
         {
@@ -2704,9 +2806,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "At breakfast, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about breakfast, so one concrete example helps."
+            "primaryQuestion": "What was your experience like with breakfast offerings?",
+            "placeholder": "Details about food quality or options",
+            "selectionReason": "Breakfast details can change quickly, so a recent example helps set expectations.",
+            "amenity": "breakfast",
+            "source": "llm"
           }
         },
         {
@@ -2743,9 +2847,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+            "primaryQuestion": "How did the Wi-Fi perform during your stay?",
+            "placeholder": "Details about connectivity issues or areas",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -2786,9 +2892,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "During check-in or checkout, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about front desk, so one concrete example helps."
+            "primaryQuestion": "How did you find your interaction with the front desk staff?",
+            "placeholder": "Details about service experience",
+            "selectionReason": "Traveler experiences with the front desk can differ, so specifics provide clarity.",
+            "amenity": "front desk",
+            "source": "llm"
           }
         },
         {
@@ -2828,9 +2936,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "At the restaurant, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about restaurant, so one concrete example helps."
+            "primaryQuestion": "What was your experience at the hotel's restaurant?",
+            "placeholder": "Details about meal timing or availability",
+            "selectionReason": "Restaurant availability can vary, so recent examples help understand the experience.",
+            "amenity": "restaurant",
+            "source": "llm"
           }
         }
       ],
@@ -2850,18 +2960,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "air conditioning",
-          "label": "When you used air conditioning, what was your actual experience?",
-          "askReason": "Guests get mixed signals about air conditioning, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "How was the air conditioning during your stay?",
+          "askReason": "Guests get mixed signals about air conditioning, so a specific moment helps clarify.",
+          "placeholder": "Details about temperature or comfort",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "breakfast",
-          "label": "At breakfast, what was your actual experience?",
-          "askReason": "Guests get mixed signals about breakfast, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "What was your experience like with breakfast offerings?",
+          "askReason": "Breakfast details can change quickly, so a recent example helps set expectations.",
+          "placeholder": "Details about food quality or options",
           "required": false
         }
       ],
@@ -2925,9 +3035,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "At the fitness center, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about fitness center, so one concrete example helps."
+            "primaryQuestion": "What was your experience with the fitness center during your stay?",
+            "placeholder": "e.g. crowded, clean, equipment available",
+            "selectionReason": "Guests get mixed signals about the fitness center, so a specific experience helps clarify.",
+            "amenity": "fitness center",
+            "source": "llm"
           }
         },
         {
@@ -2966,9 +3078,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps."
+            "primaryQuestion": "Did you experience any issues with the Wi-Fi during your stay?",
+            "placeholder": "e.g. fast, slow, dropped connections",
+            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -3007,9 +3121,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+            "primaryQuestion": "How was the air conditioning in your room during your stay?",
+            "placeholder": "e.g. too hot, adjustable, efficient",
+            "selectionReason": "Air conditioning reports differ, so sharing your specific experience will help.",
+            "amenity": "air conditioning",
+            "source": "llm"
           }
         },
         {
@@ -3042,9 +3158,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you ordered room service, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about room service may be out of date, so your recent experience helps."
+            "primaryQuestion": "What was your experience with room service during your stay?",
+            "placeholder": "e.g. timely, quality of food, any issues",
+            "selectionReason": "Details about room service can vary widely, so your recent experience will provide useful context.",
+            "amenity": "room service",
+            "source": "llm"
           }
         },
         {
@@ -3083,9 +3201,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When getting around the property, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about accessibility, so one concrete example helps."
+            "primaryQuestion": "How accessible was the hotel for your needs during your stay?",
+            "placeholder": "e.g. public transport, any challenges",
+            "selectionReason": "Accessibility experiences can differ significantly, so your recent moment is valuable.",
+            "amenity": "accessibility",
+            "source": "llm"
           }
         }
       ],
@@ -3105,18 +3225,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "fitness center",
-          "label": "At the fitness center, what was your actual experience?",
-          "askReason": "Guests get mixed signals about fitness center, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "What was your experience with the fitness center during your stay?",
+          "askReason": "Guests get mixed signals about the fitness center, so a specific experience helps clarify.",
+          "placeholder": "e.g. crowded, clean, equipment available",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "wifi",
-          "label": "When you tried the Wi-Fi, what was your actual experience?",
+          "label": "Did you experience any issues with the Wi-Fi during your stay?",
           "askReason": "Guests get mixed signals about wifi, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "e.g. fast, slow, dropped connections",
           "required": false
         }
       ],
@@ -3184,9 +3304,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "At breakfast, what was your actual experience?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Guests get mixed signals about breakfast, so one concrete example helps."
+            "primaryQuestion": "What was your experience with breakfast during your stay?",
+            "placeholder": "e.g., cold food, good variety",
+            "selectionReason": "Breakfast details change quickly, so a recent example helps set expectations.",
+            "amenity": "breakfast",
+            "source": "llm"
           }
         },
         {
@@ -3219,9 +3341,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When getting around the property, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about accessibility may be out of date, so your recent experience helps."
+            "primaryQuestion": "Did you notice anything specific about accessibility during your stay?",
+            "placeholder": "e.g., ease of access, features you used",
+            "selectionReason": "Details about accessibility may be out of date, so your recent experience helps.",
+            "amenity": "accessibility",
+            "source": "llm"
           }
         },
         {
@@ -3256,9 +3380,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used air conditioning, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about air conditioning may be out of date, so your recent experience helps."
+            "primaryQuestion": "How did the air conditioning perform in your room?",
+            "placeholder": "e.g., temperature control, noise level",
+            "selectionReason": "Air conditioning experiences can vary, so specific feedback is valuable.",
+            "amenity": "air conditioning",
+            "source": "llm"
           }
         },
         {
@@ -3295,9 +3421,11 @@
             "ask if the known concern matched their stay"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+            "primaryQuestion": "Was the Wi-Fi connection reliable during your stay?",
+            "placeholder": "e.g., room availability, speed issues",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps.",
+            "amenity": "wifi",
+            "source": "llm"
           }
         },
         {
@@ -3330,9 +3458,11 @@
             "ask whether the current experience matches older reviews"
           ],
           "formQuestion": {
-            "primaryQuestion": "When you used bar, did it match what the hotel seemed to promise?",
-            "placeholder": "A quick concrete detail is enough",
-            "selectionReason": "Details about bar may be out of date, so your recent experience helps."
+            "primaryQuestion": "What did you think of the bar area or service?",
+            "placeholder": "e.g., busy times, drink options",
+            "selectionReason": "Details about the bar can change frequently, so a recent example is helpful.",
+            "amenity": "bar",
+            "source": "llm"
           }
         }
       ],
@@ -3352,18 +3482,18 @@
           "id": "q_1",
           "type": "text",
           "amenity": "breakfast",
-          "label": "At breakfast, what was your actual experience?",
-          "askReason": "Guests get mixed signals about breakfast, so one concrete example helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "label": "What was your experience with breakfast during your stay?",
+          "askReason": "Breakfast details change quickly, so a recent example helps set expectations.",
+          "placeholder": "e.g., cold food, good variety",
           "required": false
         },
         {
           "id": "q_2",
           "type": "text",
           "amenity": "accessibility",
-          "label": "When getting around the property, did it match what the hotel seemed to promise?",
+          "label": "Did you notice anything specific about accessibility during your stay?",
           "askReason": "Details about accessibility may be out of date, so your recent experience helps.",
-          "placeholder": "A quick concrete detail is enough",
+          "placeholder": "e.g., ease of access, features you used",
           "required": false
         }
       ],

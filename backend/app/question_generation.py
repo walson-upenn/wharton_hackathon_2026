@@ -133,6 +133,7 @@ def fallback_form_question(target: dict) -> dict:
         "primaryQuestion": _fallback_question_text(target),
         "placeholder": "A quick concrete detail is enough",
         "selectionReason": _fallback_selection_reason(target),
+        "source": "fallback",
     }
 
 
@@ -183,6 +184,7 @@ def _validate_question(amenity: str, raw_question, fallback: dict) -> dict:
         "placeholder": _safe_generated_text(raw_question.get("placeholder"), fallback["placeholder"]),
         "selectionReason": selection_reason,
         "amenity": amenity,
+        "source": "llm",
     }
 
 
@@ -264,7 +266,8 @@ def build_form_questions(property_id: str, property_summary: dict, targets: list
             input=_question_prompt(property_summary, targets),
         )
         generated = _parse_json_object(response.output_text)
-    except Exception:
+    except Exception as exc:
+        print(f"Question generation failed for {property_id}: {type(exc).__name__}: {exc}")
         generated = {}
 
     questions = {

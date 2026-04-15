@@ -34,6 +34,12 @@ def main() -> None:
     with app.app_context():
         sessions = build_all_review_sessions()
 
+    source_counts = {"llm": 0, "fallback": 0, "unknown": 0}
+    for session in sessions:
+        for target in session.get("targetAmenities", []):
+            source = target.get("formQuestion", {}).get("source", "unknown")
+            source_counts[source if source in source_counts else "unknown"] += 1
+
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "properties": build_properties(sessions),
@@ -45,6 +51,12 @@ def main() -> None:
         file.write("\n")
 
     print(f"Wrote {len(sessions)} review sessions to {OUTPUT_PATH}")
+    print(
+        "Question sources: "
+        f"{source_counts['llm']} llm, "
+        f"{source_counts['fallback']} fallback, "
+        f"{source_counts['unknown']} unknown"
+    )
 
 
 if __name__ == "__main__":
