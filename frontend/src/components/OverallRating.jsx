@@ -39,21 +39,6 @@ export default function OverallRating({
         {display ? STAR_LABELS[display] : "Tap to rate"}
       </div>
 
-      <div className="travel-block">
-        <div className="travel-label">How did you travel?</div>
-        <div className="chip-group">
-          {TRAVEL_TYPES.map((type) => (
-            <button
-              key={type}
-              type="button"
-              className={`chip-button ${travelType === type ? "is-selected" : ""}`}
-              onClick={() => onTravelTypeChange(type)}
-            >
-              {type}
-            </button>
-          ))}
-        </div>
-      </div>
 
       {children}
     </section>

@@ -2056,3 +2056,138 @@ textarea {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
+
+
+/* ── Unified hotel + voice card ── */
+.unified-card {
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.34s ease, transform 0.34s ease;
+}
+.unified-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.unified-card__photo {
+  position: relative;
+  height: 180px;
+  background: #1e2d5a;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+}
+.unified-card__photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+}
+.unified-card__photo-content {
+  position: relative;
+  z-index: 1;
+  padding: 16px 20px;
+  flex: 1;
+}
+.unified-card__property-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+.unified-card__property-location {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  margin-top: 2px;
+}
+.unified-card__property-pill {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 999px;
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+.unified-card__close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 2;
+  border: none;
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.unified-card__close:hover {
+  background: rgba(0,0,0,0.5);
+}
+
+.unified-card__body {
+  padding: 20px 22px 22px;
+}
+.unified-card__headline {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+.unified-card__sub {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+
+.property-card-slim {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+}
+.property-card-slim__photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+.property-card-slim__name {
+  font-size: 17px;
+  font-weight: 700;
+}
+.property-card-slim__meta {
+  margin-top: 3px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.property-card-slim__pill {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: #f3f5f8;
+  border-radius: 999px;
+  color: var(--text);
+}

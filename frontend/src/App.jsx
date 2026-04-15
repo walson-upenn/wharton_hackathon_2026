@@ -141,15 +141,13 @@ export default function App() {
 
   const setupComplete =
   answers.q_overall > 0 &&
-  travelType.trim().length > 0 &&
   (stayUsage.length > 0 || noneOfThese);
 
   const currentQuestion = textQuestions[currentQuestionIndex];
   const step1Progress = [
   answers.q_overall > 0,
-  travelType.length > 0,
   stayUsage.length > 0 || noneOfThese,
-].filter(Boolean).length / 3;
+].filter(Boolean).length / 2;
 
 const step2Progress = textQuestions.length > 0
   ? textQuestions.filter(q => (answers[q.id] || "").trim().length > 0).length / textQuestions.length
@@ -357,7 +355,38 @@ const handleNoneOfThese = () => {
           </label>
         )}
 
-        <PropertyCard property={session.property} />
+        {viewMode !== "agent" && (
+  <section className="property-card-slim">
+    <div
+      className="property-card-slim__photo"
+      style={{
+        backgroundImage: `url(${
+          {
+            "9a0043fd": "https://plus.unsplash.com/premium_photo-1715954843149-84d682442e6a?q=80&w=2069&auto=format&fit=crop",
+            "5f5a0cd8": "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800",
+            "e52d67a7": "https://images.unsplash.com/photo-1639647564912-651e29b8e6ad?w=800",
+            "3216b1b7": "https://images.unsplash.com/photo-1759431770496-c0147a6ad769?w=800",
+            "db38b19b": "https://images.unsplash.com/photo-1634602417388-5dc691fecd4f?w=800",
+            "ff26cdda": "https://plus.unsplash.com/premium_photo-1742457752636-f36ed3bb468a?w=800",
+            "a036cbe1": "https://images.unsplash.com/photo-1630215921793-dfbfd6d8bba7?w=800",
+            "fa014137": "https://plus.unsplash.com/premium_photo-1675359655209-edb25475ce57?w=800",
+            "f2d8d955": "https://images.unsplash.com/photo-1623008419825-05bcb221e5f4?w=800",
+            "7d027ef7": "https://plus.unsplash.com/premium_photo-1742457724078-669d91fc6ce3?w=800",
+            "110f01b8": "https://plus.unsplash.com/premium_photo-1661963222829-cf9572881843?w=800",
+            "823fb249": "https://plus.unsplash.com/premium_photo-1675975706513-9daba0ec12a8?w=800",
+            "3b984f3b": "https://plus.unsplash.com/premium_photo-1697730349278-a77281cd2c0f?w=800",
+          }[session.propertyId?.slice(0, 8)] ||
+          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800"
+        })`
+      }}
+    />
+    <div className="property-card-slim__info">
+      <div className="property-card-slim__name">{session.property.name}</div>
+      <div className="property-card-slim__meta">{session.property.location}</div>
+      <div className="property-card-slim__pill">{session.property.stayRange}</div>
+    </div>
+  </section>
+)}
 
         {viewMode === "agent" && (
           <div className={stageAnimateIn ? "is-visible" : "is-exiting"}>
