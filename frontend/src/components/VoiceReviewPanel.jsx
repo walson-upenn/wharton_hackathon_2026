@@ -27,6 +27,12 @@ const PROPERTY_PHOTOS = {
 
 const FALLBACK_PHOTO = "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800";
 
+// Preload all property photos as soon as the module is parsed
+[...Object.values(PROPERTY_PHOTOS), FALLBACK_PHOTO].forEach((url) => {
+  const img = new Image();
+  img.src = url;
+});
+
 function getMessageText(message) {
   if (!message) return "";
   if (typeof message === "string") return message;
