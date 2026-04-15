@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useConversation } from "@elevenlabs/react";
 import {
   buildElevenLabsContextUpdate,
@@ -65,15 +65,36 @@ function isFinalUserTranscript(message) {
   return isUser && !isTentative && text.length > 0;
 }
 
+function getMessageSource(message) {
+  return String(message?.source || message?.role || message?.type || "unknown").toLowerCase();
+}
+
+function isAgentMessage(message) {
+  const source = getMessageSource(message);
+  return source === "ai" || source === "agent" || source === "assistant";
+}
+
+function getDisplaySource(source) {
+  const normalized = String(source || "").toLowerCase();
+  if (normalized === "ai" || normalized === "agent" || normalized === "assistant") return "AI";
+  if (normalized === "user" || normalized === "human" || normalized === "client") return "User";
+  if (!normalized) return "Unknown";
+  return normalized.charAt(0).toUpperCase() + normalized.slice(1);
+}
+
 export default function VoiceReviewPanel({ session, onFallback, onVoiceComplete }) {
   const [voiceError, setVoiceError] = useState("");
   const [isStarting, setIsStarting] = useState(false);
-  const [transcriptMessages, setTranscriptMessages] = useState([]);
+  const [visibleTranscriptMessages, setVisibleTranscriptMessages] = useState([]);
   const [conversationId, setConversationId] = useState("");
 
   const startedRef = useRef(false);
   const gotUserTranscriptRef = useRef(false);
   const transcriptRef = useRef([]);
+  const pendingAgentMessageRef = useRef(null);
+  const sawAgentSpeakingRef = useRef(false);
+  const agentDisplayTimerRef = useRef(null);
+  const isSpeakingRef = useRef(false);
   const fallbackHandledRef = useRef(false);
   const completionHandledRef = useRef(false);
 
@@ -96,6 +117,20 @@ export default function VoiceReviewPanel({ session, onFallback, onVoiceComplete 
 
   const photoUrl =
     PROPERTY_PHOTOS[session.propertyId?.slice(0, 8)] || FALLBACK_PHOTO;
+
+  const flushPendingAgentMessage = () => {
+    if (!pendingAgentMessageRef.current) return;
+    if (agentDisplayTimerRef.current) {
+      window.clearTimeout(agentDisplayTimerRef.current);
+      agentDisplayTimerRef.current = null;
+    }
+
+    const nextMessage = pendingAgentMessageRef.current;
+    pendingAgentMessageRef.current = null;
+    sawAgentSpeakingRef.current = false;
+    transcriptRef.current = [...transcriptRef.current, nextMessage];
+    setVisibleTranscriptMessages((current) => [...current, nextMessage]);
+  };
 
   const finishWithFallback = async () => {
     if (fallbackHandledRef.current || completionHandledRef.current) return;
@@ -147,12 +182,23 @@ export default function VoiceReviewPanel({ session, onFallback, onVoiceComplete 
       const text = getMessageText(message);
       if (!text) return;
       const nextMessage = {
-        source: message?.source || message?.role || message?.type || "unknown",
+        source: getMessageSource(message),
         text,
       };
-      transcriptRef.current = [...transcriptRef.current, nextMessage];
-      setTranscriptMessages(transcriptRef.current);
-      if (isFinalUserTranscript(message)) gotUserTranscriptRef.current = true;
+      if (isFinalUserTranscript(message)) {
+        gotUserTranscriptRef.current = true;
+        transcriptRef.current = [...transcriptRef.current, nextMessage];
+        setVisibleTranscriptMessages((current) => [...current, nextMessage]);
+        return;
+      }
+      if (isAgentMessage(message)) {
+        pendingAgentMessageRef.current = nextMessage;
+        sawAgentSpeakingRef.current = isSpeakingRef.current;
+        if (agentDisplayTimerRef.current) window.clearTimeout(agentDisplayTimerRef.current);
+        agentDisplayTimerRef.current = window.setTimeout(() => {
+          if (!isSpeakingRef.current && !sawAgentSpeakingRef.current) flushPendingAgentMessage();
+        }, 1800);
+      }
     },
     onError: (error) => {
       const message =
@@ -233,6 +279,24 @@ export default function VoiceReviewPanel({ session, onFallback, onVoiceComplete 
   const hasStarted =
     conversation.status === "connected" || conversation.status === "connecting";
 
+  useEffect(() => {
+    isSpeakingRef.current = conversation.isSpeaking;
+    if (!pendingAgentMessageRef.current) return;
+    if (conversation.isSpeaking) {
+      sawAgentSpeakingRef.current = true;
+      return;
+    }
+    if (!sawAgentSpeakingRef.current) return;
+
+    flushPendingAgentMessage();
+  }, [conversation.isSpeaking]);
+
+  useEffect(() => {
+    return () => {
+      if (agentDisplayTimerRef.current) window.clearTimeout(agentDisplayTimerRef.current);
+    };
+  }, []);
+
   return (
     <section className="unified-card is-visible">
 
@@ -279,14 +343,14 @@ export default function VoiceReviewPanel({ session, onFallback, onVoiceComplete 
 
             {voiceError && <div className="agent-live-error">{voiceError}</div>}
 
-            {transcriptMessages.length > 0 && (
+            {visibleTranscriptMessages.length > 0 && (
               <div className="agent-transcript-preview" aria-label="Voice transcript preview">
-                {transcriptMessages.slice(-2).map((message, index) => (
+                {visibleTranscriptMessages.slice(-2).map((message, index) => (
                   <div
                     key={`${message.source}-${index}`}
                     className="agent-transcript-preview__line"
                   >
-                    <span>{message.source}:</span> {message.text}
+                    <span>{getDisplaySource(message.source)}:</span> {message.text}
                   </div>
                 ))}
               </div>

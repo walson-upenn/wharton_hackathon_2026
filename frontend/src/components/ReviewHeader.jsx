@@ -3,10 +3,11 @@ export default function ReviewHeader({ properties = [], selectedPropertyId = "",
     <header className="review-header">
       <div className="review-header__inner">
         <div className="review-header__brand">
-          <div className="review-header__logoBox">
-            <div className="review-header__arrow" />
-          </div>
-          <span className="review-header__logoText">Expedia</span>
+          <img
+            className="review-header__logo"
+            src="https://www.expedia.com/newsroom/wp-content/uploads/2023/07/BEX_Logo_Horizontal_CMYK_FullColorDarkBlue--scaled.jpg"
+            alt="Expedia"
+          />
         </div>
 
         {properties.length > 0 && onPropertyChange && (

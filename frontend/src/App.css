@@ -54,7 +54,6 @@ textarea {
 .review-header__brand {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
 .review-header__picker {
@@ -82,30 +81,10 @@ textarea {
   font-family: inherit;
 }
 
-.review-header__logoBox {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background: var(--yellow);
-  position: relative;
-  flex-shrink: 0;
-}
-
-.review-header__arrow {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-top: 3px solid #172554;
-  border-right: 3px solid #172554;
-  top: 10px;
-  left: 8px;
-  transform: rotate(45deg);
-}
-
-.review-header__logoText {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+.review-header__logo {
+  display: block;
+  width: 148px;
+  height: auto;
 }
 
 .page-content {
