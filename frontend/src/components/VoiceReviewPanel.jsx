@@ -263,7 +263,7 @@ export default function VoiceReviewPanel({ session, onFallback, onVoiceComplete 
       <div className="unified-card__body">
         <div className="unified-card__headline">Leave a 30-second voice review</div>
         <div className="unified-card__sub">
-          Talk naturally — we'll only ask what helps future travelers.
+          Your voice is not stored — future travelers will only see a written summary.
         </div>
 
         <div className="agent-live-panel">
@@ -304,7 +304,7 @@ export default function VoiceReviewPanel({ session, onFallback, onVoiceComplete 
               ) : (
                 <button
                   type="button"
-                  className="neutral-button neutral-button--strong"
+                  className="ai-voice-button"
                   onClick={handleStart}
                   disabled={isStarting || conversation.status === "connecting"}
                 >
@@ -313,7 +313,7 @@ export default function VoiceReviewPanel({ session, onFallback, onVoiceComplete 
                     : "Start voice review"}
                 </button>
               )}
-              <button type="button" className="text-link-button" onClick={finishWithFallback}>
+              <button type="button" className="form-fallback-button" onClick={finishWithFallback}>
                 Use the form instead
               </button>
             </div>

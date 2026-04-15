@@ -271,6 +271,49 @@ textarea {
   background: #f5f6f8;
 }
 
+.ai-voice-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 13px 18px;
+  min-height: 48px;
+  background:
+    linear-gradient(#fffdf5, #fffdf5) padding-box,
+    linear-gradient(120deg, #ffcb05 0%, #f6b31a 42%, #d98f00 72%, #ffdc4a 100%) border-box;
+  color: #191e3b;
+  box-shadow: 0 12px 24px rgba(25, 30, 59, 0.12), 0 0 0 4px rgba(255, 203, 5, 0.16);
+  cursor: pointer;
+  font-weight: 700;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ai-voice-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(25, 30, 59, 0.16), 0 0 0 5px rgba(255, 203, 5, 0.22);
+}
+
+.ai-voice-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+  transform: none;
+}
+
+.form-fallback-button {
+  border: none;
+  background: transparent;
+  color: #7a8494;
+  padding: 0;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.form-fallback-button:hover {
+  color: #596274;
+}
+
 .question-cta-button--yellow {
   background: var(--yellow);
   color: #191e3b;
@@ -444,10 +487,25 @@ textarea {
   height: 8px;
   border-radius: 999px;
   background: #98a2b3;
+  animation: voice-ready-pulse 1.6s ease-in-out infinite;
 }
 
 .agent-live-status__dot.is-live {
   background: #12b76a;
+  animation: none;
+}
+
+@keyframes voice-ready-pulse {
+  0%,
+  100% {
+    background: #98a2b3;
+    box-shadow: 0 0 0 0 rgba(152, 162, 179, 0.28);
+  }
+
+  50% {
+    background: #12b76a;
+    box-shadow: 0 0 0 4px rgba(18, 183, 106, 0.16);
+  }
 }
 
 .agent-live-message {
