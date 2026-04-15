@@ -9,7 +9,7 @@ backend
 - run with python main.py in the backend directory
 - would recommend making venv `python -m venv venv` and `pip install -r requirements.txt`
 - if port 5000 is already in use on macOS, run `PORT=5001 python main.py`
-- when using port 5001, start the frontend with `VITE_API_BASE_URL=http://localhost:5001 npm run dev`
+- when using port 5001, start the frontend with `VITE_API_BASE_URL=http://localhost:5001 npm run dev` 
 
 dynamic review flow
 - preprocessing artifacts from the private pipeline now live in `final-preprocessing/`, `preprocessing/`, and `scoring/`
