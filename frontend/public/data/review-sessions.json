@@ -1,0 +1,3381 @@
+{
+  "properties": [
+    {
+      "property_id": "e52d67a758ce4ad0229aacc97e5dfe89984c384c51a70208f9e0cc65c9cd4676",
+      "name": "Bangkok",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "location": "Bangkok, Bangkok"
+    },
+    {
+      "property_id": "3216b1b7885bffdb336265a8de7322ba0cd477cfb3d4f99d19acf488f76a1941",
+      "name": "Bell Gardens",
+      "city": "Bell Gardens",
+      "country": "United States",
+      "location": "Bell Gardens, California"
+    },
+    {
+      "property_id": "9a0043fd4258a1286db1e253ca591662b3aac849da12d0d4f67e08b8f59be65f",
+      "name": "Bochum",
+      "city": "Bochum",
+      "country": "Germany",
+      "location": "Bochum, Bochum"
+    },
+    {
+      "property_id": "db38b19b897dbece3e34919c662b3fd66d23b615395d11fb69264dd3a9b17723",
+      "name": "Broomfield",
+      "city": "Broomfield",
+      "country": "United States",
+      "location": "Broomfield, Colorado"
+    },
+    {
+      "property_id": "5f5a0cd8662f0ddf297f2d27358f680daab5d3ac22fd45a4e1c3c3ec2c101a12",
+      "name": "Freudenstadt",
+      "city": "Freudenstadt",
+      "country": "Germany",
+      "location": "Freudenstadt, Baden-Wurttemberg"
+    },
+    {
+      "property_id": "ff26cdda236b233f7c481f0e896814075ac6bed335e162e0ff01d5491343f838",
+      "name": "Frisco",
+      "city": "Frisco",
+      "country": "United States",
+      "location": "Frisco, Texas"
+    },
+    {
+      "property_id": "a036cbe1d9fbf9cba088075d1b4d966ee871df55aa4a58ba0da23c116c499052",
+      "name": "Mbombela",
+      "city": "Mbombela",
+      "country": "South Africa",
+      "location": "Mbombela, Mpumalanga"
+    },
+    {
+      "property_id": "fa014137b3ea9af6a90c0a86a1d099e46f7e56d6eb33db1ad1ec4bdac68c3caa",
+      "name": "Monterey",
+      "city": "Monterey",
+      "country": "United States",
+      "location": "Monterey, California"
+    },
+    {
+      "property_id": "f2d8d9557208d58577e9df7ff34e42bf86fb5b10fdfae0c3040d14c374a2a2b9",
+      "name": "New Smyrna Beach",
+      "city": "New Smyrna Beach",
+      "country": "United States",
+      "location": "New Smyrna Beach, Florida"
+    },
+    {
+      "property_id": "7d027ef72c02eaa17af3c993fd5dba50d17b41a6280389a46c13c7e2c32a5b06",
+      "name": "Ocala",
+      "city": "Ocala",
+      "country": "United States",
+      "location": "Ocala, Florida"
+    },
+    {
+      "property_id": "110f01b8ae518a0ee41047bce5c22572988a435e10ead72dc1af793bba8ce0b0",
+      "name": "Pompei",
+      "city": "Pompei",
+      "country": "Italy",
+      "location": "Pompei, Italy"
+    },
+    {
+      "property_id": "823fb2499b4e37d99acb65e7198e75965d6496fd1c579f976205c0e6179206df",
+      "name": "Rome",
+      "city": "Rome",
+      "country": "Italy",
+      "location": "Rome, RM"
+    },
+    {
+      "property_id": "3b984f3ba8df55b2609a1e33fd694cf8407842e1d833c9b4d993b07fc83a2820",
+      "name": "San Isidro de El General",
+      "city": "San Isidro de El General",
+      "country": "Costa Rica",
+      "location": "San Isidro de El General, San José"
+    }
+  ],
+  "sessions": [
+    {
+      "reviewId": "review_e52d67a7",
+      "propertyId": "e52d67a758ce4ad0229aacc97e5dfe89984c384c51a70208f9e0cc65c9cd4676",
+      "property": {
+        "id": "e52d67a758ce4ad0229aacc97e5dfe89984c384c51a70208f9e0cc65c9cd4676",
+        "name": "Bangkok",
+        "location": "Bangkok, Bangkok",
+        "city": "Bangkok",
+        "province": "Bangkok",
+        "country": "Thailand",
+        "starRating": "3.0",
+        "description": "hotel with free parking, near khaosan road<br>along with a 24-hour front desk, this hotel has tour/ticket assistance and a garden. free wifi in public areas and free self parking are also provided. other amenities include a front-desk safe. <br>|MASK| |MASK| |MASK| |MASK| offers 21 air-conditioned accommodations with safes and complimentary bottled water. flat-screen televisions come with cable channels. guests can make use of |MASK| in-room refrigerators and coffee/tea makers. bathrooms include showers and complimentary toiletries. <p>guests can surf |MASK| web using |MASK| complimentary wireless internet access. business-friendly amenities include desks and phones. housekeeping is provided daily.  </p>",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "air conditioning",
+          "priority_order": 1,
+          "score": 0.565,
+          "criticality": 0.9286,
+          "components": {
+            "knowledge_gap_score": 0.8146,
+            "controversy_score": 1.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.5507
+          },
+          "stats": {
+            "num_mentions": 4,
+            "coverage": 0.33,
+            "avg_detail": 2.25,
+            "mean_sentiment": 0.0,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 2,
+            "num_neutral": 0,
+            "days_since_last_mention": 292
+          },
+          "positive_reasons": [
+            "worked great",
+            "our room was nice and cold"
+          ],
+          "negative_reasons": [
+            "airconditioner too old(so i've got a sick)",
+            "très bruyant à cause des climatiseurs"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "wifi",
+          "priority_order": 2,
+          "score": 0.5058,
+          "criticality": 1.0,
+          "components": {
+            "knowledge_gap_score": 0.9094,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.947
+          },
+          "stats": {
+            "num_mentions": 2,
+            "coverage": 0.181,
+            "avg_detail": 2.0,
+            "mean_sentiment": 1.0,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": 1072
+          },
+          "positive_reasons": [
+            "internet excelente",
+            "worked great"
+          ],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "free parking",
+          "priority_order": 3,
+          "score": 0.4714,
+          "criticality": 0.8571,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you parked, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about free parking may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "housekeeping",
+          "priority_order": 4,
+          "score": 0.3899,
+          "criticality": 0.7143,
+          "components": {
+            "knowledge_gap_score": 0.7877,
+            "controversy_score": 0.595,
+            "decline_score": 0.5208,
+            "staleness_score": 0.0507
+          },
+          "stats": {
+            "num_mentions": 11,
+            "coverage": 0.667,
+            "avg_detail": 1.27,
+            "mean_sentiment": 0.545,
+            "recent_mean_sentiment": 0.167,
+            "num_positive": 9,
+            "num_negative": 2,
+            "num_neutral": 0,
+            "days_since_last_mention": 19
+          },
+          "positive_reasons": [
+            "muy limpios y comodos",
+            "la pulizia perfetta",
+            "room is clean and comfortable"
+          ],
+          "negative_reasons": [
+            "housekeeping misunderstood and i made a smoking at room",
+            "un énorme cafard se baladait sur le sol"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree; recent sentiment appears worse than older reviews",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask whether it felt worse or changed recently"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When housekeeping came up, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about housekeeping, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "front desk",
+          "priority_order": 5,
+          "score": 0.3798,
+          "criticality": 0.7857,
+          "components": {
+            "knowledge_gap_score": 0.8146,
+            "controversy_score": 0.75,
+            "decline_score": 0.0,
+            "staleness_score": 0.0507
+          },
+          "stats": {
+            "num_mentions": 4,
+            "coverage": 0.33,
+            "avg_detail": 2.25,
+            "mean_sentiment": 0.375,
+            "recent_mean_sentiment": null,
+            "num_positive": 3,
+            "num_negative": 1,
+            "num_neutral": 0,
+            "days_since_last_mention": 19
+          },
+          "positive_reasons": [
+            "nos recibieron muy bien",
+            "nos explicaron todo y como llegar a destinos principales"
+          ],
+          "negative_reasons": [
+            "n'a pas répondu à mon bonjour",
+            "pas de réponse à ma demande d'aide"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "During check-in or checkout, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about front desk, so one concrete example helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "air conditioning",
+          "wifi",
+          "free parking",
+          "housekeeping",
+          "front desk"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "air conditioning",
+          "label": "When you used air conditioning, what was your actual experience?",
+          "askReason": "Guests get mixed signals about air conditioning, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "wifi",
+          "label": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+          "askReason": "Details about wifi may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Bangkok",
+        "property_location": "Bangkok, Bangkok",
+        "target_amenities_json": "[{\"amenity\": \"air conditioning\", \"priority_order\": 1, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree\", \"positive_context\": [\"worked great\", \"our room was nice and cold\"], \"negative_context\": [\"airconditioner too old(so i've got a sick)\", \"très bruyant à cause des climatiseurs\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"wifi\", \"priority_order\": 2, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [\"internet excelente\", \"worked great\"], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"free parking\", \"priority_order\": 3, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"housekeeping\", \"priority_order\": 4, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree; recent sentiment appears worse than older reviews\", \"positive_context\": [\"muy limpios y comodos\", \"la pulizia perfetta\"], \"negative_context\": [\"housekeeping misunderstood and i made a smoking at room\", \"un énorme cafard se baladait sur le sol\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask whether it felt worse or changed recently\"]}, {\"amenity\": \"front desk\", \"priority_order\": 5, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree\", \"positive_context\": [\"nos recibieron muy bien\", \"nos explicaron todo y como llegar a destinos principales\"], \"negative_context\": [\"n'a pas répondu à mon bonjour\", \"pas de réponse à ma demande d'aide\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}]",
+        "target_amenities_brief": "1. air conditioning: existing reviews mention it without enough concrete detail; traveler reviews disagree. Question angle: ask for concrete details because existing reviews are thin\n2. wifi: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n3. free parking: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out\n4. housekeeping: existing reviews mention it without enough concrete detail; traveler reviews disagree; recent sentiment appears worse than older reviews. Question angle: ask for concrete details because existing reviews are thin\n5. front desk: existing reviews mention it without enough concrete detail; traveler reviews disagree. Question angle: ask for concrete details because existing reviews are thin",
+        "target_amenity_names": "air conditioning, wifi, free parking, housekeeping, front desk",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Bangkok! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_3216b1b7",
+      "propertyId": "3216b1b7885bffdb336265a8de7322ba0cd477cfb3d4f99d19acf488f76a1941",
+      "property": {
+        "id": "3216b1b7885bffdb336265a8de7322ba0cd477cfb3d4f99d19acf488f76a1941",
+        "name": "Bell Gardens",
+        "location": "Bell Gardens, California",
+        "city": "Bell Gardens",
+        "province": "California",
+        "country": "United States",
+        "starRating": "2.0",
+        "description": "motel in |MASK| gardens with free parking<br>a 24-hour business center, a business center, and laundry facilities are available at this motel. free wifi in public areas and free self parking are also provided. other amenities include a 24-hour front desk, express check-out, and a tv in a common area. <br>|MASK| inn & |MASK| by |MASK| |MASK| los angeles area offers 73 air-conditioned accommodations, which are accessible via exterior corridors and feature coffee/tea makers and irons/ironing boards. memory foam beds feature egyptian cotton sheets, down comforters, and premium bedding. guests can make use of the in-room refrigerators and microwaves. bathrooms include shower/tub combinations and complimentary toiletries. <p>guests can surf the web using the complimentary wireless internet access. business-friendly amenities include desks and phones; free local calls are provided (restrictions may apply). housekeeping is offered daily and hair dryers can be requested.  </p>",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "wifi",
+          "priority_order": 1,
+          "score": 0.4815,
+          "criticality": 1.0,
+          "components": {
+            "knowledge_gap_score": 0.6083,
+            "controversy_score": 0.9941,
+            "decline_score": 0.0,
+            "staleness_score": 0.2622
+          },
+          "stats": {
+            "num_mentions": 13,
+            "coverage": 0.727,
+            "avg_detail": 2.15,
+            "mean_sentiment": -0.192,
+            "recent_mean_sentiment": null,
+            "num_positive": 6,
+            "num_negative": 7,
+            "num_neutral": 0,
+            "days_since_last_mention": 111
+          },
+          "positive_reasons": [
+            "super fast",
+            "wifi was great"
+          ],
+          "negative_reasons": [
+            "issues connecting to the wi-fi",
+            "no working wifi"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "accessible parking",
+          "priority_order": 2,
+          "score": 0.4433,
+          "criticality": 0.875,
+          "components": {
+            "knowledge_gap_score": 0.932,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.8922
+          },
+          "stats": {
+            "num_mentions": 2,
+            "coverage": 0.181,
+            "avg_detail": 1.5,
+            "mean_sentiment": -0.75,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 2,
+            "num_neutral": 0,
+            "days_since_last_mention": 813
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "not enough parking"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used accessible parking, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about accessible parking may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "air conditioning",
+          "priority_order": 3,
+          "score": 0.3624,
+          "criticality": 0.8125,
+          "components": {
+            "knowledge_gap_score": 0.6001,
+            "controversy_score": 0.99,
+            "decline_score": 0.0,
+            "staleness_score": 0.0533
+          },
+          "stats": {
+            "num_mentions": 20,
+            "coverage": 0.865,
+            "avg_detail": 1.85,
+            "mean_sentiment": 0.075,
+            "recent_mean_sentiment": 0.643,
+            "num_positive": 11,
+            "num_negative": 9,
+            "num_neutral": 0,
+            "days_since_last_mention": 20
+          },
+          "positive_reasons": [
+            "good a/c",
+            "nice fresh a/c",
+            "extremely quiet"
+          ],
+          "negative_reasons": [
+            "a/c emits bad odor",
+            "the ac unit in the room did not work properly",
+            "hardly got room cold"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "accessibility",
+          "priority_order": 4,
+          "score": 0.3602,
+          "criticality": 0.9375,
+          "components": {
+            "knowledge_gap_score": 0.8867,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.1968
+          },
+          "stats": {
+            "num_mentions": 2,
+            "coverage": 0.181,
+            "avg_detail": 2.5,
+            "mean_sentiment": -1.0,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 2,
+            "num_neutral": 0,
+            "days_since_last_mention": 80
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "no elevators",
+            "room was no where close to a handicap room"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When getting around the property, did any issue come up?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Future guests need concrete details about accessibility, not just whether it was good."
+          }
+        },
+        {
+          "amenity": "laundry",
+          "priority_order": 5,
+          "score": 0.3094,
+          "criticality": 0.5625,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used laundry, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about laundry may be out of date, so your recent experience helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "wifi",
+          "accessible parking",
+          "air conditioning",
+          "accessibility",
+          "laundry"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "wifi",
+          "label": "When you tried the Wi-Fi, what was your actual experience?",
+          "askReason": "Guests get mixed signals about wifi, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "accessible parking",
+          "label": "When you used accessible parking, did it match what the hotel seemed to promise?",
+          "askReason": "Details about accessible parking may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Bell Gardens",
+        "property_location": "Bell Gardens, California",
+        "target_amenities_json": "[{\"amenity\": \"wifi\", \"priority_order\": 1, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"super fast\", \"wifi was great\"], \"negative_context\": [\"issues connecting to the wi-fi\", \"no working wifi\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"accessible parking\", \"priority_order\": 2, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [\"not enough parking\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"air conditioning\", \"priority_order\": 3, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"good a/c\", \"nice fresh a/c\"], \"negative_context\": [\"a/c emits bad odor\", \"the ac unit in the room did not work properly\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"accessibility\", \"priority_order\": 4, \"ask_reason\": \"existing reviews mention it without enough concrete detail\", \"positive_context\": [], \"negative_context\": [\"no elevators\", \"room was no where close to a handicap room\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"laundry\", \"priority_order\": 5, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}]",
+        "target_amenities_brief": "1. wifi: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree\n2. accessible parking: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n3. air conditioning: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree\n4. accessibility: existing reviews mention it without enough concrete detail. Question angle: ask for concrete details because existing reviews are thin\n5. laundry: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out",
+        "target_amenity_names": "wifi, accessible parking, air conditioning, accessibility, laundry",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Bell Gardens! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_9a0043fd",
+      "propertyId": "9a0043fd4258a1286db1e253ca591662b3aac849da12d0d4f67e08b8f59be65f",
+      "property": {
+        "id": "9a0043fd4258a1286db1e253ca591662b3aac849da12d0d4f67e08b8f59be65f",
+        "name": "Bochum",
+        "location": "Bochum, Bochum",
+        "city": "Bochum",
+        "province": "Bochum",
+        "country": "Germany",
+        "starRating": "",
+        "description": "hotel in bochum with free parking<br>along with a restaurant, this smoke-free hotel has dry cleaning and free newspapers. free wifi in public areas and free self parking are also provided. other amenities include a garden. <br>hotel |MASK| |MASK| offers 18 accommodations with complimentary bottled water and slippers. flat-screen televisions come with cable channels. bathrooms include showers, complimentary toiletries, and hair dryers. <p>guests can surf the web using the complimentary wireless internet access. business-friendly amenities include desks and phones. housekeeping is provided daily.  </p><br>the recreational activities listed below are available either on site or nearby; fees may apply. ",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "accessibility",
+          "priority_order": 1,
+          "score": 0.5059,
+          "criticality": 0.9333,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.947
+          },
+          "stats": {
+            "num_mentions": 1,
+            "coverage": 0.095,
+            "avg_detail": 0.0,
+            "mean_sentiment": 1.0,
+            "recent_mean_sentiment": null,
+            "num_positive": 1,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": 1072
+          },
+          "positive_reasons": [
+            "gute anbindung an u-bahn"
+          ],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When getting around the property, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about accessibility may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "wifi",
+          "priority_order": 2,
+          "score": 0.4113,
+          "criticality": 1.0,
+          "components": {
+            "knowledge_gap_score": 0.8352,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.5148
+          },
+          "stats": {
+            "num_mentions": 4,
+            "coverage": 0.33,
+            "avg_detail": 2.0,
+            "mean_sentiment": -0.25,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 2,
+            "num_neutral": 2,
+            "days_since_last_mention": 264
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "das w-lan ist sehr instabil"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, did any issue come up?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Future guests need concrete details about wifi, not just whether it was good."
+          }
+        },
+        {
+          "amenity": "free parking",
+          "priority_order": 3,
+          "score": 0.3538,
+          "criticality": 0.8,
+          "components": {
+            "knowledge_gap_score": 0.8229,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.7541
+          },
+          "stats": {
+            "num_mentions": 5,
+            "coverage": 0.393,
+            "avg_detail": 1.8,
+            "mean_sentiment": 0.7,
+            "recent_mean_sentiment": null,
+            "num_positive": 5,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": 512
+          },
+          "positive_reasons": [
+            "gratis parken für gäste",
+            "kostenlose parkplätze direkt am hotel"
+          ],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you parked, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about free parking may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "front desk",
+          "priority_order": 4,
+          "score": 0.3365,
+          "criticality": 0.7333,
+          "components": {
+            "knowledge_gap_score": 0.7574,
+            "controversy_score": 0.595,
+            "decline_score": 0.0,
+            "staleness_score": 0.2459
+          },
+          "stats": {
+            "num_mentions": 11,
+            "coverage": 0.667,
+            "avg_detail": 1.45,
+            "mean_sentiment": 0.591,
+            "recent_mean_sentiment": null,
+            "num_positive": 9,
+            "num_negative": 2,
+            "num_neutral": 0,
+            "days_since_last_mention": 103
+          },
+          "positive_reasons": [
+            "freundliches personal",
+            "service einwandfrei",
+            "late check out war kein problem"
+          ],
+          "negative_reasons": [
+            "die dame an fer rezeption es übersehen hatte"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "During check-in or checkout, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about front desk, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "restaurant",
+          "priority_order": 5,
+          "score": 0.3115,
+          "criticality": 0.5333,
+          "components": {
+            "knowledge_gap_score": 0.6893,
+            "controversy_score": 0.8521,
+            "decline_score": 0.0,
+            "staleness_score": 0.92
+          },
+          "stats": {
+            "num_mentions": 15,
+            "coverage": 0.777,
+            "avg_detail": 1.6,
+            "mean_sentiment": 0.3,
+            "recent_mean_sentiment": null,
+            "num_positive": 9,
+            "num_negative": 4,
+            "num_neutral": 2,
+            "days_since_last_mention": 922
+          },
+          "positive_reasons": [
+            "sehr gutes essen",
+            "gute küche",
+            "freundlicher service"
+          ],
+          "negative_reasons": [
+            "used to be a very good restaurant downstairs",
+            "now under different management",
+            "unangenehmer geruch durch die gaststätte im erdgeschoß"
+          ],
+          "ask_reason": "traveler reviews disagree; the latest useful mention is stale",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At the restaurant, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about restaurant, so one concrete example helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "accessibility",
+          "wifi",
+          "free parking",
+          "front desk",
+          "restaurant"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "accessibility",
+          "label": "When getting around the property, did it match what the hotel seemed to promise?",
+          "askReason": "Details about accessibility may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "wifi",
+          "label": "When you tried the Wi-Fi, did any issue come up?",
+          "askReason": "Future guests need concrete details about wifi, not just whether it was good.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Bochum",
+        "property_location": "Bochum, Bochum",
+        "target_amenities_json": "[{\"amenity\": \"accessibility\", \"priority_order\": 1, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [\"gute anbindung an u-bahn\"], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"wifi\", \"priority_order\": 2, \"ask_reason\": \"existing reviews mention it without enough concrete detail\", \"positive_context\": [], \"negative_context\": [\"das w-lan ist sehr instabil\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"free parking\", \"priority_order\": 3, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [\"gratis parken für gäste\", \"kostenlose parkplätze direkt am hotel\"], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"front desk\", \"priority_order\": 4, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree\", \"positive_context\": [\"freundliches personal\", \"service einwandfrei\"], \"negative_context\": [\"die dame an fer rezeption es übersehen hatte\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"restaurant\", \"priority_order\": 5, \"ask_reason\": \"traveler reviews disagree; the latest useful mention is stale\", \"positive_context\": [\"sehr gutes essen\", \"gute küche\"], \"negative_context\": [\"used to be a very good restaurant downstairs\", \"now under different management\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}]",
+        "target_amenities_brief": "1. accessibility: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n2. wifi: existing reviews mention it without enough concrete detail. Question angle: ask for concrete details because existing reviews are thin\n3. free parking: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n4. front desk: existing reviews mention it without enough concrete detail; traveler reviews disagree. Question angle: ask for concrete details because existing reviews are thin\n5. restaurant: traveler reviews disagree; the latest useful mention is stale. Question angle: ask what their actual experience was because reviews disagree",
+        "target_amenity_names": "accessibility, wifi, free parking, front desk, restaurant",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Bochum! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_db38b19b",
+      "propertyId": "db38b19b897dbece3e34919c662b3fd66d23b615395d11fb69264dd3a9b17723",
+      "property": {
+        "id": "db38b19b897dbece3e34919c662b3fd66d23b615395d11fb69264dd3a9b17723",
+        "name": "Broomfield",
+        "location": "Broomfield, Colorado",
+        "city": "Broomfield",
+        "province": "Colorado",
+        "country": "United States",
+        "starRating": "4.0",
+        "description": "suburban resort with 3 restaurants, in the vicinity of butterfly pavilion<br>this smoke-free resort features 3 restaurants, 2 outdoor pools, and a full-service spa. free wifi in public areas is provided, as well as free self parking, a free area shuttle, and a free shopping center shuttle. other amenities include a golf course, a 24-hour fitness center, and a bar/lounge. <br>|MASK| |MASK| offers 390 accommodations with laptop-compatible safes and complimentary bottled water. beds feature premium bedding. 49-inch lcd televisions come with cable channels and pay movies. bathrooms include shower/tub combinations, bathrobes, slippers, and hair dryers. <p>this broomfield resort provides complimentary wireless internet access, with a speed of 25+ mbps. business-friendly amenities include desks and phones; free local calls are provided (restrictions may apply). additionally, rooms include coffee/tea makers and irons/ironing boards. microwaves and hypo-allergenic bedding can be requested. a nightly turndown service is provided and housekeeping is offered daily.  </p><br>guests can play rounds at the 27-hole golf course. 2 outdoor swimming pools are on site along with a hot tub. other recreational amenities include a 24-hour fitness center.  <p>the recreational activities listed below are available either on site or nearby; fees may apply. </p>",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "wifi",
+          "priority_order": 1,
+          "score": 0.5127,
+          "criticality": 0.9667,
+          "components": {
+            "knowledge_gap_score": 0.7692,
+            "controversy_score": 0.6914,
+            "decline_score": 0.0,
+            "staleness_score": 0.5628
+          },
+          "stats": {
+            "num_mentions": 9,
+            "coverage": 0.593,
+            "avg_detail": 1.56,
+            "mean_sentiment": -0.556,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 7,
+            "num_neutral": 0,
+            "days_since_last_mention": 302
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "no wifi included in the room charge",
+            "surprised that there wasn't free wi-fi offered"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "conference space",
+          "priority_order": 2,
+          "score": 0.4336,
+          "criticality": 0.8833,
+          "components": {
+            "knowledge_gap_score": 0.9588,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.7156
+          },
+          "stats": {
+            "num_mentions": 4,
+            "coverage": 0.33,
+            "avg_detail": 0.5,
+            "mean_sentiment": 0.875,
+            "recent_mean_sentiment": null,
+            "num_positive": 4,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": 459
+          },
+          "positive_reasons": [
+            "nicely designed for any event or holiday"
+          ],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used conference space, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about conference space may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "area shuttle",
+          "priority_order": 3,
+          "score": 0.4253,
+          "criticality": 0.9333,
+          "components": {
+            "knowledge_gap_score": 0.812,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.8726
+          },
+          "stats": {
+            "num_mentions": 6,
+            "coverage": 0.451,
+            "avg_detail": 1.67,
+            "mean_sentiment": 0.833,
+            "recent_mean_sentiment": null,
+            "num_positive": 6,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": 752
+          },
+          "positive_reasons": [
+            "the driver was super-friendly and helpful",
+            "the shuttle service"
+          ],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used the shuttle, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about area shuttle may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "bar",
+          "priority_order": 4,
+          "score": 0.4229,
+          "criticality": 0.9167,
+          "components": {
+            "knowledge_gap_score": 0.6594,
+            "controversy_score": 0.8048,
+            "decline_score": 0.0,
+            "staleness_score": 0.2438
+          },
+          "stats": {
+            "num_mentions": 45,
+            "coverage": 0.989,
+            "avg_detail": 1.38,
+            "mean_sentiment": 0.378,
+            "recent_mean_sentiment": null,
+            "num_positive": 31,
+            "num_negative": 12,
+            "num_neutral": 2,
+            "days_since_last_mention": 102
+          },
+          "positive_reasons": [
+            "great bartender",
+            "excellent with friendly servers who were efficient",
+            "the food and brews were fantastic!!"
+          ],
+          "negative_reasons": [
+            "closed at 7pm which is too early",
+            "price of wine was unreasonable compared to other hotels and restaurants",
+            "staff did not appear to want to serve patrons that were not white"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used bar, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about bar, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "breakfast",
+          "priority_order": 5,
+          "score": 0.4146,
+          "criticality": 0.9,
+          "components": {
+            "knowledge_gap_score": 0.5878,
+            "controversy_score": 0.977,
+            "decline_score": 0.0,
+            "staleness_score": 0.2012
+          },
+          "stats": {
+            "num_mentions": 34,
+            "coverage": 0.967,
+            "avg_detail": 1.71,
+            "mean_sentiment": 0.147,
+            "recent_mean_sentiment": null,
+            "num_positive": 19,
+            "num_negative": 14,
+            "num_neutral": 1,
+            "days_since_last_mention": 82
+          },
+          "positive_reasons": [
+            "the breakfast in the meritage is really delicious and worth the money",
+            "food options were great",
+            "wonderful"
+          ],
+          "negative_reasons": [
+            "no dining for breakfast or lunch",
+            "breakfast buffet price was $23/pp",
+            "the eggs were cold"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At breakfast, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about breakfast, so one concrete example helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "wifi",
+          "conference space",
+          "area shuttle",
+          "bar",
+          "breakfast"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "wifi",
+          "label": "When you tried the Wi-Fi, what was your actual experience?",
+          "askReason": "Guests get mixed signals about wifi, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "conference space",
+          "label": "When you used conference space, did it match what the hotel seemed to promise?",
+          "askReason": "Details about conference space may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Broomfield",
+        "property_location": "Broomfield, Colorado",
+        "target_amenities_json": "[{\"amenity\": \"wifi\", \"priority_order\": 1, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree\", \"positive_context\": [], \"negative_context\": [\"no wifi included in the room charge\", \"surprised that there wasn't free wi-fi offered\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"conference space\", \"priority_order\": 2, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [\"nicely designed for any event or holiday\"], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"area shuttle\", \"priority_order\": 3, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [\"the driver was super-friendly and helpful\", \"the shuttle service\"], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"bar\", \"priority_order\": 4, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"great bartender\", \"excellent with friendly servers who were efficient\"], \"negative_context\": [\"closed at 7pm which is too early\", \"price of wine was unreasonable compared to other hotels and restaurants\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"breakfast\", \"priority_order\": 5, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"the breakfast in the meritage is really delicious and worth the money\", \"food options were great\"], \"negative_context\": [\"no dining for breakfast or lunch\", \"breakfast buffet price was $23/pp\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}]",
+        "target_amenities_brief": "1. wifi: existing reviews mention it without enough concrete detail; traveler reviews disagree. Question angle: ask for concrete details because existing reviews are thin\n2. conference space: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n3. area shuttle: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n4. bar: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree\n5. breakfast: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree",
+        "target_amenity_names": "wifi, conference space, area shuttle, bar, breakfast",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Broomfield! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_5f5a0cd8",
+      "propertyId": "5f5a0cd8662f0ddf297f2d27358f680daab5d3ac22fd45a4e1c3c3ec2c101a12",
+      "property": {
+        "id": "5f5a0cd8662f0ddf297f2d27358f680daab5d3ac22fd45a4e1c3c3ec2c101a12",
+        "name": "Freudenstadt",
+        "location": "Freudenstadt, Baden-Wurttemberg",
+        "city": "Freudenstadt",
+        "province": "Baden-Wurttemberg",
+        "country": "Germany",
+        "starRating": "",
+        "description": "hotel with free parking, in the vicinity of freudenstadt marktplatz<br>this smoke-free hotel features a restaurant, a coffee shop/cafe, and dry cleaning. free wifi in public areas and free self parking are also provided. additionally, a garden, barbecue grills, and a picnic area are onsite. <br>|MASK| |MASK| offers 11 accommodations with laptop-compatible safes and hair dryers. accommodations offer separate sitting areas. flat-screen televisions come with satellite channels. this freudenstadt hotel provides complimentary wireless internet access. <br>the recreational activities listed below are available either on site or nearby; fees may apply. ",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "wifi",
+          "priority_order": 1,
+          "score": 0.55,
+          "criticality": 1.0,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "accessibility",
+          "priority_order": 2,
+          "score": 0.5271,
+          "criticality": 0.9583,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When getting around the property, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about accessibility may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "free parking",
+          "priority_order": 3,
+          "score": 0.4813,
+          "criticality": 0.875,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you parked, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about free parking may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "hiking",
+          "priority_order": 4,
+          "score": 0.4388,
+          "criticality": 0.8333,
+          "components": {
+            "knowledge_gap_score": 0.9762,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.907
+          },
+          "stats": {
+            "num_mentions": 1,
+            "coverage": 0.095,
+            "avg_detail": 1.0,
+            "mean_sentiment": 0.5,
+            "recent_mean_sentiment": null,
+            "num_positive": 1,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": 867
+          },
+          "positive_reasons": [
+            "accommodation is close to the black forest"
+          ],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used hiking, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about hiking may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "no smoking",
+          "priority_order": 5,
+          "score": 0.4354,
+          "criticality": 0.7917,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used no smoking, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about no smoking may be out of date, so your recent experience helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "wifi",
+          "accessibility",
+          "free parking",
+          "hiking",
+          "no smoking"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "wifi",
+          "label": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+          "askReason": "Details about wifi may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "accessibility",
+          "label": "When getting around the property, did it match what the hotel seemed to promise?",
+          "askReason": "Details about accessibility may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Freudenstadt",
+        "property_location": "Freudenstadt, Baden-Wurttemberg",
+        "target_amenities_json": "[{\"amenity\": \"wifi\", \"priority_order\": 1, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"accessibility\", \"priority_order\": 2, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"free parking\", \"priority_order\": 3, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"hiking\", \"priority_order\": 4, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [\"accommodation is close to the black forest\"], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"no smoking\", \"priority_order\": 5, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}]",
+        "target_amenities_brief": "1. wifi: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out\n2. accessibility: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out\n3. free parking: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out\n4. hiking: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n5. no smoking: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out",
+        "target_amenity_names": "wifi, accessibility, free parking, hiking, no smoking",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Freudenstadt! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_ff26cdda",
+      "propertyId": "ff26cdda236b233f7c481f0e896814075ac6bed335e162e0ff01d5491343f838",
+      "property": {
+        "id": "ff26cdda236b233f7c481f0e896814075ac6bed335e162e0ff01d5491343f838",
+        "name": "Frisco",
+        "location": "Frisco, Texas",
+        "city": "Frisco",
+        "province": "Texas",
+        "country": "United States",
+        "starRating": "3.5",
+        "description": "art deco hotel with free parking, 4-minute walk to comerica center<br>a restaurant, a 24-hour fitness center, and a bar/lounge are available at this smoke-free hotel. free wifi in public areas, free self parking, and a free area shuttle are also provided. other amenities include a snack bar/deli, coffee/tea in a common area, and a seasonal outdoor pool. <br>hotel |MASK| frisco by |MASK| offers 110 air-conditioned accommodations with safes and complimentary newspapers. accommodations offer separate sitting areas. premium cable television is provided. bathrooms include showers, complimentary toiletries, and hair dryers. <p>this frisco hotel provides complimentary wireless internet access. business-friendly amenities include desks and phones; free local calls are provided (restrictions may apply). additionally, rooms include complimentary bottled water and coffee/tea makers. housekeeping is provided daily.  </p><br>recreational amenities at the hotel include a 24-hour fitness center and a seasonal outdoor pool. <p>children under 14 years old are not allowed in the swimming pool or fitness facility without adult supervision. </p>",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "area shuttle",
+          "priority_order": 1,
+          "score": 0.6002,
+          "criticality": 0.9429,
+          "components": {
+            "knowledge_gap_score": 0.8558,
+            "controversy_score": 1.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.6281
+          },
+          "stats": {
+            "num_mentions": 4,
+            "coverage": 0.33,
+            "avg_detail": 1.75,
+            "mean_sentiment": 0.0,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 2,
+            "num_neutral": 0,
+            "days_since_last_mention": 361
+          },
+          "positive_reasons": [
+            "the hotel offered a free shuttle to toyota stadium",
+            "local shuttle available to drop you off"
+          ],
+          "negative_reasons": [
+            "shuttle wasn’t working",
+            "staff was rude about it"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used the shuttle, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about area shuttle, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "wifi",
+          "priority_order": 2,
+          "score": 0.5121,
+          "criticality": 1.0,
+          "components": {
+            "knowledge_gap_score": 0.9286,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.9373
+          },
+          "stats": {
+            "num_mentions": 1,
+            "coverage": 0.095,
+            "avg_detail": 3.0,
+            "mean_sentiment": -1.0,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 1,
+            "num_neutral": 0,
+            "days_since_last_mention": 1011
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "the system was down"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "fitness center",
+          "priority_order": 3,
+          "score": 0.4783,
+          "criticality": 0.8571,
+          "components": {
+            "knowledge_gap_score": 0.8229,
+            "controversy_score": 0.96,
+            "decline_score": 0.0,
+            "staleness_score": 0.2459
+          },
+          "stats": {
+            "num_mentions": 5,
+            "coverage": 0.393,
+            "avg_detail": 1.8,
+            "mean_sentiment": -0.1,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 3,
+            "num_neutral": 0,
+            "days_since_last_mention": 103
+          },
+          "positive_reasons": [
+            "clean gym with variety of equipment"
+          ],
+          "negative_reasons": [
+            "huge water and mold problem"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At the fitness center, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about fitness center, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "parking",
+          "priority_order": 4,
+          "score": 0.4302,
+          "criticality": 0.7714,
+          "components": {
+            "knowledge_gap_score": 0.7247,
+            "controversy_score": 0.9796,
+            "decline_score": 0.0,
+            "staleness_score": 0.479
+          },
+          "stats": {
+            "num_mentions": 8,
+            "coverage": 0.551,
+            "avg_detail": 2.0,
+            "mean_sentiment": 0.25,
+            "recent_mean_sentiment": null,
+            "num_positive": 4,
+            "num_negative": 3,
+            "num_neutral": 1,
+            "days_since_last_mention": 238
+          },
+          "positive_reasons": [
+            "ample parking",
+            "easy parking",
+            "great parking"
+          ],
+          "negative_reasons": [
+            "parking spaces a little tight"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you parked, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about parking, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "air conditioning",
+          "priority_order": 5,
+          "score": 0.4214,
+          "criticality": 0.9714,
+          "components": {
+            "knowledge_gap_score": 0.6513,
+            "controversy_score": 0.595,
+            "decline_score": 0.0,
+            "staleness_score": 0.3619
+          },
+          "stats": {
+            "num_mentions": 11,
+            "coverage": 0.667,
+            "avg_detail": 2.09,
+            "mean_sentiment": -0.455,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 9,
+            "num_neutral": 0,
+            "days_since_last_mention": 164
+          },
+          "positive_reasons": [
+            "worked like a champ",
+            "room temperature was great"
+          ],
+          "negative_reasons": [
+            "loud noise coming from the air conditioning unit",
+            "ac rattled loudly entire stay",
+            "the air conditioner in hotel was not working properly"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "area shuttle",
+          "wifi",
+          "fitness center",
+          "parking",
+          "air conditioning"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "area shuttle",
+          "label": "When you used the shuttle, what was your actual experience?",
+          "askReason": "Guests get mixed signals about area shuttle, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "wifi",
+          "label": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+          "askReason": "Details about wifi may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Frisco",
+        "property_location": "Frisco, Texas",
+        "target_amenities_json": "[{\"amenity\": \"area shuttle\", \"priority_order\": 1, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree\", \"positive_context\": [\"the hotel offered a free shuttle to toyota stadium\", \"local shuttle available to drop you off\"], \"negative_context\": [\"shuttle wasn’t working\", \"staff was rude about it\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"wifi\", \"priority_order\": 2, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [\"the system was down\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"fitness center\", \"priority_order\": 3, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree\", \"positive_context\": [\"clean gym with variety of equipment\"], \"negative_context\": [\"huge water and mold problem\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"parking\", \"priority_order\": 4, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"ample parking\", \"easy parking\"], \"negative_context\": [\"parking spaces a little tight\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"air conditioning\", \"priority_order\": 5, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"worked like a champ\", \"room temperature was great\"], \"negative_context\": [\"loud noise coming from the air conditioning unit\", \"ac rattled loudly entire stay\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}]",
+        "target_amenities_brief": "1. area shuttle: existing reviews mention it without enough concrete detail; traveler reviews disagree. Question angle: ask for concrete details because existing reviews are thin\n2. wifi: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n3. fitness center: existing reviews mention it without enough concrete detail; traveler reviews disagree. Question angle: ask for concrete details because existing reviews are thin\n4. parking: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree\n5. air conditioning: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree",
+        "target_amenity_names": "area shuttle, wifi, fitness center, parking, air conditioning",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Frisco! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_a036cbe1",
+      "propertyId": "a036cbe1d9fbf9cba088075d1b4d966ee871df55aa4a58ba0da23c116c499052",
+      "property": {
+        "id": "a036cbe1d9fbf9cba088075d1b4d966ee871df55aa4a58ba0da23c116c499052",
+        "name": "Mbombela",
+        "location": "Mbombela, Mpumalanga",
+        "city": "Mbombela",
+        "province": "Mpumalanga",
+        "country": "South Africa",
+        "starRating": "3.5",
+        "description": "suburban hotel with an outdoor pool and free breakfast<br>along with an outdoor pool, this smoke-free hotel has a restaurant and a bar/lounge. free continental breakfast, free wifi in public areas, and free self parking are also provided. additionally, dry cleaning, laundry facilities, and a 24-hour front desk are onsite. <br>|MASK| mbombela offers 115 air-conditioned accommodations with minibars and safes. flat-screen televisions come with satellite channels. <p>bathrooms include showers with rainfall showerheads. guests can surf the web using the complimentary wireless internet access. housekeeping is provided daily.  </p><br>recreational amenities at the hotel include an outdoor pool. ",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "air conditioning",
+          "priority_order": 1,
+          "score": 0.5092,
+          "criticality": 0.9259,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used air conditioning, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about air conditioning may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "wifi",
+          "priority_order": 2,
+          "score": 0.5034,
+          "criticality": 0.963,
+          "components": {
+            "knowledge_gap_score": 0.9524,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.9449
+          },
+          "stats": {
+            "num_mentions": 1,
+            "coverage": 0.095,
+            "avg_detail": 2.0,
+            "mean_sentiment": -1.0,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 1,
+            "num_neutral": 0,
+            "days_since_last_mention": 1058
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "the only place that we could connect is in the lobby"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "free parking",
+          "priority_order": 3,
+          "score": 0.4889,
+          "criticality": 0.8889,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you parked, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about free parking may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "breakfast",
+          "priority_order": 4,
+          "score": 0.4734,
+          "criticality": 1.0,
+          "components": {
+            "knowledge_gap_score": 0.892,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.7772
+          },
+          "stats": {
+            "num_mentions": 3,
+            "coverage": 0.259,
+            "avg_detail": 1.67,
+            "mean_sentiment": 0.5,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 0,
+            "num_neutral": 1,
+            "days_since_last_mention": 548
+          },
+          "positive_reasons": [
+            "simple, but good and adequate"
+          ],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At breakfast, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about breakfast may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "front desk",
+          "priority_order": 5,
+          "score": 0.4685,
+          "criticality": 0.8519,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "During check-in or checkout, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about front desk may be out of date, so your recent experience helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "air conditioning",
+          "wifi",
+          "free parking",
+          "breakfast",
+          "front desk"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "air conditioning",
+          "label": "When you used air conditioning, did it match what the hotel seemed to promise?",
+          "askReason": "Details about air conditioning may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "wifi",
+          "label": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+          "askReason": "Details about wifi may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Mbombela",
+        "property_location": "Mbombela, Mpumalanga",
+        "target_amenities_json": "[{\"amenity\": \"air conditioning\", \"priority_order\": 1, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"wifi\", \"priority_order\": 2, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [\"the only place that we could connect is in the lobby\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"free parking\", \"priority_order\": 3, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"breakfast\", \"priority_order\": 4, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [\"simple, but good and adequate\"], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"front desk\", \"priority_order\": 5, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}]",
+        "target_amenities_brief": "1. air conditioning: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out\n2. wifi: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n3. free parking: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out\n4. breakfast: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n5. front desk: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out",
+        "target_amenity_names": "air conditioning, wifi, free parking, breakfast, front desk",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Mbombela! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_fa014137",
+      "propertyId": "fa014137b3ea9af6a90c0a86a1d099e46f7e56d6eb33db1ad1ec4bdac68c3caa",
+      "property": {
+        "id": "fa014137b3ea9af6a90c0a86a1d099e46f7e56d6eb33db1ad1ec4bdac68c3caa",
+        "name": "Monterey",
+        "location": "Monterey, California",
+        "city": "Monterey",
+        "province": "California",
+        "country": "United States",
+        "starRating": "2.5",
+        "description": "hotel with free parking, steps from cannery row<br>a 24-hour business center, a microwave in a common area, and a business center are available at this smoke-free hotel. free buffet breakfast is provided, as well as free wifi in public areas, free self parking, and a free manager's reception. additionally, dry cleaning, a 24-hour front desk, and a computer station are onsite. <br>|MASK| inn |MASK| monterey-cannery row by |MASK| offers 43 air-conditioned accommodations with safes and coffee/tea makers. flat-screen televisions come with premium satellite channels. bathrooms include shower/tub combinations, complimentary toiletries, and hair dryers. <p>guests can surf the web using the complimentary wireless internet access. business-friendly amenities include desks and phones; free local calls are provided (restrictions may apply). housekeeping is provided daily.  </p><br>the recreational activities listed below are available either on site or nearby; fees may apply. ",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "wifi",
+          "priority_order": 1,
+          "score": 0.6832,
+          "criticality": 0.9643,
+          "components": {
+            "knowledge_gap_score": 0.9176,
+            "controversy_score": 1.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.9431
+          },
+          "stats": {
+            "num_mentions": 4,
+            "coverage": 0.33,
+            "avg_detail": 1.0,
+            "mean_sentiment": -0.125,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 2,
+            "num_neutral": 0,
+            "days_since_last_mention": 1046
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "couldn't get in wi fi per instructions"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "air conditioning",
+          "priority_order": 2,
+          "score": 0.4567,
+          "criticality": 0.8571,
+          "components": {
+            "knowledge_gap_score": 0.7932,
+            "controversy_score": 0.8889,
+            "decline_score": 0.0,
+            "staleness_score": 0.252
+          },
+          "stats": {
+            "num_mentions": 6,
+            "coverage": 0.451,
+            "avg_detail": 1.83,
+            "mean_sentiment": -0.333,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 4,
+            "num_neutral": 0,
+            "days_since_last_mention": 106
+          },
+          "positive_reasons": [
+            "ac worked perfectly"
+          ],
+          "negative_reasons": [
+            "the ac unit was so loud that i could barely sleep"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "business center",
+          "priority_order": 3,
+          "score": 0.4518,
+          "criticality": 0.8214,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used business center, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about business center may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "reception",
+          "priority_order": 4,
+          "score": 0.4231,
+          "criticality": 0.6429,
+          "components": {
+            "knowledge_gap_score": 0.8558,
+            "controversy_score": 0.8889,
+            "decline_score": 0.0,
+            "staleness_score": 0.9205
+          },
+          "stats": {
+            "num_mentions": 4,
+            "coverage": 0.33,
+            "avg_detail": 1.75,
+            "mean_sentiment": 0.25,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 1,
+            "num_neutral": 1,
+            "days_since_last_mention": 924
+          },
+          "positive_reasons": [
+            "they also have a free wine and cheese reception nightly",
+            "during the month of august they had pancakes from 8:00 pm-12:00am"
+          ],
+          "negative_reasons": [
+            "not find a reception area",
+            "completely under construction"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used reception, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about reception, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "accessibility",
+          "priority_order": 5,
+          "score": 0.3811,
+          "criticality": 0.9286,
+          "components": {
+            "knowledge_gap_score": 0.6368,
+            "controversy_score": 0.2653,
+            "decline_score": 0.0,
+            "staleness_score": 0.6844
+          },
+          "stats": {
+            "num_mentions": 14,
+            "coverage": 0.753,
+            "avg_detail": 1.93,
+            "mean_sentiment": -0.821,
+            "recent_mean_sentiment": null,
+            "num_positive": 1,
+            "num_negative": 13,
+            "num_neutral": 0,
+            "days_since_last_mention": 421
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "no elevator to our floor",
+            "not handicap accessible",
+            "too many stairs"
+          ],
+          "ask_reason": "recent reviews raise unresolved concerns",
+          "question_angles": [
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When getting around the property, did any issue come up?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "There are practical concerns around accessibility, so your recent example adds clarity."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "wifi",
+          "air conditioning",
+          "business center",
+          "reception",
+          "accessibility"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "wifi",
+          "label": "When you tried the Wi-Fi, what was your actual experience?",
+          "askReason": "Guests get mixed signals about wifi, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "air conditioning",
+          "label": "When you used air conditioning, what was your actual experience?",
+          "askReason": "Guests get mixed signals about air conditioning, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Monterey",
+        "property_location": "Monterey, California",
+        "target_amenities_json": "[{\"amenity\": \"wifi\", \"priority_order\": 1, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [\"couldn't get in wi fi per instructions\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"air conditioning\", \"priority_order\": 2, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree\", \"positive_context\": [\"ac worked perfectly\"], \"negative_context\": [\"the ac unit was so loud that i could barely sleep\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"business center\", \"priority_order\": 3, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"reception\", \"priority_order\": 4, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale\", \"positive_context\": [\"they also have a free wine and cheese reception nightly\", \"during the month of august they had pancakes from 8:00 pm-12:00am\"], \"negative_context\": [\"not find a reception area\", \"completely under construction\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"accessibility\", \"priority_order\": 5, \"ask_reason\": \"recent reviews raise unresolved concerns\", \"positive_context\": [], \"negative_context\": [\"no elevator to our floor\", \"not handicap accessible\"], \"question_angles\": [\"ask if the known concern matched their stay\"]}]",
+        "target_amenities_brief": "1. wifi: existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n2. air conditioning: existing reviews mention it without enough concrete detail; traveler reviews disagree. Question angle: ask for concrete details because existing reviews are thin\n3. business center: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out\n4. reception: existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n5. accessibility: recent reviews raise unresolved concerns. Question angle: ask if the known concern matched their stay",
+        "target_amenity_names": "wifi, air conditioning, business center, reception, accessibility",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Monterey! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_f2d8d955",
+      "propertyId": "f2d8d9557208d58577e9df7ff34e42bf86fb5b10fdfae0c3040d14c374a2a2b9",
+      "property": {
+        "id": "f2d8d9557208d58577e9df7ff34e42bf86fb5b10fdfae0c3040d14c374a2a2b9",
+        "name": "New Smyrna Beach",
+        "location": "New Smyrna Beach, Florida",
+        "city": "New Smyrna Beach",
+        "province": "Florida",
+        "country": "United States",
+        "starRating": "2.0",
+        "description": "oceanfront with outdoor pool, near little theatre of new smyrna beach<br>guests at this beach hotel will appreciate convenient onsite amenities such as a children's pool and barbecue grills. <br>|MASK| |MASK| inn offers 40 air-conditioned accommodations with coffee/tea makers and hair dryers. these individually decorated and furnished accommodations include kitchen islands. kitchens offer refrigerators, microwaves, cookware/dishes/utensils, and dishwashers. bathrooms include shower/tub combinations. <p>this new smyrna beach hotel provides complimentary wireless internet access. 50-inch flat-screen televisions come with cable channels. housekeeping is provided daily.  </p><br>an outdoor pool and a children's pool are on site.  <p>the recreational activities listed below are available either on site or nearby; fees may apply. </p>",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "free parking",
+          "priority_order": 1,
+          "score": 0.6274,
+          "criticality": 0.875,
+          "components": {
+            "knowledge_gap_score": 0.9382,
+            "controversy_score": 1.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.9449
+          },
+          "stats": {
+            "num_mentions": 4,
+            "coverage": 0.33,
+            "avg_detail": 0.75,
+            "mean_sentiment": 0.0,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 2,
+            "num_neutral": 0,
+            "days_since_last_mention": 1058
+          },
+          "positive_reasons": [
+            "accommodating to my minivan and trailer for parking"
+          ],
+          "negative_reasons": [
+            "all parking places on the side by the gates were taken",
+            "poor instructions for one arriving late"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you parked, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about free parking, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "front desk",
+          "priority_order": 2,
+          "score": 0.5435,
+          "criticality": 0.8438,
+          "components": {
+            "knowledge_gap_score": 0.7663,
+            "controversy_score": 0.9796,
+            "decline_score": 0.0,
+            "staleness_score": 0.9449
+          },
+          "stats": {
+            "num_mentions": 7,
+            "coverage": 0.503,
+            "avg_detail": 1.86,
+            "mean_sentiment": -0.071,
+            "recent_mean_sentiment": null,
+            "num_positive": 3,
+            "num_negative": 4,
+            "num_neutral": 0,
+            "days_since_last_mention": 1058
+          },
+          "positive_reasons": [
+            "staff and room were nice",
+            "helpful",
+            "was checked in within minutes"
+          ],
+          "negative_reasons": [
+            "not happy with the communication",
+            "management would not talk to us",
+            "waited for room for 1 1/2 hours"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "During check-in or checkout, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about front desk, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "air conditioning",
+          "priority_order": 3,
+          "score": 0.5074,
+          "criticality": 0.9062,
+          "components": {
+            "knowledge_gap_score": 0.6906,
+            "controversy_score": 0.7101,
+            "decline_score": 0.0,
+            "staleness_score": 0.9449
+          },
+          "stats": {
+            "num_mentions": 14,
+            "coverage": 0.753,
+            "avg_detail": 1.64,
+            "mean_sentiment": -0.393,
+            "recent_mean_sentiment": null,
+            "num_positive": 3,
+            "num_negative": 10,
+            "num_neutral": 1,
+            "days_since_last_mention": 1058
+          },
+          "positive_reasons": [
+            "once the a/c was running it was fine",
+            "they replaced it within an hour"
+          ],
+          "negative_reasons": [
+            "air was not working",
+            "the only air conditioner in our unit was in the main room",
+            "we were hot while sleeping"
+          ],
+          "ask_reason": "traveler reviews disagree; the latest useful mention is stale",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "pool",
+          "priority_order": 4,
+          "score": 0.5018,
+          "criticality": 0.9688,
+          "components": {
+            "knowledge_gap_score": 0.5549,
+            "controversy_score": 0.7713,
+            "decline_score": 0.0,
+            "staleness_score": 0.9448
+          },
+          "stats": {
+            "num_mentions": 26,
+            "coverage": 0.926,
+            "avg_detail": 1.92,
+            "mean_sentiment": 0.385,
+            "recent_mean_sentiment": null,
+            "num_positive": 17,
+            "num_negative": 6,
+            "num_neutral": 3,
+            "days_since_last_mention": 1057
+          },
+          "positive_reasons": [
+            "pool was clean and well maintained",
+            "my kids loved the large pool",
+            "nice warm water"
+          ],
+          "negative_reasons": [
+            "very noisy on friday evening",
+            "the pool is not heated",
+            "not clean"
+          ],
+          "ask_reason": "traveler reviews disagree; the latest useful mention is stale",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At the pool, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about pool, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "wifi",
+          "priority_order": 5,
+          "score": 0.4903,
+          "criticality": 0.9375,
+          "components": {
+            "knowledge_gap_score": 0.9524,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.947
+          },
+          "stats": {
+            "num_mentions": 1,
+            "coverage": 0.095,
+            "avg_detail": 2.0,
+            "mean_sentiment": -0.5,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 1,
+            "num_neutral": 0,
+            "days_since_last_mention": 1072
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "internet was an issue"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "free parking",
+          "front desk",
+          "air conditioning",
+          "pool",
+          "wifi"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "free parking",
+          "label": "When you parked, what was your actual experience?",
+          "askReason": "Guests get mixed signals about free parking, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "front desk",
+          "label": "During check-in or checkout, what was your actual experience?",
+          "askReason": "Guests get mixed signals about front desk, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "New Smyrna Beach",
+        "property_location": "New Smyrna Beach, Florida",
+        "target_amenities_json": "[{\"amenity\": \"free parking\", \"priority_order\": 1, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale\", \"positive_context\": [\"accommodating to my minivan and trailer for parking\"], \"negative_context\": [\"all parking places on the side by the gates were taken\", \"poor instructions for one arriving late\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"front desk\", \"priority_order\": 2, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale\", \"positive_context\": [\"staff and room were nice\", \"helpful\"], \"negative_context\": [\"not happy with the communication\", \"management would not talk to us\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"air conditioning\", \"priority_order\": 3, \"ask_reason\": \"traveler reviews disagree; the latest useful mention is stale\", \"positive_context\": [\"once the a/c was running it was fine\", \"they replaced it within an hour\"], \"negative_context\": [\"air was not working\", \"the only air conditioner in our unit was in the main room\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"pool\", \"priority_order\": 4, \"ask_reason\": \"traveler reviews disagree; the latest useful mention is stale\", \"positive_context\": [\"pool was clean and well maintained\", \"my kids loved the large pool\"], \"negative_context\": [\"very noisy on friday evening\", \"the pool is not heated\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"wifi\", \"priority_order\": 5, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [\"internet was an issue\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}]",
+        "target_amenities_brief": "1. free parking: existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n2. front desk: existing reviews mention it without enough concrete detail; traveler reviews disagree; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n3. air conditioning: traveler reviews disagree; the latest useful mention is stale. Question angle: ask what their actual experience was because reviews disagree\n4. pool: traveler reviews disagree; the latest useful mention is stale. Question angle: ask what their actual experience was because reviews disagree\n5. wifi: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin",
+        "target_amenity_names": "free parking, front desk, air conditioning, pool, wifi",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing New Smyrna Beach! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_7d027ef7",
+      "propertyId": "7d027ef72c02eaa17af3c993fd5dba50d17b41a6280389a46c13c7e2c32a5b06",
+      "property": {
+        "id": "7d027ef72c02eaa17af3c993fd5dba50d17b41a6280389a46c13c7e2c32a5b06",
+        "name": "Ocala",
+        "location": "Ocala, Florida",
+        "city": "Ocala",
+        "province": "Florida",
+        "country": "United States",
+        "starRating": "2.5",
+        "description": "hotel in ocala with a 24-hour fitness center and an indoor pool<br>an indoor pool, a 24-hour fitness center, and a snack bar/deli are available at this hotel. free continental breakfast, free wifi in public areas, and free self parking are also provided. additionally, coffee/tea in a common area, a meeting room, and laundry facilities are onsite. <br>housekeeping is available on request. <br>|MASK| inn & |MASK| by |MASK|, ocala southwest offers 59 accommodations with coffee/tea makers and hair dryers. televisions come with cable channels. refrigerators and microwaves are provided. bathrooms include shower/tub combinations and complimentary toiletries. <p>this ocala hotel provides complimentary wireless internet access, with a speed of 25+ mbps. business-friendly amenities include desks and desk chairs. additionally, rooms include irons/ironing boards and blackout drapes/curtains. housekeeping is offered on request and hypo-allergenic bedding can be requested.  </p><br>recreational amenities at the hotel include an indoor pool and a 24-hour fitness center. <p>children under 15 years old are not allowed in the swimming pool or fitness facility without adult supervision. </p>",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "fitness center",
+          "priority_order": 1,
+          "score": 0.4408,
+          "criticality": 0.8519,
+          "components": {
+            "knowledge_gap_score": 0.9524,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.9098
+          },
+          "stats": {
+            "num_mentions": 1,
+            "coverage": 0.095,
+            "avg_detail": 2.0,
+            "mean_sentiment": -0.5,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 1,
+            "num_neutral": 0,
+            "days_since_last_mention": 878
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "tiny"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At the fitness center, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about fitness center may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "free parking",
+          "priority_order": 2,
+          "score": 0.4251,
+          "criticality": 0.8148,
+          "components": {
+            "knowledge_gap_score": 0.9607,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.9164
+          },
+          "stats": {
+            "num_mentions": 5,
+            "coverage": 0.393,
+            "avg_detail": 0.4,
+            "mean_sentiment": -0.4,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 2,
+            "num_neutral": 3,
+            "days_since_last_mention": 906
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you parked, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about free parking may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "meeting room",
+          "priority_order": 3,
+          "score": 0.4074,
+          "criticality": 0.7407,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used meeting room, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about meeting room may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "air conditioning",
+          "priority_order": 4,
+          "score": 0.406,
+          "criticality": 0.8889,
+          "components": {
+            "knowledge_gap_score": 0.4818,
+            "controversy_score": 0.64,
+            "decline_score": 0.0,
+            "staleness_score": 0.9068
+          },
+          "stats": {
+            "num_mentions": 27,
+            "coverage": 0.933,
+            "avg_detail": 2.22,
+            "mean_sentiment": -0.63,
+            "recent_mean_sentiment": null,
+            "num_positive": 5,
+            "num_negative": 20,
+            "num_neutral": 2,
+            "days_since_last_mention": 866
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "the ac didn’t work",
+            "not cooling properly",
+            "strange odor coming from the ac unit"
+          ],
+          "ask_reason": "traveler reviews disagree; the latest useful mention is stale",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "pool",
+          "priority_order": 5,
+          "score": 0.3838,
+          "criticality": 0.963,
+          "components": {
+            "knowledge_gap_score": 0.5275,
+            "controversy_score": 0.9375,
+            "decline_score": 0.0,
+            "staleness_score": 0.0
+          },
+          "stats": {
+            "num_mentions": 45,
+            "coverage": 0.989,
+            "avg_detail": 1.91,
+            "mean_sentiment": 0.1,
+            "recent_mean_sentiment": 0.167,
+            "num_positive": 25,
+            "num_negative": 15,
+            "num_neutral": 5,
+            "days_since_last_mention": 0
+          },
+          "positive_reasons": [
+            "nice indoor pool",
+            "the pool was clean",
+            "heated indoor pool"
+          ],
+          "negative_reasons": [
+            "pool closed",
+            "pool was dirty",
+            "closed for a full week"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At the pool, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about pool, so one concrete example helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "fitness center",
+          "free parking",
+          "meeting room",
+          "air conditioning",
+          "pool"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "fitness center",
+          "label": "At the fitness center, did it match what the hotel seemed to promise?",
+          "askReason": "Details about fitness center may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "free parking",
+          "label": "When you parked, did it match what the hotel seemed to promise?",
+          "askReason": "Details about free parking may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Ocala",
+        "property_location": "Ocala, Florida",
+        "target_amenities_json": "[{\"amenity\": \"fitness center\", \"priority_order\": 1, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [\"tiny\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"free parking\", \"priority_order\": 2, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"meeting room\", \"priority_order\": 3, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"air conditioning\", \"priority_order\": 4, \"ask_reason\": \"traveler reviews disagree; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [\"the ac didn’t work\", \"not cooling properly\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"pool\", \"priority_order\": 5, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"nice indoor pool\", \"the pool was clean\"], \"negative_context\": [\"pool closed\", \"pool was dirty\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}]",
+        "target_amenities_brief": "1. fitness center: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n2. free parking: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n3. meeting room: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out\n4. air conditioning: traveler reviews disagree; the latest useful mention is stale. Question angle: ask what their actual experience was because reviews disagree\n5. pool: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree",
+        "target_amenity_names": "fitness center, free parking, meeting room, air conditioning, pool",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Ocala! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_110f01b8",
+      "propertyId": "110f01b8ae518a0ee41047bce5c22572988a435e10ead72dc1af793bba8ce0b0",
+      "property": {
+        "id": "110f01b8ae518a0ee41047bce5c22572988a435e10ead72dc1af793bba8ce0b0",
+        "name": "Pompei",
+        "location": "Pompei, Italy",
+        "city": "Pompei",
+        "province": "",
+        "country": "Italy",
+        "starRating": "",
+        "description": "hotel with a restaurant, steps from pompeii archaeological park<br>along with a restaurant, this smoke-free hotel has a bar/lounge and a snack bar/deli. free buffet breakfast and free wifi in public areas are also provided. additionally, a 24-hour front desk, tour/ticket assistance, and a garden are onsite. <br>hotel |MASK| |MASK| offers 28 air-conditioned accommodations with minibars and safes. 28-inch flat-screen televisions come with satellite channels. <p>bathrooms include bidets, complimentary toiletries, and hair dryers. guests can surf the web using the complimentary wireless internet access. housekeeping is provided daily.  </p>",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "air conditioning",
+          "priority_order": 1,
+          "score": 0.4634,
+          "criticality": 0.8889,
+          "components": {
+            "knowledge_gap_score": 0.6997,
+            "controversy_score": 0.96,
+            "decline_score": 0.0,
+            "staleness_score": 0.3297
+          },
+          "stats": {
+            "num_mentions": 10,
+            "coverage": 0.632,
+            "avg_detail": 1.9,
+            "mean_sentiment": 0.1,
+            "recent_mean_sentiment": null,
+            "num_positive": 6,
+            "num_negative": 4,
+            "num_neutral": 0,
+            "days_since_last_mention": 146
+          },
+          "positive_reasons": [
+            "aircond worked fine",
+            "the ac is great"
+          ],
+          "negative_reasons": [
+            "ac did not work",
+            "room remained hot"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "breakfast",
+          "priority_order": 2,
+          "score": 0.4121,
+          "criticality": 1.0,
+          "components": {
+            "knowledge_gap_score": 0.4787,
+            "controversy_score": 0.9796,
+            "decline_score": 0.1216,
+            "staleness_score": 0.0027
+          },
+          "stats": {
+            "num_mentions": 39,
+            "coverage": 0.98,
+            "avg_detail": 2.13,
+            "mean_sentiment": 0.115,
+            "recent_mean_sentiment": 0.0,
+            "num_positive": 20,
+            "num_negative": 15,
+            "num_neutral": 4,
+            "days_since_last_mention": 1
+          },
+          "positive_reasons": [
+            "breakfast croissants were delicious",
+            "I am gluten free and when I asked them I was well catered for.",
+            "hotel offered free breakfast at a small cafe adjacent to hotel every morning"
+          ],
+          "negative_reasons": [
+            "quality of offerings mediocre for the most part",
+            "breakfast was poor",
+            "only a few sweet pastries"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At breakfast, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about breakfast, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "wifi",
+          "priority_order": 3,
+          "score": 0.4109,
+          "criticality": 0.9444,
+          "components": {
+            "knowledge_gap_score": 0.8146,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.7286
+          },
+          "stats": {
+            "num_mentions": 4,
+            "coverage": 0.33,
+            "avg_detail": 2.25,
+            "mean_sentiment": -0.625,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 4,
+            "num_neutral": 0,
+            "days_since_last_mention": 476
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "the internet in the rooms is poor",
+            "only functional in the lobby area"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "front desk",
+          "priority_order": 4,
+          "score": 0.3947,
+          "criticality": 0.8333,
+          "components": {
+            "knowledge_gap_score": 0.6979,
+            "controversy_score": 0.8025,
+            "decline_score": 0.0,
+            "staleness_score": 0.227
+          },
+          "stats": {
+            "num_mentions": 19,
+            "coverage": 0.85,
+            "avg_detail": 1.42,
+            "mean_sentiment": 0.342,
+            "recent_mean_sentiment": null,
+            "num_positive": 13,
+            "num_negative": 5,
+            "num_neutral": 1,
+            "days_since_last_mention": 94
+          },
+          "positive_reasons": [
+            "staff helpfulness",
+            "spoke great english",
+            "the front desk gentleman was very helpful"
+          ],
+          "negative_reasons": [
+            "night staff talk no english and were rude when we used translators to talk with them",
+            "tried to charge us again for the room",
+            "was rude and very unfriendly"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "During check-in or checkout, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about front desk, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "restaurant",
+          "priority_order": 5,
+          "score": 0.3681,
+          "criticality": 0.7222,
+          "components": {
+            "knowledge_gap_score": 0.6657,
+            "controversy_score": 0.9375,
+            "decline_score": 0.2778,
+            "staleness_score": 0.0027
+          },
+          "stats": {
+            "num_mentions": 21,
+            "coverage": 0.878,
+            "avg_detail": 1.52,
+            "mean_sentiment": 0.071,
+            "recent_mean_sentiment": -0.167,
+            "num_positive": 10,
+            "num_negative": 6,
+            "num_neutral": 5,
+            "days_since_last_mention": 1
+          },
+          "positive_reasons": [
+            "the food at the on-site restaurant to be very good",
+            "the accessibility of the restaurant for meals was convenient and tasty"
+          ],
+          "negative_reasons": [
+            "never open after 6pm",
+            "on site pizzeria closed at 6pm"
+          ],
+          "ask_reason": "traveler reviews disagree; recent sentiment appears worse than older reviews",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask whether it felt worse or changed recently",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At the restaurant, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about restaurant, so one concrete example helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "air conditioning",
+          "breakfast",
+          "wifi",
+          "front desk",
+          "restaurant"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "air conditioning",
+          "label": "When you used air conditioning, what was your actual experience?",
+          "askReason": "Guests get mixed signals about air conditioning, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "breakfast",
+          "label": "At breakfast, what was your actual experience?",
+          "askReason": "Guests get mixed signals about breakfast, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Pompei",
+        "property_location": "Pompei, Italy",
+        "target_amenities_json": "[{\"amenity\": \"air conditioning\", \"priority_order\": 1, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"aircond worked fine\", \"the ac is great\"], \"negative_context\": [\"ac did not work\", \"room remained hot\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"breakfast\", \"priority_order\": 2, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"breakfast croissants were delicious\", \"I am gluten free and when I asked them I was well catered for.\"], \"negative_context\": [\"quality of offerings mediocre for the most part\", \"breakfast was poor\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"wifi\", \"priority_order\": 3, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [\"the internet in the rooms is poor\", \"only functional in the lobby area\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"front desk\", \"priority_order\": 4, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"staff helpfulness\", \"spoke great english\"], \"negative_context\": [\"night staff talk no english and were rude when we used translators to talk with them\", \"tried to charge us again for the room\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"restaurant\", \"priority_order\": 5, \"ask_reason\": \"traveler reviews disagree; recent sentiment appears worse than older reviews\", \"positive_context\": [\"the food at the on-site restaurant to be very good\", \"the accessibility of the restaurant for meals was convenient and tasty\"], \"negative_context\": [\"never open after 6pm\", \"on site pizzeria closed at 6pm\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask whether it felt worse or changed recently\", \"ask if the known concern matched their stay\"]}]",
+        "target_amenities_brief": "1. air conditioning: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree\n2. breakfast: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree\n3. wifi: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n4. front desk: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree\n5. restaurant: traveler reviews disagree; recent sentiment appears worse than older reviews. Question angle: ask what their actual experience was because reviews disagree",
+        "target_amenity_names": "air conditioning, breakfast, wifi, front desk, restaurant",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Pompei! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_823fb249",
+      "propertyId": "823fb2499b4e37d99acb65e7198e75965d6496fd1c579f976205c0e6179206df",
+      "property": {
+        "id": "823fb2499b4e37d99acb65e7198e75965d6496fd1c579f976205c0e6179206df",
+        "name": "Rome",
+        "location": "Rome, RM",
+        "city": "Rome",
+        "province": "RM",
+        "country": "Italy",
+        "starRating": "",
+        "description": "hotel with a restaurant, 7-minute walk to via nazionale<br>this hotel features a restaurant, a fitness center, and a bar/lounge. wifi in public areas is free. other amenities include a snack bar/deli, 24-hour room service, and a business center. <br>housekeeping is available on request. <br>|MASK| |MASK| |MASK| hotel |MASK| |MASK| offers 118 air-conditioned accommodations with minibars and safes. beds feature premium bedding. lcd televisions are featured in guestrooms. bathrooms include bathtubs or showers, bathrobes, slippers, and bidets. <p>this rome hotel provides complimentary wireless internet access. business-friendly amenities include desks and phones. additionally, rooms include hair dryers and complimentary toiletries. irons/ironing boards, change of towels, and change of bedsheets can be requested. housekeeping is provided daily.  </p><br>recreational amenities at the hotel include a fitness center. ",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "fitness center",
+          "priority_order": 1,
+          "score": 0.4854,
+          "criticality": 0.8667,
+          "components": {
+            "knowledge_gap_score": 0.8704,
+            "controversy_score": 0.8889,
+            "decline_score": 0.0,
+            "staleness_score": 0.227
+          },
+          "stats": {
+            "num_mentions": 3,
+            "coverage": 0.259,
+            "avg_detail": 2.0,
+            "mean_sentiment": 0.167,
+            "recent_mean_sentiment": null,
+            "num_positive": 2,
+            "num_negative": 1,
+            "num_neutral": 0,
+            "days_since_last_mention": 94
+          },
+          "positive_reasons": [
+            "nice gym"
+          ],
+          "negative_reasons": [
+            "es un muy básico"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; traveler reviews disagree",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At the fitness center, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about fitness center, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "wifi",
+          "priority_order": 2,
+          "score": 0.4703,
+          "criticality": 1.0,
+          "components": {
+            "knowledge_gap_score": 0.6681,
+            "controversy_score": 0.3951,
+            "decline_score": 0.0,
+            "staleness_score": 0.8268
+          },
+          "stats": {
+            "num_mentions": 10,
+            "coverage": 0.632,
+            "avg_detail": 2.1,
+            "mean_sentiment": 0.5,
+            "recent_mean_sentiment": null,
+            "num_positive": 8,
+            "num_negative": 1,
+            "num_neutral": 1,
+            "days_since_last_mention": 640
+          },
+          "positive_reasons": [
+            "free wifi and computer in lobby with free usage",
+            "excellent wifi"
+          ],
+          "negative_reasons": [
+            "レスポンスが悪い"
+          ],
+          "ask_reason": "traveler reviews disagree; the latest useful mention is stale",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about wifi, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "air conditioning",
+          "priority_order": 3,
+          "score": 0.4492,
+          "criticality": 0.9667,
+          "components": {
+            "knowledge_gap_score": 0.5501,
+            "controversy_score": 1.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.2977
+          },
+          "stats": {
+            "num_mentions": 23,
+            "coverage": 0.9,
+            "avg_detail": 2.0,
+            "mean_sentiment": -0.065,
+            "recent_mean_sentiment": null,
+            "num_positive": 11,
+            "num_negative": 11,
+            "num_neutral": 1,
+            "days_since_last_mention": 129
+          },
+          "positive_reasons": [
+            "great airconditioning",
+            "the rooms cooled off fairly quickly"
+          ],
+          "negative_reasons": [
+            "the air-conditioning cannot be controlled by each room",
+            "the room is too hot"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used air conditioning, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about air conditioning, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "room service",
+          "priority_order": 4,
+          "score": 0.3709,
+          "criticality": 0.7333,
+          "components": {
+            "knowledge_gap_score": 0.9762,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.7691
+          },
+          "stats": {
+            "num_mentions": 1,
+            "coverage": 0.095,
+            "avg_detail": 1.0,
+            "mean_sentiment": -1.0,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 1,
+            "num_neutral": 0,
+            "days_since_last_mention": 535
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you ordered room service, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about room service may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "accessibility",
+          "priority_order": 5,
+          "score": 0.3667,
+          "criticality": 0.6667,
+          "components": {
+            "knowledge_gap_score": 0.7247,
+            "controversy_score": 0.9375,
+            "decline_score": 0.0,
+            "staleness_score": 0.4847
+          },
+          "stats": {
+            "num_mentions": 8,
+            "coverage": 0.551,
+            "avg_detail": 2.0,
+            "mean_sentiment": 0.125,
+            "recent_mean_sentiment": null,
+            "num_positive": 5,
+            "num_negative": 3,
+            "num_neutral": 0,
+            "days_since_last_mention": 242
+          },
+          "positive_reasons": [
+            "easily accessible by public transportation",
+            "located just outside roma termini"
+          ],
+          "negative_reasons": [
+            "the showerhead had issues",
+            "water sprayed all over the bathroom"
+          ],
+          "ask_reason": "traveler reviews disagree",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When getting around the property, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about accessibility, so one concrete example helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "fitness center",
+          "wifi",
+          "air conditioning",
+          "room service",
+          "accessibility"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "fitness center",
+          "label": "At the fitness center, what was your actual experience?",
+          "askReason": "Guests get mixed signals about fitness center, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "wifi",
+          "label": "When you tried the Wi-Fi, what was your actual experience?",
+          "askReason": "Guests get mixed signals about wifi, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "Rome",
+        "property_location": "Rome, RM",
+        "target_amenities_json": "[{\"amenity\": \"fitness center\", \"priority_order\": 1, \"ask_reason\": \"existing reviews mention it without enough concrete detail; traveler reviews disagree\", \"positive_context\": [\"nice gym\"], \"negative_context\": [\"es un muy básico\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"wifi\", \"priority_order\": 2, \"ask_reason\": \"traveler reviews disagree; the latest useful mention is stale\", \"positive_context\": [\"free wifi and computer in lobby with free usage\", \"excellent wifi\"], \"negative_context\": [\"レスポンスが悪い\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"air conditioning\", \"priority_order\": 3, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"great airconditioning\", \"the rooms cooled off fairly quickly\"], \"negative_context\": [\"the air-conditioning cannot be controlled by each room\", \"the room is too hot\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"room service\", \"priority_order\": 4, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"accessibility\", \"priority_order\": 5, \"ask_reason\": \"traveler reviews disagree\", \"positive_context\": [\"easily accessible by public transportation\", \"located just outside roma termini\"], \"negative_context\": [\"the showerhead had issues\", \"water sprayed all over the bathroom\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask if the known concern matched their stay\"]}]",
+        "target_amenities_brief": "1. fitness center: existing reviews mention it without enough concrete detail; traveler reviews disagree. Question angle: ask for concrete details because existing reviews are thin\n2. wifi: traveler reviews disagree; the latest useful mention is stale. Question angle: ask what their actual experience was because reviews disagree\n3. air conditioning: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree\n4. room service: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n5. accessibility: traveler reviews disagree. Question angle: ask what their actual experience was because reviews disagree",
+        "target_amenity_names": "fitness center, wifi, air conditioning, room service, accessibility",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing Rome! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    },
+    {
+      "reviewId": "review_3b984f3b",
+      "propertyId": "3b984f3ba8df55b2609a1e33fd694cf8407842e1d833c9b4d993b07fc83a2820",
+      "property": {
+        "id": "3b984f3ba8df55b2609a1e33fd694cf8407842e1d833c9b4d993b07fc83a2820",
+        "name": "San Isidro de El General",
+        "location": "San Isidro de El General, San José",
+        "city": "San Isidro de El General",
+        "province": "San José",
+        "country": "Costa Rica",
+        "starRating": "3.5",
+        "description": "hotel with a restaurant, in the vicinity of quebradas biological center<br>this smoke-free hotel features a restaurant, a bar/lounge, and a 24-hour business center. free continental breakfast and free wifi in public areas are also provided. additionally, a business center, a meeting room, and concierge services are onsite. <br>lucky's hotel y casino offers 17 accommodations with safes and complimentary toiletries. rooms open to balconies. cable television is provided. this san isidro de el general hotel provides complimentary wireless internet access. housekeeping is provided daily. ",
+        "stayRange": "Recent stay"
+      },
+      "targetAmenities": [
+        {
+          "amenity": "breakfast",
+          "priority_order": 1,
+          "score": 0.5744,
+          "criticality": 1.0,
+          "components": {
+            "knowledge_gap_score": 0.7247,
+            "controversy_score": 0.75,
+            "decline_score": 0.0,
+            "staleness_score": 0.8971
+          },
+          "stats": {
+            "num_mentions": 8,
+            "coverage": 0.551,
+            "avg_detail": 2.0,
+            "mean_sentiment": 0.438,
+            "recent_mean_sentiment": null,
+            "num_positive": 6,
+            "num_negative": 2,
+            "num_neutral": 0,
+            "days_since_last_mention": 830
+          },
+          "positive_reasons": [
+            "included",
+            "served in a bright dining room",
+            "breakfast was great"
+          ],
+          "negative_reasons": [
+            "food was cold",
+            "not variety",
+            "very basic"
+          ],
+          "ask_reason": "traveler reviews disagree; the latest useful mention is stale",
+          "question_angles": [
+            "ask what their actual experience was because reviews disagree",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "At breakfast, what was your actual experience?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Guests get mixed signals about breakfast, so one concrete example helps."
+          }
+        },
+        {
+          "amenity": "accessibility",
+          "priority_order": 2,
+          "score": 0.506,
+          "criticality": 0.92,
+          "components": {
+            "knowledge_gap_score": 1.0,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 1.0
+          },
+          "stats": {
+            "num_mentions": 0,
+            "coverage": 0.0,
+            "avg_detail": null,
+            "mean_sentiment": null,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": null
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "no recent review gives usable detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask whether they used it and what specifically stood out",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When getting around the property, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about accessibility may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "air conditioning",
+          "priority_order": 3,
+          "score": 0.4603,
+          "criticality": 0.88,
+          "components": {
+            "knowledge_gap_score": 0.9524,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.947
+          },
+          "stats": {
+            "num_mentions": 1,
+            "coverage": 0.095,
+            "avg_detail": 2.0,
+            "mean_sentiment": 0.5,
+            "recent_mean_sentiment": null,
+            "num_positive": 1,
+            "num_negative": 0,
+            "num_neutral": 0,
+            "days_since_last_mention": 1072
+          },
+          "positive_reasons": [
+            "good air conditioning"
+          ],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used air conditioning, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about air conditioning may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "wifi",
+          "priority_order": 4,
+          "score": 0.4496,
+          "criticality": 0.96,
+          "components": {
+            "knowledge_gap_score": 0.8704,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.8009
+          },
+          "stats": {
+            "num_mentions": 3,
+            "coverage": 0.259,
+            "avg_detail": 2.0,
+            "mean_sentiment": -0.833,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 3,
+            "num_neutral": 0,
+            "days_since_last_mention": 589
+          },
+          "positive_reasons": [],
+          "negative_reasons": [
+            "there was no wifi in the room",
+            "muy lento"
+          ],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews",
+            "ask if the known concern matched their stay"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you tried the Wi-Fi, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about wifi may be out of date, so your recent experience helps."
+          }
+        },
+        {
+          "amenity": "bar",
+          "priority_order": 5,
+          "score": 0.4473,
+          "criticality": 0.84,
+          "components": {
+            "knowledge_gap_score": 0.9762,
+            "controversy_score": 0.0,
+            "decline_score": 0.0,
+            "staleness_score": 0.947
+          },
+          "stats": {
+            "num_mentions": 1,
+            "coverage": 0.095,
+            "avg_detail": 1.0,
+            "mean_sentiment": -0.5,
+            "recent_mean_sentiment": null,
+            "num_positive": 0,
+            "num_negative": 1,
+            "num_neutral": 0,
+            "days_since_last_mention": 1072
+          },
+          "positive_reasons": [],
+          "negative_reasons": [],
+          "ask_reason": "existing reviews mention it without enough concrete detail; the latest useful mention is stale",
+          "question_angles": [
+            "ask for concrete details because existing reviews are thin",
+            "ask whether the current experience matches older reviews"
+          ],
+          "formQuestion": {
+            "primaryQuestion": "When you used bar, did it match what the hotel seemed to promise?",
+            "placeholder": "A quick concrete detail is enough",
+            "selectionReason": "Details about bar may be out of date, so your recent experience helps."
+          }
+        }
+      ],
+      "stayUsageQuestion": {
+        "id": "stay_usage",
+        "label": "Which of these did you use during your stay?",
+        "options": [
+          "breakfast",
+          "accessibility",
+          "air conditioning",
+          "wifi",
+          "bar"
+        ]
+      },
+      "questions": [
+        {
+          "id": "q_1",
+          "type": "text",
+          "amenity": "breakfast",
+          "label": "At breakfast, what was your actual experience?",
+          "askReason": "Guests get mixed signals about breakfast, so one concrete example helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        },
+        {
+          "id": "q_2",
+          "type": "text",
+          "amenity": "accessibility",
+          "label": "When getting around the property, did it match what the hotel seemed to promise?",
+          "askReason": "Details about accessibility may be out of date, so your recent experience helps.",
+          "placeholder": "A quick concrete detail is enough",
+          "required": false
+        }
+      ],
+      "elevenLabsContext": {
+        "property_name": "San Isidro de El General",
+        "property_location": "San Isidro de El General, San José",
+        "target_amenities_json": "[{\"amenity\": \"breakfast\", \"priority_order\": 1, \"ask_reason\": \"traveler reviews disagree; the latest useful mention is stale\", \"positive_context\": [\"included\", \"served in a bright dining room\"], \"negative_context\": [\"food was cold\", \"not variety\"], \"question_angles\": [\"ask what their actual experience was because reviews disagree\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"accessibility\", \"priority_order\": 2, \"ask_reason\": \"no recent review gives usable detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask whether they used it and what specifically stood out\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"air conditioning\", \"priority_order\": 3, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [\"good air conditioning\"], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}, {\"amenity\": \"wifi\", \"priority_order\": 4, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [\"there was no wifi in the room\", \"muy lento\"], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\", \"ask if the known concern matched their stay\"]}, {\"amenity\": \"bar\", \"priority_order\": 5, \"ask_reason\": \"existing reviews mention it without enough concrete detail; the latest useful mention is stale\", \"positive_context\": [], \"negative_context\": [], \"question_angles\": [\"ask for concrete details because existing reviews are thin\", \"ask whether the current experience matches older reviews\"]}]",
+        "target_amenities_brief": "1. breakfast: traveler reviews disagree; the latest useful mention is stale. Question angle: ask what their actual experience was because reviews disagree\n2. accessibility: no recent review gives usable detail; the latest useful mention is stale. Question angle: ask whether they used it and what specifically stood out\n3. air conditioning: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n4. wifi: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin\n5. bar: existing reviews mention it without enough concrete detail; the latest useful mention is stale. Question angle: ask for concrete details because existing reviews are thin",
+        "target_amenity_names": "breakfast, accessibility, air conditioning, wifi, bar",
+        "question_strategy": "Ask which target amenities the guest actually used. Then ask at most two short follow-up questions about used amenities only. Prefer specific, observable details about quality, condition, availability, fees, crowding, reliability, or recent changes.",
+        "first_message": "Thanks for reviewing San Isidro de El General! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+      }
+    }
+  ]
+}

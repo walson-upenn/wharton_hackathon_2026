@@ -8,7 +8,15 @@ import VoiceReviewPanel from "./components/VoiceReviewPanel";
 import ProgressBar from "./components/ProgressBar";
 import ManagerView from "./components/ManagerView";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
+function formatAmenityLabel(amenity) {
+  return amenity
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
 
 function buildQuestionsForUsage(session, stayUsage) {
   const selected = session.targetAmenities.filter((target) =>
@@ -16,12 +24,15 @@ function buildQuestionsForUsage(session, stayUsage) {
   );
 
   return selected.slice(0, 2).map((target, index) => ({
-    id: `q_${index + 1}`,
+    id: `q_${target.priority_order || index + 1}`,
     type: "text",
     amenity: target.amenity,
-    label: `What should future travelers know about the ${target.amenity}?`,
-    placeholder: "Share one or two specific details",
-    askReason: target.ask_reason,
+    label:
+      target.formQuestion?.primaryQuestion ||
+      `What should future travelers know about the ${formatAmenityLabel(target.amenity)}?`,
+    placeholder:
+      target.formQuestion?.placeholder || "Share one or two specific details",
+    askReason: target.formQuestion?.selectionReason || target.ask_reason,
     required: false,
   }));
 }
@@ -30,6 +41,7 @@ export default function App() {
   const [appMode, setAppMode] = useState("guest");
   const [session, setSession] = useState(null);
   const [properties, setProperties] = useState([]);
+  const [sessionsByPropertyId, setSessionsByPropertyId] = useState({});
   const [selectedPropertyId, setSelectedPropertyId] = useState("");
   const [loadError, setLoadError] = useState("");
 
@@ -52,32 +64,31 @@ export default function App() {
   });
 
   useEffect(() => {
-    async function loadProperties() {
-      try {
-        const response = await fetch(`${API_BASE_URL}/api/properties`);
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error || "Could not load properties.");
-        setProperties(data);
-      } catch (error) {
-        setLoadError(error.message);
-      }
-    }
-
-    loadProperties();
-  }, []);
-
-  useEffect(() => {
-    async function loadSession() {
+    async function loadReviewData() {
       setLoadError("");
-      const suffix = selectedPropertyId ? `/${selectedPropertyId}` : "";
 
       try {
-        const response = await fetch(`${API_BASE_URL}/api/review-session${suffix}`);
+        const response = await fetch("/data/review-sessions.json");
         const data = await response.json();
-        if (!response.ok) throw new Error(data.error || "Could not load review session.");
 
-        setSession(data);
-        setSelectedPropertyId(data.propertyId);
+        if (!response.ok) {
+          throw new Error(data.error || "Could not load precomputed review sessions.");
+        }
+
+        const sessions = data.sessions || [];
+        const sessionMap = Object.fromEntries(
+          sessions.map((item) => [item.propertyId, item])
+        );
+        const initialSession = sessions[0];
+
+        if (!initialSession) {
+          throw new Error("No precomputed review sessions are available.");
+        }
+
+        setProperties(data.properties || []);
+        setSessionsByPropertyId(sessionMap);
+        setSession(initialSession);
+        setSelectedPropertyId(initialSession.propertyId);
         setViewMode("agent");
         setTravelType("");
         setStayUsage([]);
@@ -92,8 +103,27 @@ export default function App() {
       }
     }
 
-    loadSession();
-  }, [selectedPropertyId]);
+    loadReviewData();
+  }, []);
+
+  useEffect(() => {
+    if (!selectedPropertyId) return;
+    if (session?.propertyId === selectedPropertyId) return;
+
+    const nextSession = sessionsByPropertyId[selectedPropertyId];
+    if (!nextSession) return;
+
+    setSession(nextSession);
+    setViewMode("agent");
+    setTravelType("");
+    setStayUsage([]);
+    setCurrentQuestionIndex(0);
+    setVoiceReview(null);
+    setSubmissionStatus("");
+    setIsSubmitting(false);
+    setAnswers({ q_overall: 0 });
+    setNoneOfThese(false);
+  }, [selectedPropertyId, session?.propertyId, sessionsByPropertyId]);
 
   const textQuestions = useMemo(() => {
     if (!session) return [];
@@ -445,7 +475,7 @@ const handleNoneOfThese = () => {
                         }`}
                         onClick={() => handleToggleStayUsage(option)}
                       >
-                        {option}
+                        {formatAmenityLabel(option)}
                       </button>
                     ))}
                     <button

@@ -3,6 +3,8 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
+from .question_generation import build_form_questions
+
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 SOURCES_DIR = ROOT_DIR / "sources"
@@ -298,12 +300,20 @@ def build_review_session(property_id: str | None = None) -> dict | None:
     targets = build_target_amenities(selected_id)
     prop = property_summary(selected_id)
     prop["stayRange"] = "Recent stay"
+    form_questions = build_form_questions(selected_id, prop, targets)
+    targets_with_questions = [
+        {
+            **target,
+            "formQuestion": form_questions.get(target["amenity"]),
+        }
+        for target in targets
+    ]
 
     return {
         "reviewId": f"review_{selected_id[:8]}",
         "propertyId": selected_id,
         "property": prop,
-        "targetAmenities": targets,
+        "targetAmenities": targets_with_questions,
         "stayUsageQuestion": {
             "id": "stay_usage",
             "label": "Which of these did you use during your stay?",
@@ -314,12 +324,40 @@ def build_review_session(property_id: str | None = None) -> dict | None:
                 "id": f"q_{index + 1}",
                 "type": "text",
                 "amenity": target["amenity"],
-                "label": f"What should future travelers know about the {target['amenity']}?",
-                "askReason": target["ask_reason"],
-                "placeholder": "Share one or two specific details",
+                "label": form_questions.get(target["amenity"], {}).get(
+                    "primaryQuestion",
+                    f"What should future travelers know about the {target['amenity']}?",
+                ),
+                "askReason": form_questions.get(target["amenity"], {}).get(
+                    "selectionReason",
+                    target["ask_reason"],
+                ),
+                "placeholder": form_questions.get(target["amenity"], {}).get(
+                    "placeholder",
+                    "Share one or two specific details",
+                ),
                 "required": False,
             }
             for index, target in enumerate(targets[:2])
         ],
         "elevenLabsContext": build_agent_context(selected_id, targets),
     }
+
+
+def build_all_review_sessions() -> list[dict]:
+    data = load_pipeline_data()
+    sessions = []
+
+    for property_id in data["ask_scores"]:
+        session = build_review_session(property_id)
+        if session:
+            sessions.append(session)
+
+    sessions.sort(
+        key=lambda item: (
+            item.get("property", {}).get("city", ""),
+            item.get("property", {}).get("country", ""),
+            item.get("propertyId", ""),
+        )
+    )
+    return sessions

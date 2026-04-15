@@ -437,7 +437,7 @@ function StackedScoreBar({ am, maxScore }) {
 }
 
 function Step4({ step }) {
-  const { scored_amenities, weights } = step;
+  const { scored_amenities } = step;
   const maxScore = scored_amenities[0]?.score || 1;
 
   return (
