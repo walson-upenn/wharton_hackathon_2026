@@ -294,7 +294,7 @@ const handleNoneOfThese = () => {
   if (appMode === "manager") {
     return (
       <div className="page-shell">
-        <ReviewHeader />
+        <ReviewHeader properties={properties} selectedPropertyId={selectedPropertyId} onPropertyChange={setSelectedPropertyId} />
         <div className="view-switcher view-switcher--left">
           <button className="view-switcher__btn" onClick={() => setAppMode("guest")}>
             <div className="view-switcher__arrow">←</div>
@@ -312,7 +312,7 @@ const handleNoneOfThese = () => {
 
   return (
     <div className="page-shell">
-      <ReviewHeader />
+      <ReviewHeader properties={properties} selectedPropertyId={selectedPropertyId} onPropertyChange={setSelectedPropertyId} />
 
       <div className="view-switcher view-switcher--right">
         <button className="view-switcher__btn" onClick={() => setAppMode("manager")}>
@@ -322,22 +322,6 @@ const handleNoneOfThese = () => {
       </div>
 
       <main className="page-content">
-
-        {properties.length > 0 && (
-          <label className="property-picker">
-            <span>Demo property</span>
-            <select
-              value={selectedPropertyId}
-              onChange={(event) => setSelectedPropertyId(event.target.value)}
-            >
-              {properties.map((property) => (
-                <option key={property.property_id} value={property.property_id}>
-                  {property.city || "Hotel"} · {property.property_id.slice(0, 8)}
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
 
         {viewMode !== "agent" && (
   <section className="property-card-slim">

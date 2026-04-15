@@ -49,7 +49,7 @@ export default function ManagerView({ propertyId, properties, onPropertyChange }
           <select value={propertyId} onChange={(e) => onPropertyChange(e.target.value)}>
             {properties.map((p) => (
               <option key={p.property_id} value={p.property_id}>
-                {p.name || p.city || "Hotel"} · {p.property_id.slice(0, 8)}
+                {p.name || p.city || "Hotel"}
               </option>
             ))}
           </select>

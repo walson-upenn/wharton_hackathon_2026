@@ -40,15 +40,46 @@ textarea {
 .review-header {
   background: #fff;
   border-bottom: 1px solid var(--border);
-  padding: 18px 24px;
+  padding: 18px 20px;
 }
 
-.review-header__brand {
+.review-header__inner {
   max-width: 760px;
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.review-header__brand {
+  display: flex;
+  align-items: center;
   gap: 12px;
+}
+
+.review-header__picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-header__picker-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.review-header__picker select {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .review-header__logoBox {
