@@ -310,9 +310,6 @@ const handleNoneOfThese = () => {
       </div>
 
       <main className="page-content">
-        <div className="top-meta-line">
-          <span className="top-meta-line__muted">Write a review</span>
-        </div>
 
         {properties.length > 0 && (
           <label className="property-picker">
@@ -504,18 +501,6 @@ const handleNoneOfThese = () => {
                 animateIn={questionAnimateIn}
               />
             )}
-
-            <section className="review-card">
-              <div className="section-kicker">Optional</div>
-              <h2 className="section-title section-title--compact">
-                Photos (optional)
-              </h2>
-              <div className="photo-dropzone">
-                <div className="photo-dropzone__text">
-                  Add photos if you'd like
-                </div>
-              </div>
-            </section>
 
             {submissionStatus && (
               <div className="voice-complete-card__meta">{submissionStatus}</div>

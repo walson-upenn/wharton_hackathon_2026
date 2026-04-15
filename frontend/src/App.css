@@ -654,14 +654,6 @@ textarea {
   align-items: center;
 }
 
-.question-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
-
 .photo-dropzone {
   margin-top: 18px;
   border: 1px dashed #cfd4dc;
@@ -732,13 +724,6 @@ textarea {
     font-size: 15px;
   }
 
-
-  .question-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 16px;
-  }
-
 }
 
 .stage-header {
@@ -799,7 +784,7 @@ textarea {
 
 .question-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 12px;
   margin-top: 16px;
   flex-wrap: wrap;
