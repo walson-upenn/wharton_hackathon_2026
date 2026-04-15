@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import PropertyOverview from "./PropertyOverview";
 import PipelineWalkthrough from "./PipelineWalkthrough";
+import { getPropertyPhoto } from "../data/propertyPhotos";
 
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   import.meta.env.VITE_API_URL ||
   "http://localhost:5000";
 
-export default function ManagerView({ propertyId, properties, onPropertyChange }) {
+export default function ManagerView({ propertyId }) {
   const [tab, setTab] = useState("overview");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -42,19 +43,7 @@ export default function ManagerView({ propertyId, properties, onPropertyChange }
   };
 
   return (
-    <main className="page-content">
-      {properties.length > 0 && (
-        <label className="property-picker">
-          <span>Property</span>
-          <select value={propertyId} onChange={(e) => onPropertyChange(e.target.value)}>
-            {properties.map((p) => (
-              <option key={p.property_id} value={p.property_id}>
-                {p.name || p.city || "Hotel"}
-              </option>
-            ))}
-          </select>
-        </label>
-      )}
+    <main className="page-content page-content--wide">
 
       {loading && (
         <div className="manager-state-card">
@@ -73,6 +62,10 @@ export default function ManagerView({ propertyId, properties, onPropertyChange }
       {data && !loading && (
         <>
           <div className="manager-hero">
+            <div
+              className="manager-hero__photo"
+              style={{ backgroundImage: `url(${getPropertyPhoto(propertyId)})` }}
+            />
             <div className="manager-hero__info">
               <div className="manager-hero__location">{data.property.location}</div>
               <h1 className="manager-hero__name">{data.property.name}</h1>
