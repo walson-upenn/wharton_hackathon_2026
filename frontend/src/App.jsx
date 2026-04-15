@@ -510,7 +510,9 @@ const handleNoneOfThese = () => {
 
             <section className="form-stage-intro stage-header">
               <div className="form-stage-intro__content">
-                <h1 className="form-stage-intro__title">Just two questions</h1>
+                <h1 className="form-stage-intro__title">
+            Just {textQuestions.length === 1 ? "one question" : "two questions"}
+          </h1>
                 <p className="form-stage-intro__text">
                   A sentence or two is enough.
                 </p>
