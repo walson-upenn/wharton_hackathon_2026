@@ -81,7 +81,8 @@ def ask_reason(item: dict) -> str:
     if stats.get("num_mentions", 0) == 0:
         reasons.append("no recent review gives usable detail")
     elif components.get("knowledge_gap_score", 0) >= 0.75:
-        reasons.append("existing reviews mention it without enough concrete detail")
+        reasons.append(
+            "existing reviews mention it without enough concrete detail")
 
     if components.get("controversy_score", 0) >= 0.35:
         reasons.append("traveler reviews disagree")
@@ -106,18 +107,22 @@ def question_angles(item: dict) -> list[str]:
     angles = []
 
     if stats.get("num_mentions", 0) == 0:
-        angles.append("ask whether they used it and what specifically stood out")
+        angles.append(
+            "ask whether they used it and what specifically stood out")
     elif components.get("knowledge_gap_score", 0) >= 0.75:
-        angles.append("ask for concrete details because existing reviews are thin")
+        angles.append(
+            "ask for concrete details because existing reviews are thin")
 
     if components.get("controversy_score", 0) >= 0.35:
-        angles.append("ask what their actual experience was because reviews disagree")
+        angles.append(
+            "ask what their actual experience was because reviews disagree")
 
     if components.get("decline_score", 0) >= 0.2:
         angles.append("ask whether it felt worse or changed recently")
 
     if components.get("staleness_score", 0) >= 0.7:
-        angles.append("ask whether the current experience matches older reviews")
+        angles.append(
+            "ask whether the current experience matches older reviews")
 
     if context.get("negative_reasons"):
         angles.append("ask if the known concern matched their stay")
@@ -164,7 +169,8 @@ def build_agent_context(property_id: str, targets: list[dict]) -> dict:
         }
         for target in targets
     ]
-    target_names = [target["amenity"] for target in targets if target.get("amenity")]
+    target_names = [target["amenity"]
+                    for target in targets if target.get("amenity")]
     target_brief = "\n".join(
         f"{target['priority_order']}. {target['amenity']}: {target['ask_reason']}. "
         f"Question angle: {target['question_angles'][0]}"
@@ -186,9 +192,7 @@ def build_agent_context(property_id: str, targets: list[dict]) -> dict:
         "target_amenity_names": ", ".join(target_names),
         "question_strategy": strategy,
         "first_message": (
-            f"Thanks for reviewing {prop['name']}. I'll keep this under a minute "
-            f"and only ask what helps future travelers. Did you use any of these "
-            f"during your stay: {', '.join(target_names)}?"
+            f"Thanks for reviewing {prop['name']}! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
         ),
     }
 
