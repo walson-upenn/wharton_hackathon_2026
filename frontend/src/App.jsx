@@ -1,13 +1,34 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import ReviewHeader from "./components/ReviewHeader";
 import PropertyCard from "./components/PropertyCard";
 import OverallRating from "./components/OverallRating";
 import QuestionCard from "./components/QuestionCard";
-import mockReviewSession from "./data/mockReviewSession";
+import VoiceReviewPanel from "./components/VoiceReviewPanel";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
+function buildQuestionsForUsage(session, stayUsage) {
+  const selected = session.targetAmenities.filter((target) =>
+    stayUsage.includes(target.amenity)
+  );
+
+  return selected.slice(0, 2).map((target, index) => ({
+    id: `q_${index + 1}`,
+    type: "text",
+    amenity: target.amenity,
+    label: `What should future travelers know about the ${target.amenity}?`,
+    placeholder: "Share one or two specific details",
+    askReason: target.ask_reason,
+    required: false,
+  }));
+}
 
 export default function App() {
-  const [session] = useState(mockReviewSession);
+  const [session, setSession] = useState(null);
+  const [properties, setProperties] = useState([]);
+  const [selectedPropertyId, setSelectedPropertyId] = useState("");
+  const [loadError, setLoadError] = useState("");
 
   const [viewMode, setViewMode] = useState("agent");
   const [stageAnimateIn, setStageAnimateIn] = useState(true);
@@ -16,14 +37,70 @@ export default function App() {
   const [travelType, setTravelType] = useState("");
   const [stayUsage, setStayUsage] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-  const textQuestions = session.questions.filter((q) => q.type === "text");
+  const [voiceReview, setVoiceReview] = useState(null);
+  const [submissionStatus, setSubmissionStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [answers, setAnswers] = useState({
     q_overall: 0,
-    q_1: "",
-    q_2: "",
   });
+
+  useEffect(() => {
+    async function loadProperties() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/properties`);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "Could not load properties.");
+        setProperties(data);
+      } catch (error) {
+        setLoadError(error.message);
+      }
+    }
+
+    loadProperties();
+  }, []);
+
+  useEffect(() => {
+    async function loadSession() {
+      setLoadError("");
+      const suffix = selectedPropertyId ? `/${selectedPropertyId}` : "";
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/review-session${suffix}`);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "Could not load review session.");
+
+        setSession(data);
+        setSelectedPropertyId(data.propertyId);
+        setViewMode("agent");
+        setTravelType("");
+        setStayUsage([]);
+        setCurrentQuestionIndex(0);
+        setVoiceReview(null);
+        setSubmissionStatus("");
+        setIsSubmitting(false);
+        setAnswers({ q_overall: 0 });
+      } catch (error) {
+        setLoadError(error.message);
+      }
+    }
+
+    loadSession();
+  }, [selectedPropertyId]);
+
+  const textQuestions = useMemo(() => {
+    if (!session) return [];
+    if (!stayUsage.length) return session.questions;
+
+    const usageQuestions = buildQuestionsForUsage(session, stayUsage);
+    return usageQuestions.length ? usageQuestions : session.questions;
+  }, [session, stayUsage]);
+
+  useEffect(() => {
+    if (currentQuestionIndex >= textQuestions.length) {
+      setCurrentQuestionIndex(0);
+    }
+  }, [currentQuestionIndex, textQuestions.length]);
 
   const setupComplete =
     answers.q_overall > 0 &&
@@ -77,22 +154,90 @@ export default function App() {
     }
   };
 
-  const handleSubmit = () => {
-    if (!answers.q_overall) {
-      alert("Please give an overall rating first.");
+  const extractVoiceReview = async (review) => {
+    const response = await fetch(`${API_BASE_URL}/api/reviews/voice/extract`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        propertyId: session.propertyId,
+        conversationId: review.conversationId,
+        transcriptMessages: review.transcriptMessages,
+        targetAmenities: session.targetAmenities,
+      }),
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || "Could not extract voice review.");
+    return data;
+  };
+
+  const handleSubmit = async () => {
+    if (!answers.q_overall && !voiceReview?.completedByVoice) {
+      setSubmissionStatus("Add an overall rating before submitting.");
       return;
     }
 
     const payload = {
       reviewId: session.reviewId,
+      propertyId: session.propertyId,
       travelType,
       stayUsage,
       answers,
+      targetAmenities: session.targetAmenities,
+      voice: voiceReview,
     };
 
-    console.log("submit payload:", payload);
-    alert("Review payload logged in console. Next step: connect POST API.");
+    try {
+      setIsSubmitting(true);
+      setSubmissionStatus("Wrapping up your review...");
+      let extraction = null;
+
+      if (voiceReview?.completedByVoice) {
+        extraction = await extractVoiceReview(voiceReview);
+      }
+
+      console.log("submit payload:", { ...payload, extraction });
+      setSubmissionStatus("");
+      switchStage("submitted");
+    } catch {
+      console.log("submit payload:", payload);
+      setSubmissionStatus("Saved for the demo. Transcript extraction can run when API keys are available.");
+      switchStage("submitted");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  if (loadError) {
+    return (
+      <div className="page-shell">
+        <ReviewHeader />
+        <main className="page-content">
+          <section className="review-card">
+            <div className="section-kicker">Setup issue</div>
+            <h1 className="section-title">Could not load the dynamic review flow</h1>
+            <p className="form-stage-intro__text">{loadError}</p>
+          </section>
+        </main>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return (
+      <div className="page-shell">
+        <ReviewHeader />
+        <main className="page-content">
+          <section className="review-card">
+            <div className="section-kicker">Loading</div>
+            <h1 className="section-title">Preparing your review</h1>
+          </section>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="page-shell">
@@ -103,92 +248,96 @@ export default function App() {
           <span className="top-meta-line__muted">Write a review</span>
         </div>
 
+        {properties.length > 0 && (
+          <label className="property-picker">
+            <span>Demo property</span>
+            <select
+              value={selectedPropertyId}
+              onChange={(event) => setSelectedPropertyId(event.target.value)}
+            >
+              {properties.map((property) => (
+                <option key={property.property_id} value={property.property_id}>
+                  {property.city || "Hotel"} · {property.property_id.slice(0, 8)}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+
         <PropertyCard property={session.property} />
 
         {viewMode === "agent" && (
-          <section
-            className={`agent-embed-card ${
+          <div className={stageAnimateIn ? "is-visible" : "is-exiting"}>
+            <VoiceReviewPanel
+              key={session.propertyId}
+              session={session}
+              onFallback={() => switchStage("form_setup")}
+              onVoiceComplete={(review) => {
+                setVoiceReview(review);
+                switchStage("voice_complete");
+              }}
+            />
+          </div>
+        )}
+
+        {viewMode === "voice_complete" && (
+          <div
+            className={`stage-shell ${
               stageAnimateIn ? "is-visible" : "is-exiting"
             }`}
           >
-            <div className="agent-embed-card__header">
-              <div>
-                <div className="agent-embed-card__title">Talk to Expedia AI</div>
-                <div className="agent-embed-card__subtitle">
-                  Complete your review in a natural conversation.
-                </div>
-                <div className="agent-embed-card__meta">
-                  Most reviews take less than a minute.
-                </div>
+            <section className="review-card voice-complete-card">
+              <div className="section-kicker">Voice review saved</div>
+              <h1 className="section-title">Your voice review is ready</h1>
+              <p className="voice-complete-card__text">
+                We captured your response. You can send it now or add a few
+                written details first.
+              </p>
+
+              {submissionStatus && (
+                <div className="voice-complete-card__meta">{submissionStatus}</div>
+              )}
+
+              <div className="agent-live-actions">
+                <button
+                  type="button"
+                  className="submit-review-button submit-review-button--yellow"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Submit review"}
+                </button>
+
+                <button
+                  type="button"
+                  className="neutral-button"
+                  onClick={() => switchStage("form_setup")}
+                >
+                  Add more details
+                </button>
               </div>
+            </section>
+          </div>
+        )}
 
-              <button
-                type="button"
-                className="agent-close-inline"
-                onClick={() => switchStage("form_setup")}
-                aria-label="Use the form instead"
-                title="Use the form instead"
-              >
-                ×
-              </button>
-            </div>
+        {viewMode === "submitted" && (
+          <div
+            className={`stage-shell ${
+              stageAnimateIn ? "is-visible" : "is-exiting"
+            }`}
+          >
+            <section className="review-card review-submitted-card">
+              <div className="section-kicker">Review submitted</div>
+              <h1 className="section-title">Thanks for helping future travelers</h1>
+              <p className="voice-complete-card__text">
+                Your feedback helps answer the details people look for before they book.
+              </p>
 
-            <div className="agent-live-panel">
-              <div className="agent-live-panel__left">
-                <div className="agent-live-status">
-                  <span className="agent-live-status__dot" />
-                  Live voice assistant
-                </div>
-
-                <div className="agent-live-message">
-                  Hi, I can help you finish this review by voice. Just start
-                  talking.
-                </div>
-
-                <div className="agent-live-actions">
-                  <button
-                    type="button"
-                    className="neutral-button neutral-button--strong"
-                  >
-                    Start talking
-                  </button>
-
-                  <button
-                    type="button"
-                    className="text-link-button"
-                    onClick={() => switchStage("form_setup")}
-                  >
-                    Use the form instead
-                  </button>
-                </div>
-              </div>
-
-              <div className="agent-live-panel__right">
-                <div className="voice-wave voice-wave--left">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-
-                <div className="mic-button mic-button--minimal" aria-hidden="true">
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="mic-svg"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M12 15a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z" />
-                    <path d="M19 11a7 7 0 0 1-14 0" />
-                    <path d="M12 18v3" />
-                    <path d="M8 21h8" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </section>
+              {submissionStatus && (
+                <div className="voice-complete-card__meta">{submissionStatus}</div>
+              )}
+            </section>
+          </div>
         )}
 
         {viewMode === "form_setup" && (
@@ -203,8 +352,7 @@ export default function App() {
                 A few quick details first
               </h1>
               <p className="form-stage-intro__text">
-                Takes less than a minute. Your review helps other travelers
-                decide.
+                We will only ask about amenities you actually used.
               </p>
             </section>
 
@@ -280,7 +428,7 @@ export default function App() {
               <QuestionCard
                 key={currentQuestion.id}
                 question={currentQuestion}
-                value={answers[currentQuestion.id]}
+                value={answers[currentQuestion.id] || ""}
                 onChange={handleQuestionChange}
                 currentIndex={currentQuestionIndex}
                 total={textQuestions.length}
@@ -296,19 +444,23 @@ export default function App() {
                 Photos (optional)
               </h2>
               <div className="photo-dropzone">
-                <div className="photo-dropzone__icon">📷</div>
                 <div className="photo-dropzone__text">
                   Add photos if you'd like
                 </div>
               </div>
             </section>
 
+            {submissionStatus && (
+              <div className="voice-complete-card__meta">{submissionStatus}</div>
+            )}
+
             <button
               type="button"
               className="submit-review-button submit-review-button--yellow"
               onClick={handleSubmit}
+              disabled={isSubmitting}
             >
-              Submit review
+              {isSubmitting ? "Submitting..." : "Submit review"}
             </button>
           </div>
         )}

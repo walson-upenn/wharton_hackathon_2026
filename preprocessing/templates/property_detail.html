@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Details · Review Intelligence</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* ── Top nav ──────────────────────────────────────────────────────────── */
+    .top-nav {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0 24px;
+    }
+    .top-nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 52px;
+    }
+    .nav-brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: #4f46e5;
+      letter-spacing: -0.3px;
+      margin-right: 28px;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 0; }
+    .nav-page-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 16px;
+      height: 52px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      color: #64748b;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+    }
+    .nav-page-link:hover { color: #4f46e5; }
+    .nav-page-link.active { color: #4f46e5; border-bottom-color: #4f46e5; }
+
+    /* ── Property header ──────────────────────────────────────────────────── */
+    .prop-header {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 28px 24px 22px;
+    }
+    .prop-header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .prop-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .prop-location {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .prop-type-badge {
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: #ede9fe;
+      color: #5b21b6;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .prop-stars {
+      font-size: 13px;
+      color: #f59e0b;
+      letter-spacing: 1px;
+    }
+    .prop-desc {
+      font-size: 13.5px;
+      color: #64748b;
+      line-height: 1.7;
+      max-width: 780px;
+      margin-top: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .picker-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .picker-row label { font-size: 12px; font-weight: 600; color: #94a3b8; }
+    #propertySelect {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 13.5px;
+      color: #1e293b;
+      background: white;
+      min-width: 280px;
+      cursor: pointer;
+    }
+    #propertySelect:focus { outline: none; border-color: #a5b4fc; }
+
+    /* ── Stats strip ──────────────────────────────────────────────────────── */
+    .stats-strip {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      divide-x: 1px solid #e2e8f0;
+    }
+    .stat-cell {
+      padding: 16px 24px;
+      border-right: 1px solid #e2e8f0;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #94a3b8; margin-bottom: 4px; }
+    .stat-value { font-size: 22px; font-weight: 700; color: #0f172a; }
+    .stat-sub   { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+
+    /* ── Main content ─────────────────────────────────────────────────────── */
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .content { grid-template-columns: 1fr; } }
+
+    .section-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .section-title { font-size: 16px; font-weight: 700; color: #0f172a; }
+    .section-sub   { font-size: 13px; color: #94a3b8; margin-top: 1px; }
+
+    /* ── Sort control ─────────────────────────────────────────────────────── */
+    .sort-select {
+      border: 1px solid #e2e8f0;
+      border-radius: 7px;
+      padding: 5px 10px;
+      font-size: 12px;
+      color: #475569;
+      background: white;
+      cursor: pointer;
+    }
+
+    /* ── Amenity cards ────────────────────────────────────────────────────── */
+    .amenity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 700px) { .amenity-grid { grid-template-columns: 1fr; } }
+
+    .amenity-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: box-shadow 0.15s;
+    }
+    .amenity-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+    .card-top {
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .card-name-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .card-name { font-size: 14.5px; font-weight: 700; color: #0f172a; }
+    .tier-badge {
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+    .tb-critical  { background: #fee2e2; color: #b91c1c; }
+    .tb-important { background: #fff7ed; color: #c2410c; }
+    .tb-moderate  { background: #eff6ff; color: #1d4ed8; }
+    .tb-minor     { background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; }
+
+    /* Ask score bar */
+    .gap-row { display: flex; align-items: center; gap: 8px; }
+    .gap-lbl { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #94a3b8; width: 62px; flex-shrink: 0; }
+    .gap-bar-bg {
+      flex: 1;
+      height: 7px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .gap-bar-fill { height: 100%; border-radius: 4px; }
+    .gap-val { font-size: 12px; font-weight: 700; color: #1e293b; width: 38px; text-align: right; font-family: 'SF Mono', monospace; flex-shrink: 0; }
+
+    /* Component breakdown */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 10px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .comp-row { display: flex; align-items: center; gap: 5px; }
+    .comp-lbl { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; width: 44px; flex-shrink: 0; }
+    .comp-bar-bg { flex: 1; height: 5px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
+    .comp-bar-fill { height: 100%; border-radius: 3px; }
+    .comp-val { font-size: 10px; font-weight: 700; color: #64748b; width: 28px; text-align: right; font-family: 'SF Mono', monospace; flex-shrink: 0; }
+
+    /* Sentiment distribution */
+    .card-body { padding: 12px 16px; }
+    .dist-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+    .dist-mention-count { font-weight: 600; color: #94a3b8; }
+
+    .dist-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .dist-row:last-child { margin-bottom: 0; }
+    .dist-label {
+      font-size: 11px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: #64748b;
+      width: 38px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+    .dist-bar-bg {
+      flex: 1;
+      height: 10px;
+      background: #f1f5f9;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .dist-bar-fill { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+    .dist-count { font-size: 11px; color: #94a3b8; width: 18px; flex-shrink: 0; text-align: right; }
+
+    .dist-color-pos-s { background: #15803d; }
+    .dist-color-pos-w { background: #86efac; }
+    .dist-color-neu   { background: #cbd5e1; }
+    .dist-color-neg-w { background: #fca5a5; }
+    .dist-color-neg-s { background: #b91c1c; }
+
+    /* Metrics row */
+    .metrics-row {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid #f1f5f9;
+      margin-top: 10px;
+    }
+    .metric-cell {
+      flex: 1;
+      padding: 8px 10px;
+      border-right: 1px solid #f1f5f9;
+      text-align: center;
+    }
+    .metric-cell:last-child { border-right: none; }
+    .metric-val { font-size: 15px; font-weight: 700; color: #1e293b; }
+    .metric-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: #94a3b8; margin-top: 1px; }
+
+    /* Reasons */
+    .reasons-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding: 10px 16px 12px;
+      border-top: 1px solid #f8fafc;
+    }
+    .reason-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 500;
+      max-width: 100%;
+    }
+    .rp-pos { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .rp-neg { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    .rp-icon { font-size: 10px; flex-shrink: 0; }
+
+    /* ── Right panel: Reviews ─────────────────────────────────────────────── */
+    .reviews-panel { }
+
+    .review-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .review-card:last-child { margin-bottom: 0; }
+    .review-card-meta { font-size: 11.5px; color: #94a3b8; margin-bottom: 4px; }
+    .review-card-title { font-size: 13.5px; font-weight: 600; color: #1e293b; margin-bottom: 6px; }
+    .review-card-text  { font-size: 12.5px; color: #475569; line-height: 1.65; margin-bottom: 10px; }
+    .review-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+    .rev-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .rc-pos-s { background: #dcfce7; color: #15803d; }
+    .rc-pos-w { background: #f0fdf4; color: #16a34a; }
+    .rc-neu   { background: #f1f5f9; color: #64748b; }
+    .rc-neg-w { background: #fff7ed; color: #c2410c; }
+    .rc-neg-s { background: #fee2e2; color: #b91c1c; }
+
+    /* ── Empty / loading states ───────────────────────────────────────────── */
+    .empty { text-align: center; padding: 48px 24px; color: #94a3b8; font-size: 14px; }
+    .loading-overlay {
+      text-align: center;
+      padding: 60px 24px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top nav -->
+<nav class="top-nav">
+  <div class="top-nav-inner">
+    <span class="nav-brand">Review Intelligence</span>
+    <div class="nav-links">
+      <a class="nav-page-link" href="/pipeline-demo">Pipeline Overview</a>
+      <a class="nav-page-link active" href="/property">Property Details</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Property header -->
+<div class="prop-header">
+  <div class="prop-header-inner">
+    <div id="propInfo">
+      <div class="prop-meta-row">
+        <span class="prop-location" id="propLocation">Select a property</span>
+      </div>
+    </div>
+    <div class="picker-row">
+      <label for="propertySelect">Property</label>
+      <select id="propertySelect">
+        <option value="">Loading…</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- Stats strip -->
+<div class="stats-strip">
+  <div class="stats-inner" id="statsStrip">
+    <div class="stat-cell"><div class="stat-label">Reviews</div><div class="stat-value" id="statReviews">—</div></div>
+    <div class="stat-cell"><div class="stat-label">Amenities</div><div class="stat-value" id="statAmenities">—</div></div>
+    <div class="stat-cell"><div class="stat-label">Avg ask score</div><div class="stat-value" id="statAvgGap">—</div></div>
+    <div class="stat-cell"><div class="stat-label">Top ask amenity</div><div class="stat-value" id="statTopGap" style="font-size:16px">—</div></div>
+  </div>
+</div>
+
+<!-- Main content -->
+<div class="content">
+
+  <!-- Left: Amenity cards -->
+  <div>
+    <div class="section-hdr">
+      <div>
+        <div class="section-title">Amenity Analysis</div>
+        <div class="section-sub">Sorted by ask score — highest = most worth asking about</div>
+      </div>
+      <select class="sort-select" id="sortSelect" onchange="resort()">
+        <option value="gap">Sort: Ask Score</option>
+        <option value="importance">Sort: Importance</option>
+        <option value="mention">Sort: Mention Rate</option>
+        <option value="sentiment">Sort: Avg Sentiment</option>
+        <option value="alpha">Sort: A–Z</option>
+      </select>
+    </div>
+    <div id="amenityGrid" class="amenity-grid">
+      <div style="grid-column:1/-1"><div class="empty">Select a property above</div></div>
+    </div>
+  </div>
+
+  <!-- Right: Recent reviews -->
+  <div class="reviews-panel">
+    <div class="section-hdr">
+      <div>
+        <div class="section-title">Recent Reviews</div>
+        <div class="section-sub">Amenity tags coloured by sentiment</div>
+      </div>
+    </div>
+    <div id="reviewsList">
+      <div class="empty">Select a property above</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  'use strict';
+
+  const INITIAL_PID = "{{ initial_property_id }}";
+
+  let _allAmenities = [];
+
+  // ── Utilities ──────────────────────────────────────────────────────────────
+  function esc(s) {
+    return String(s ?? '')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function truncate(s, n) {
+    s = String(s ?? '');
+    return s.length > n ? s.slice(0, n) + '…' : s;
+  }
+
+  // ── Load Properties ────────────────────────────────────────────────────────
+  async function loadProperties() {
+    const sel = document.getElementById('propertySelect');
+    try {
+      const res   = await fetch('/api/demo/properties');
+      const props = await res.json();
+      if (!props.length) { sel.innerHTML = '<option value="">No data available</option>'; return; }
+      sel.innerHTML = '<option value="">— select a property —</option>' +
+        props.map(p => {
+          const label = [p.city, p.country].filter(Boolean).join(', ') + ` · ${p.property_id.slice(0,8)}…`;
+          return `<option value="${esc(p.property_id)}">${esc(label)}</option>`;
+        }).join('');
+      if (INITIAL_PID) {
+        sel.value = INITIAL_PID;
+        if (sel.value === INITIAL_PID) loadProperty(INITIAL_PID);
+      }
+    } catch(e) {
+      sel.innerHTML = '<option value="">Error loading</option>';
+    }
+  }
+
+  document.getElementById('propertySelect').addEventListener('change', function() {
+    if (this.value) loadProperty(this.value);
+  });
+
+  // ── Load Property Data ─────────────────────────────────────────────────────
+  async function loadProperty(pid) {
+    document.getElementById('amenityGrid').innerHTML = '<div style="grid-column:1/-1"><div class="loading-overlay">Loading…</div></div>';
+    document.getElementById('reviewsList').innerHTML = '<div class="loading-overlay">Loading…</div>';
+
+    try {
+      const res  = await fetch(`/api/demo/property-detail/${pid}`);
+      if (!res.ok) throw new Error('No data for this property');
+      const data = await res.json();
+
+      renderHeader(data.property);
+      renderStats(data.stats);
+      _allAmenities = data.amenities;
+      renderAmenities(_allAmenities);
+      renderReviews(data.recent_reviews);
+    } catch(e) {
+      document.getElementById('amenityGrid').innerHTML = `<div style="grid-column:1/-1"><div class="empty">${esc(e.message)}</div></div>`;
+      document.getElementById('reviewsList').innerHTML = `<div class="empty">${esc(e.message)}</div>`;
+    }
+  }
+
+  // ── Header ─────────────────────────────────────────────────────────────────
+  function renderHeader(prop) {
+    const loc   = [prop.city, prop.country].filter(Boolean).join(', ') || prop.id;
+    const stars = prop.stars ? '★'.repeat(Math.round(Number(prop.stars))) : '';
+    const type  = prop.type  ? `<span class="prop-type-badge">${esc(prop.type)}</span>` : '';
+    const starsHtml = stars  ? `<span class="prop-stars">${stars}</span>` : '';
+    // Strip <br> tags from description before displaying
+    const desc = (prop.description || '').replace(/<br\s*\/?>/gi, ' ').trim();
+
+    const info = document.getElementById('propInfo');
+    let html = `<div class="prop-meta-row">
+      <span class="prop-location">${esc(loc)}</span>
+      ${type} ${starsHtml}
+    </div>`;
+    if (desc) {
+      html += `<div class="prop-desc">${esc(desc)}</div>`;
+    }
+    info.innerHTML = html;
+  }
+
+  // ── Stats Strip ────────────────────────────────────────────────────────────
+  function renderStats(stats) {
+    document.getElementById('statReviews').textContent   = stats.review_count;
+    document.getElementById('statAmenities').textContent = stats.amenity_count;
+    document.getElementById('statAvgGap').textContent    = (stats.avg_score ?? stats.avg_gap ?? 0).toFixed(3);
+    document.getElementById('statTopGap').textContent    = stats.top_ask || stats.top_gap || '—';
+  }
+
+  // ── Resort ─────────────────────────────────────────────────────────────────
+  function resort() {
+    if (!_allAmenities.length) return;
+    const mode = document.getElementById('sortSelect').value;
+    const sorted = [..._allAmenities].sort((a, b) => {
+      if (mode === 'gap')        return b.ask_score - a.ask_score;
+      if (mode === 'importance') return b.importance - a.importance;
+      if (mode === 'mention')    return b.mention_rate - a.mention_rate;
+      if (mode === 'sentiment')  return (b.avg_sentiment ?? -999) - (a.avg_sentiment ?? -999);
+      if (mode === 'alpha')      return a.amenity.localeCompare(b.amenity);
+      return 0;
+    });
+    renderAmenities(sorted);
+  }
+
+  // ── Amenity Cards ──────────────────────────────────────────────────────────
+  function renderAmenities(amenities) {
+    const grid = document.getElementById('amenityGrid');
+    if (!amenities.length) {
+      grid.innerHTML = '<div style="grid-column:1/-1"><div class="empty">No amenity data</div></div>';
+      return;
+    }
+
+    const tierClass = { critical: 'tb-critical', important: 'tb-important', moderate: 'tb-moderate', minor: 'tb-minor' };
+    const tierLabel = { critical: 'Critical', important: 'Important', moderate: 'Moderate', minor: 'Minor' };
+
+    const DIST_CONFIG = [
+      { key: '1.0',  label: '+1.0', cls: 'dist-color-pos-s', title: 'Strongly positive' },
+      { key: '0.5',  label: '+0.5', cls: 'dist-color-pos-w', title: 'Mildly positive'   },
+      { key: '0.0',  label: ' 0.0', cls: 'dist-color-neu',   title: 'Neutral'           },
+      { key: '-0.5', label: '−0.5', cls: 'dist-color-neg-w', title: 'Mildly negative'   },
+      { key: '-1.0', label: '−1.0', cls: 'dist-color-neg-s', title: 'Strongly negative' },
+    ];
+
+    grid.innerHTML = amenities.map(a => {
+      const tc = tierClass[a.tier] || 'tb-moderate';
+      const tl = tierLabel[a.tier] || a.tier;
+
+      // Ask score bar
+      const askScore = a.ask_score ?? 0;
+      const gapPct   = Math.min(100, Math.round(askScore * 100));
+      const gapColor = gapPct >= 65 ? '#ef4444' : gapPct >= 35 ? '#f97316' : '#94a3b8';
+      const comp     = a.components || {};
+
+      // Sentiment distribution
+      const dist     = a.sentiment_dist || {};
+      const distVals = DIST_CONFIG.map(c => Number(dist[c.key] || 0));
+      const distMax  = Math.max(...distVals, 1);
+
+      const distHtml = DIST_CONFIG.map((c, i) => {
+        const count = distVals[i];
+        const pct   = Math.round((count / distMax) * 100);
+        return `<div class="dist-row" title="${c.title}: ${count}">
+          <span class="dist-label">${esc(c.label)}</span>
+          <div class="dist-bar-bg">
+            <div class="dist-bar-fill ${c.cls}" style="width:${pct}%"></div>
+          </div>
+          <span class="dist-count">${count}</span>
+        </div>`;
+      }).join('');
+
+      // Reasons
+      let reasonsHtml = '';
+      const hasReasons = a.positive_reasons.length || a.negative_reasons.length;
+      if (hasReasons) {
+        reasonsHtml = '<div class="reasons-row">';
+        a.positive_reasons.forEach(r => {
+          reasonsHtml += `<span class="reason-pill rp-pos"><span class="rp-icon">+</span>${esc(truncate(r, 42))}</span>`;
+        });
+        a.negative_reasons.forEach(r => {
+          reasonsHtml += `<span class="reason-pill rp-neg"><span class="rp-icon">−</span>${esc(truncate(r, 42))}</span>`;
+        });
+        reasonsHtml += '</div>';
+      }
+
+      const mentionPct  = Math.round(a.mention_rate * 100);
+      const sentDisplay = a.avg_sentiment !== null
+        ? (a.avg_sentiment >= 0 ? '+' : '') + a.avg_sentiment.toFixed(2)
+        : '—';
+
+      return `<div class="amenity-card">
+        <div class="card-top">
+          <div class="card-name-row">
+            <span class="card-name">${esc(a.amenity)}</span>
+            <span class="tier-badge ${tc}">${tl}</span>
+          </div>
+          <div class="gap-row">
+            <span class="gap-lbl">Ask</span>
+            <div class="gap-bar-bg">
+              <div class="gap-bar-fill" style="width:${gapPct}%;background:${gapColor}"></div>
+            </div>
+            <span class="gap-val">${askScore.toFixed(3)}</span>
+          </div>
+          <div class="comp-grid">
+            <div class="comp-row">
+              <span class="comp-lbl">Detail</span>
+              <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:${Math.round((comp.detail_gap||0)*100)}%;background:#6366f1"></div></div>
+              <span class="comp-val">${(comp.detail_gap||0).toFixed(2)}</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-lbl">Disagr</span>
+              <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:${Math.round((comp.disagreement||0)*100)}%;background:#f59e0b"></div></div>
+              <span class="comp-val">${(comp.disagreement||0).toFixed(2)}</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-lbl">Trend</span>
+              <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:${Math.round((comp.trend||0)*100)}%;background:#ef4444"></div></div>
+              <span class="comp-val">${(comp.trend||0).toFixed(2)}</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-lbl">Recency</span>
+              <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:${Math.round((comp.recency||0)*100)}%;background:#f97316"></div></div>
+              <span class="comp-val">${(comp.recency||0).toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="dist-title">
+            <span>Sentiment Distribution</span>
+            <span class="dist-mention-count">${a.mention_count} mention${a.mention_count !== 1 ? 's' : ''}</span>
+          </div>
+          ${distHtml}
+        </div>
+
+        <div class="metrics-row">
+          <div class="metric-cell">
+            <div class="metric-val">${mentionPct}%</div>
+            <div class="metric-lbl">Mention rate</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-val">${a.avg_detail.toFixed(1)}</div>
+            <div class="metric-lbl">Avg detail</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-val">${sentDisplay}</div>
+            <div class="metric-lbl">Avg sentiment</div>
+          </div>
+        </div>
+
+        ${reasonsHtml}
+      </div>`;
+    }).join('');
+  }
+
+  // ── Recent Reviews ─────────────────────────────────────────────────────────
+  const CHIP_CLASS = {
+    'positive_strong': 'rc-pos-s',
+    'positive_weak':   'rc-pos-w',
+    'neutral_':        'rc-neu',
+    'negative_weak':   'rc-neg-w',
+    'negative_strong': 'rc-neg-s',
+  };
+
+  const SENT_LABEL = {
+    '1':    ['positive', 'strong'],
+    '0.5':  ['positive', 'weak'],
+    '0':    ['neutral',  ''],
+    '-0.5': ['negative', 'weak'],
+    '-1':   ['negative', 'strong'],
+  };
+
+  function renderReviews(reviews) {
+    const el = document.getElementById('reviewsList');
+    if (!reviews || !reviews.length) {
+      el.innerHTML = '<div class="empty">No reviews available</div>';
+      return;
+    }
+
+    el.innerHTML = reviews.map(r => {
+      const amenities = r.amenities || {};
+      const chips = Object.entries(amenities).map(([name, data]) => {
+        const sent    = data.sentiment;
+        const sentStr = sent === null ? '0' : String(sent);
+        const sl      = SENT_LABEL[sentStr] || ['neutral', ''];
+        const key     = `${sl[0]}_${sl[1]}`;
+        const cls     = CHIP_CLASS[key] || 'rc-neu';
+        const icon = sl[0] === 'positive' ? '↑' : sl[0] === 'negative' ? '↓' : '·';
+        return `<span class="rev-chip ${cls}" title="${esc(sl[0])}">
+          ${icon} ${esc(name)}
+        </span>`;
+      }).join('');
+
+      return `<div class="review-card">
+        ${r.date ? `<div class="review-card-meta">${esc(r.date)}</div>` : ''}
+        ${r.title ? `<div class="review-card-title">${esc(r.title)}</div>` : ''}
+        <div class="review-card-text">${esc(truncate(r.text, 220))}</div>
+        ${chips ? `<div class="review-chips">${chips}</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  loadProperties();
+</script>
+</body>
+</html>

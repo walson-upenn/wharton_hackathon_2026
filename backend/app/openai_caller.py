@@ -5,7 +5,8 @@ from flask import current_app
 def init_openai(app) -> None:
     api_key = app.config.get("OPENAI_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is not set.")
+        app.extensions["openai_client"] = None
+        return
 
     app.extensions["openai_client"] = OpenAI(api_key=api_key)
 

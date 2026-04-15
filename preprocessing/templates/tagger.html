@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review Amenity Tagger</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: monospace;
+      font-size: 13px;
+      background: #fff;
+      color: #111;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #topbar {
+      padding: 8px 12px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    #topbar strong { font-size: 14px; }
+    #city-filter {
+      font-family: monospace; font-size: 12px;
+      padding: 3px 6px; border: 1px solid #ccc;
+    }
+    #review-count { color: #888; font-size: 11px; }
+
+    #main { display: flex; flex: 1; overflow: hidden; }
+
+    #review-list {
+      width: 340px; flex-shrink: 0;
+      border-right: 1px solid #ccc; overflow-y: auto;
+    }
+    .review-item {
+      padding: 8px 10px; border-bottom: 1px solid #eee; cursor: pointer;
+    }
+    .review-item:hover  { background: #f5f5f5; }
+    .review-item.active { background: #e8e8e8; }
+    .review-item .meta  { color: #666; font-size: 11px; margin-bottom: 3px; }
+    .review-item .snippet {
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    #detail { flex: 1; overflow-y: auto; padding: 12px 16px; }
+    #detail-placeholder { color: #aaa; margin-top: 40px; text-align: center; }
+
+    #review-full {
+      background: #f9f9f9; border: 1px solid #ddd;
+      padding: 10px 12px; margin-bottom: 10px;
+      white-space: pre-wrap; line-height: 1.5;
+    }
+
+    /* toggle */
+    #mode-toggle {
+      display: flex; border: 1px solid #ccc;
+      width: fit-content; margin-bottom: 10px;
+    }
+    .mode-btn {
+      padding: 4px 14px; cursor: pointer;
+      background: #fff; border: none; border-right: 1px solid #ccc;
+      font-family: monospace; font-size: 12px; color: #888;
+    }
+    .mode-btn:last-child { border-right: none; }
+    .mode-btn.active { background: #111; color: #fff; }
+
+    #tag-status { color: #888; font-size: 12px; margin-bottom: 10px; }
+
+    #amenity-table { width: 100%; border-collapse: collapse; }
+    #amenity-table th {
+      text-align: left; border-bottom: 2px solid #111;
+      padding: 4px 8px; font-size: 12px;
+    }
+    #amenity-table td { padding: 3px 8px; border-bottom: 1px solid #eee; }
+
+    .tag-1 { font-weight: bold; color: #111; }
+    .tag-0 { color: #bbb; }
+
+    .detail-cell { white-space: nowrap; }
+    .detail-num  { display: inline-block; width: 18px; text-align: right; margin-right: 5px; }
+    .detail-bar-wrap {
+      display: inline-block; width: 60px; height: 8px;
+      background: #eee; vertical-align: middle;
+    }
+    .detail-bar-fill { height: 100%; background: #111; }
+    .tag-0 .detail-bar-fill { background: #ddd; }
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <strong>Review Amenity Tagger</strong>
+  <select id="city-filter"><option value="">All cities</option></select>
+  <span id="review-count"></span>
+</div>
+
+<div id="main">
+  <div id="review-list"></div>
+  <div id="detail">
+    <div id="detail-placeholder">← select a review</div>
+  </div>
+</div>
+
+<script>
+let reviews        = [];
+let active         = null;
+let currentMode    = 'normalized';   // 'raw' | 'normalized'
+let cacheRaw       = null;
+let cacheNorm      = null;
+let cacheScoreRaw  = null;
+let cacheScoreNorm = null;
+let currentReview  = null;
+
+async function loadCities() {
+  const cities = await fetch('/api/cities').then(r => r.json());
+  const sel = document.getElementById('city-filter');
+  cities.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c; o.textContent = c;
+    sel.appendChild(o);
+  });
+}
+
+async function loadReviews() {
+  const city = document.getElementById('city-filter').value;
+  const url  = city ? `/api/reviews?city=${encodeURIComponent(city)}` : '/api/reviews';
+  reviews    = await fetch(url).then(r => r.json());
+  document.getElementById('review-count').textContent = `${reviews.length} reviews`;
+  renderList();
+}
+
+function renderList() {
+  const el = document.getElementById('review-list');
+  el.innerHTML = '';
+  reviews.forEach((r, i) => {
+    const div = document.createElement('div');
+    div.className = 'review-item' + (active === i ? ' active' : '');
+    div.innerHTML = `
+      <div class="meta">${esc(r.city)}, ${esc(r.country)} · ${esc(r.date)}</div>
+      <div class="snippet">${esc(r.text.slice(0, 80))}</div>
+    `;
+    div.onclick = () => selectReview(i, div);
+    el.appendChild(div);
+  });
+}
+
+async function selectReview(i, el) {
+  document.querySelectorAll('.review-item').forEach(d => d.classList.remove('active'));
+  el.classList.add('active');
+  active         = i;
+  cacheRaw       = null;
+  cacheNorm      = null;
+  cacheScoreRaw  = null;
+  cacheScoreNorm = null;
+  currentReview  = reviews[i];
+
+  renderShell();
+  await fetchAndRender();
+}
+
+function renderShell() {
+  document.getElementById('detail').innerHTML = `
+    <div id="review-full">${esc(currentReview.text)}</div>
+    <div id="mode-toggle">
+      <button class="mode-btn ${currentMode === 'raw'        ? 'active' : ''}" onclick="switchMode('raw')">raw</button>
+      <button class="mode-btn ${currentMode === 'normalized' ? 'active' : ''}" onclick="switchMode('normalized')">normalized</button>
+    </div>
+    <div id="tag-status">loading…</div>
+    <div id="table-container"></div>
+  `;
+}
+
+async function fetchAndRender() {
+  const r    = currentReview;
+  const norm = currentMode === 'normalized';
+
+  const needTag   = norm ? !cacheNorm      : !cacheRaw;
+  const needScore = norm ? !cacheScoreNorm : !cacheScoreRaw;
+
+  const [tagResult, scoreResult] = await Promise.all([
+    needTag   ? callTag(r, norm)   : Promise.resolve(norm ? cacheNorm      : cacheRaw),
+    needScore ? callScore(r, norm) : Promise.resolve(norm ? cacheScoreNorm : cacheScoreRaw),
+  ]);
+
+  if (norm) { cacheNorm      = tagResult; cacheScoreNorm = scoreResult; }
+  else      { cacheRaw       = tagResult; cacheScoreRaw  = scoreResult; }
+
+  renderTable(tagResult, scoreResult);
+}
+
+function callTag(r, useTaxonomy) {
+  return fetch('/api/tag', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ property_id: r.property_id, review_text: r.text, use_taxonomy: useTaxonomy }),
+  }).then(res => res.json());
+}
+
+function callScore(r, useTaxonomy) {
+  return fetch('/api/score', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ property_id: r.property_id, review_text: r.text, use_taxonomy: useTaxonomy }),
+  }).then(res => res.json());
+}
+
+async function switchMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === mode);
+  });
+  document.getElementById('tag-status').textContent = 'loading…';
+  document.getElementById('table-container').innerHTML = '';
+  await fetchAndRender();
+}
+
+function renderTable(tags, scores) {
+  const mentioned    = Object.entries(tags).filter(([,v]) => v === 1)
+                         .sort(([a], [b]) => (scores[b] || 0) - (scores[a] || 0));
+  const notMentioned = Object.entries(tags).filter(([,v]) => v === 0);
+  const total        = Object.keys(tags).length;
+
+  document.getElementById('tag-status').textContent =
+    `${mentioned.length} / ${total} amenities mentioned`;
+
+  function detailCell(amenity, tagged) {
+    const s = tagged ? (scores[amenity] || 0) : 0;
+    const pct = s * 10;
+    return `<td class="detail-cell">
+      <span class="detail-num">${tagged ? s : '—'}</span>
+      <span class="detail-bar-wrap"><span class="detail-bar-fill" style="width:${pct}%"></span></span>
+    </td>`;
+  }
+
+  const rows = [...mentioned, ...notMentioned].map(([amenity, val]) => `
+    <tr class="tag-${val}">
+      <td>${val}</td>
+      <td>${esc(amenity)}</td>
+      ${detailCell(amenity, val === 1)}
+    </tr>
+  `).join('');
+
+  document.getElementById('table-container').innerHTML = `
+    <table id="amenity-table">
+      <thead><tr><th>tag</th><th>amenity</th><th>detail</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+document.getElementById('city-filter').addEventListener('change', loadReviews);
+loadCities();
+loadReviews();
+</script>
+</body>
+</html>

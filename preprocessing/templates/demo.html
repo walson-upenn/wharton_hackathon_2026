@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Amenity Normalization Demo</title>
+  <style>
+    body { font-family: monospace; font-size: 13px; max-width: 960px; margin: 40px auto; padding: 0 20px; }
+    h2   { font-size: 15px; margin-bottom: 16px; }
+    label { display: block; margin-bottom: 4px; color: #555; }
+    select {
+      font-family: monospace; font-size: 13px;
+      width: 100%; padding: 6px 8px;
+      border: 1px solid #ccc; margin-bottom: 14px;
+    }
+
+    /* tabs */
+    .tabs { display: flex; border-bottom: 2px solid #111; margin-bottom: 14px; }
+    .tab {
+      padding: 5px 16px; cursor: pointer; font-family: monospace; font-size: 12px;
+      border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -2px;
+      color: #888;
+    }
+    .tab.active { color: #111; border-bottom-color: #111; font-weight: bold; }
+
+    #summary { color: #555; margin-bottom: 14px; min-height: 18px; }
+    #summary span { font-weight: bold; color: #111; }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ── table view ── */
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      text-align: left; font-size: 11px; text-transform: uppercase;
+      letter-spacing: .5px; color: #555;
+      border-bottom: 2px solid #111; padding: 4px 8px;
+    }
+    td { padding: 3px 8px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+    .row-same td           { color: #aaa; }
+    .row-changed .col-raw  { text-decoration: line-through; color: #aaa; }
+    .row-changed .col-norm { font-weight: bold; color: #111; }
+    .row-pruned td         { color: #aaa; }
+    .row-pruned .col-norm  { color: #c00; font-style: italic; }
+
+    /* ── category view ── */
+    .cat-section { margin-bottom: 20px; }
+    .cat-label {
+      font-size: 11px; font-weight: bold; text-transform: uppercase;
+      letter-spacing: .6px; color: #555; margin-bottom: 8px;
+    }
+    .cat-items { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    /* badge base */
+    .badge {
+      padding: 3px 9px; border-radius: 3px; font-size: 12px;
+      border: 1px solid #ddd; background: #f5f5f5; color: #333;
+    }
+    /* unchanged */
+    .badge-same { color: #aaa; border-color: #eee; background: #fafafa; }
+    /* renamed: show "raw → normalized" */
+    .badge-changed {
+      background: #fff; border-color: #bbb;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .badge-changed .old { text-decoration: line-through; color: #aaa; font-size: 11px; }
+    .badge-changed .arrow { color: #aaa; font-size: 10px; }
+    .badge-changed .new { font-weight: bold; color: #111; }
+    /* pruned */
+    .badge-pruned {
+      text-decoration: line-through; color: #aaa;
+      border-color: #eee; background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Amenity normalization</h2>
+
+<label>Property</label>
+<select id="prop" onchange="load()">
+  <option value="">— select a property —</option>
+</select>
+
+<div id="summary"></div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('table')">raw → normalized</button>
+  <button class="tab"        onclick="switchTab('cats')">by category</button>
+</div>
+
+<div id="view-table" class="view active"></div>
+<div id="view-cats"  class="view"></div>
+
+<script>
+let currentTab = 'table';
+
+function switchTab(name) {
+  currentTab = name;
+  document.querySelectorAll('.tab').forEach((t,i) =>
+    t.classList.toggle('active', (i===0 && name==='table') || (i===1 && name==='cats'))
+  );
+  document.getElementById('view-table').classList.toggle('active', name === 'table');
+  document.getElementById('view-cats').classList.toggle('active',  name === 'cats');
+}
+
+async function loadProperties() {
+  const props = await fetch('/api/properties').then(r => r.json());
+  const sel   = document.getElementById('prop');
+  props.forEach(p => {
+    const o = document.createElement('option');
+    o.value = p.property_id;
+    o.textContent = `${p.city}, ${p.country}`;
+    sel.appendChild(o);
+  });
+}
+
+async function load() {
+  const id = document.getElementById('prop').value;
+  if (!id) return;
+
+  const [{ raw }, taxonomy, cats] = await Promise.all([
+    fetch(`/api/amenities/${id}`).then(r => r.json()),
+    fetch('/api/taxonomy').then(r => r.json()),
+    fetch(`/api/amenities/${id}/categorized`).then(r => r.json()),
+  ]);
+
+  // ── summary ───────────────────────────────────────────────────────────────
+  let nChanged = 0, nPruned = 0;
+  raw.forEach(item => {
+    const canon = taxonomy[item];
+    if (canon === null) nPruned++;
+    else if (canon !== undefined && canon.toLowerCase() !== item.toLowerCase()) nChanged++;
+  });
+  document.getElementById('summary').innerHTML =
+    `${raw.length} amenities &nbsp;·&nbsp; ` +
+    `<span>${nChanged} renamed</span> &nbsp;·&nbsp; ` +
+    `<span>${nPruned} pruned</span> &nbsp;·&nbsp; ` +
+    `${raw.length - nChanged - nPruned} unchanged`;
+
+  // ── table view ────────────────────────────────────────────────────────────
+  const tableRows = raw.map(item => {
+    const canon   = taxonomy[item];
+    const pruned  = item in taxonomy && canon === null;
+    const display = pruned ? item : (canon || item);
+    const changed = !pruned && display.toLowerCase() !== item.toLowerCase();
+    const cls     = pruned ? 'row-pruned' : changed ? 'row-changed' : 'row-same';
+    return `<tr class="${cls}">
+      <td class="col-raw">${esc(item)}</td>
+      <td class="col-norm">${pruned ? 'pruned' : esc(display)}</td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('view-table').innerHTML = `
+    <table>
+      <thead><tr><th>raw</th><th>normalized</th></tr></thead>
+      <tbody>${tableRows}</tbody>
+    </table>`;
+
+  // ── category view ─────────────────────────────────────────────────────────
+  const catHtml = cats.map(cat => {
+    const badges = cat.items.map(item => {
+      if (item.pruned) {
+        return `<span class="badge badge-pruned">${esc(item.raw)}</span>`;
+      } else if (item.changed) {
+        return `<span class="badge badge-changed">
+          <span class="old">${esc(item.raw)}</span>
+          <span class="arrow">→</span>
+          <span class="new">${esc(item.normalized)}</span>
+        </span>`;
+      } else {
+        return `<span class="badge badge-same">${esc(item.raw)}</span>`;
+      }
+    }).join('');
+
+    return `<div class="cat-section">
+      <div class="cat-label">${esc(cat.label)}</div>
+      <div class="cat-items">${badges}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('view-cats').innerHTML = catHtml;
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+loadProperties();
+</script>
+</body>
+</html>

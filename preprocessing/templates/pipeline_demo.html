@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipeline Demo · Review Intelligence</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(140deg, #1e1b4b 0%, #3730a3 55%, #1e1b4b 100%);
+      color: white;
+      padding: 56px 24px 72px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 4.5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .hero-subtitle {
+      font-size: 17px;
+      color: #c7d2fe;
+      max-width: 500px;
+      margin: 0 auto 36px;
+    }
+    .picker-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 12px 18px;
+    }
+    .picker-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #c7d2fe;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+    }
+    #propertySelect {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 14px;
+      min-width: 280px;
+      cursor: pointer;
+      outline: none;
+    }
+    #propertySelect option { background: #2e2b6b; color: white; }
+
+    /* ── Sticky Nav ───────────────────────────────────────────────────────── */
+    .nav-bar {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+    }
+    .nav-link {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 10px;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 500;
+      border-bottom: 3px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: #4f46e5; background: #fafafa; }
+    .nav-link.active { color: #4f46e5; border-bottom-color: #4f46e5; }
+    .nav-num {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: #ede9fe;
+      color: #4f46e5;
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Content ──────────────────────────────────────────────────────────── */
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .step-section {
+      margin-top: 52px;
+      scroll-margin-top: 60px;
+    }
+    .step-hdr {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .step-circle {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: #4f46e5;
+      color: white;
+      font-size: 17px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      box-shadow: 0 4px 12px rgba(79,70,229,0.35);
+    }
+    .step-hdr-text h2 { font-size: 20px; font-weight: 700; color: #0f172a; }
+    .step-hdr-text p  { font-size: 13.5px; color: #64748b; margin-top: 3px; max-width: 680px; }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .card + .card { margin-top: 14px; }
+
+    .loading { text-align: center; padding: 40px; color: #94a3b8; font-size: 14px; }
+
+    /* ── Step 1 ─────────────────────────────────────────────────────────── */
+    .taxonomy-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .tax-stat { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; color: #334155; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .dot-kept    { background: #22c55e; }
+    .dot-renamed { background: #f59e0b; }
+    .dot-pruned  { background: #ef4444; }
+
+    .cat-group { margin-bottom: 22px; }
+    .cat-group:last-child { margin-bottom: 0; }
+    .cat-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+    .tag-kept    { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .tag-renamed { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+    .tag-arrow   { color: #d97706; font-size: 11px; }
+    .tag-pruned  { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; text-decoration: line-through; opacity: 0.65; }
+
+    /* ── Step 2 ─────────────────────────────────────────────────────────── */
+    .prop-desc-lbl { font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #94a3b8; margin-bottom: 7px; }
+    .prop-desc-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.75;
+      max-height: 110px;
+      overflow-y: auto;
+      margin-bottom: 22px;
+    }
+
+    .tier-block { margin-bottom: 18px; }
+    .tier-block:last-child { margin-bottom: 0; }
+    .tier-hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+    .tier-pill {
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+    .pill-critical  { background: #fee2e2; color: #b91c1c; }
+    .pill-important { background: #fff7ed; color: #c2410c; }
+    .pill-moderate  { background: #eff6ff; color: #1d4ed8; }
+    .pill-minor     { background: #f8fafc; color: #475569; border: 1px solid #e2e8f0; }
+    .tier-score-lbl { font-size: 12px; color: #94a3b8; font-weight: 600; }
+    .tier-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .chip {
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+    .chip-critical  { background: #fee2e2; color: #991b1b; }
+    .chip-important { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+    .chip-moderate  { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+    .chip-minor     { background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; }
+
+    /* ── Step 3 · Pipeline diagram ──────────────────────────────────────── */
+    .pd-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 24px;
+      overflow-x: auto;
+      overflow-y: visible;
+      padding: 20px 2px 4px;
+    }
+
+    /* Individual stage cards */
+    .pd-stage {
+      border-radius: 12px;
+      padding: 16px 16px 14px;
+      min-width: 160px;
+      max-width: 200px;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .pd-stage-1  { border: 2px solid #c7d2fe; background: #f5f3ff; }
+    .pd-stage-2a { border: 2px solid #6ee7b7; background: #f0fdf4; }
+    .pd-stage-2b { border: 2px solid #6ee7b7; background: #f0fdf4; }
+    .pd-stage-3  { border: 2px dashed #fcd34d; background: #fefce8; }
+
+    /* Numbered circle */
+    .pd-num {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 10px;
+      flex-shrink: 0;
+    }
+    .pd-num-1  { background: #4f46e5; color: white; }
+    .pd-num-2a { background: #059669; color: white; font-size: 9.5px; }
+    .pd-num-2b { background: #059669; color: white; font-size: 9.5px; }
+    .pd-num-3  { background: #d97706; color: white; }
+
+    .pd-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 5px; line-height: 1.3; }
+    .pd-desc  { font-size: 11px; color: #64748b; line-height: 1.55; margin-bottom: 10px; }
+
+    /* Output tag */
+    .pd-out {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: 'SF Mono', monospace;
+      letter-spacing: 0.3px;
+    }
+    .pd-out-1 { background: #ede9fe; color: #4f46e5; }
+    .pd-out-2 { background: #d1fae5; color: #065f46; }
+    .pd-out-3 { background: #fef3c7; color: #92400e; }
+
+    /* Parallel wrapper */
+    .pd-parallel {
+      position: relative;
+      border: 2px dashed #6ee7b7;
+      border-radius: 14px;
+      padding: 26px 10px 10px;
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .pd-parallel-pill {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #f0fdf4;
+      color: #059669;
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 2px 10px;
+      border-radius: 20px;
+      border: 1.5px solid #6ee7b7;
+      white-space: nowrap;
+    }
+
+    /* Conditional indicator inside Stage 3 card */
+    .pd-cond-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 9px;
+      border-radius: 20px;
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #b45309;
+      background: #fef3c7;
+      border: 1.5px dashed #fcd34d;
+      margin-bottom: 10px;
+      white-space: nowrap;
+    }
+
+    /* Arrow connectors */
+    .pd-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2px;
+      flex-shrink: 0;
+      gap: 0;
+    }
+    .pd-arrow-line {
+      width: 28px;
+      height: 2px;
+      background: #cbd5e1;
+      position: relative;
+    }
+    .pd-arrow-line::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid #94a3b8;
+    }
+
+    /* Fork arrow: splits into two branches leading to parallel group */
+    .pd-fork {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      width: 36px;
+      flex-shrink: 0;
+      align-self: stretch;
+      padding: 28px 0; /* aligns with parallel group top/bottom padding */
+    }
+    .pd-fork-branch {
+      flex: 1;
+      width: 100%;
+      position: relative;
+    }
+    .pd-fork-branch-top {
+      border-right: 2px solid #cbd5e1;
+      border-bottom: 2px solid #cbd5e1;
+      border-bottom-right-radius: 6px;
+    }
+    .pd-fork-branch-bot {
+      border-right: 2px solid #cbd5e1;
+      border-top: 2px solid #cbd5e1;
+      border-top-right-radius: 6px;
+    }
+
+    /* Join arrow: mirrors the fork on the right side of parallel group */
+    .pd-join {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      width: 36px;
+      flex-shrink: 0;
+      align-self: stretch;
+      padding: 28px 0;
+      position: relative;
+    }
+    .pd-join-branch {
+      flex: 1;
+      width: 100%;
+    }
+    .pd-join-branch-top {
+      border-left: 2px solid #cbd5e1;
+      border-bottom: 2px solid #cbd5e1;
+      border-bottom-left-radius: 6px;
+    }
+    .pd-join-branch-bot {
+      border-left: 2px solid #cbd5e1;
+      border-top: 2px solid #cbd5e1;
+      border-top-left-radius: 6px;
+    }
+    /* Arrowhead at the join exit */
+    .pd-join::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid #94a3b8;
+    }
+
+    .review-box {
+      background: #f8fafc;
+      border-left: 4px solid #4f46e5;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .review-meta  { font-size: 11.5px; color: #94a3b8; margin-bottom: 6px; }
+    .review-title { font-size: 14.5px; font-weight: 700; color: #1e293b; margin-bottom: 7px; }
+    .review-text  { font-size: 13.5px; color: #475569; line-height: 1.75; }
+    .refresh-btn {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11.5px;
+      cursor: pointer;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .refresh-btn:hover { background: #f1f5f9; color: #4f46e5; border-color: #c7d2fe; }
+
+    .analysis-tbl { width: 100%; border-collapse: collapse; }
+    .analysis-tbl th {
+      text-align: left;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #94a3b8;
+      padding: 0 10px 10px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+    .analysis-tbl td {
+      padding: 11px 10px;
+      border-bottom: 1px solid #f8fafc;
+      vertical-align: top;
+      font-size: 13px;
+    }
+    .analysis-tbl tr:last-child td { border-bottom: none; }
+    .analysis-tbl tr:hover td { background: #fafafa; }
+
+    .amenity-cell { font-weight: 600; color: #1e293b; }
+
+    .sent-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .sp-pos-s { background: #dcfce7; color: #15803d; }
+    .sp-pos-w { background: #f0fdf4; color: #16a34a; }
+    .sp-neu   { background: #f1f5f9; color: #64748b; }
+    .sp-neg-w { background: #fff7ed; color: #c2410c; }
+    .sp-neg-s { background: #fee2e2; color: #b91c1c; }
+    .sp-unk   { background: #f1f5f9; color: #94a3b8; }
+
+    .pips { display: flex; gap: 3px; align-items: center; flex-wrap: nowrap; }
+    .pip {
+      width: 8px; height: 8px;
+      border-radius: 2px;
+    }
+    .pip-on  { background: #4f46e5; }
+    .pip-off { background: #e2e8f0; }
+    .pip-score { font-size: 11.5px; color: #94a3b8; margin-left: 5px; white-space: nowrap; }
+    .pip-criteria { font-size: 11px; color: #94a3b8; margin-top: 3px; }
+
+    .reason-list { list-style: none; }
+    .reason-item { font-size: 12px; color: #475569; padding: 1px 0; }
+    .reason-item::before { content: "→ "; color: #94a3b8; }
+    .no-reason { font-size: 12px; color: #94a3b8; font-style: italic; }
+
+    /* ── Step 4 ─────────────────────────────────────────────────────────── */
+    .formula-card {
+      background: linear-gradient(135deg, #fafafe, #f0f0ff);
+      border: 2px solid #e0e7ff;
+      border-radius: 12px;
+      padding: 22px 26px;
+      margin-bottom: 20px;
+    }
+    .formula-main {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 16px;
+      color: #1e293b;
+      margin-bottom: 7px;
+    }
+    .f-accent { color: #4f46e5; font-weight: 700; }
+    .formula-sub {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13.5px;
+      color: #64748b;
+      padding-left: 16px;
+      margin-bottom: 12px;
+    }
+    .formula-note {
+      font-size: 12.5px;
+      color: #64748b;
+      border-top: 1px solid #e0e7ff;
+      padding-top: 10px;
+      margin-top: 4px;
+      line-height: 1.7;
+    }
+
+    .gap-tbl { width: 100%; border-collapse: collapse; }
+    .gap-tbl th {
+      text-align: left;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #94a3b8;
+      padding: 0 10px 10px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+    .gap-tbl td {
+      padding: 10px 10px;
+      border-bottom: 1px solid #f8fafc;
+      font-size: 13px;
+      vertical-align: middle;
+    }
+    .gap-tbl tr:hover td { background: #fafafa; }
+    .gap-tbl tr:last-child td { border-bottom: none; }
+
+    .bar-wrap { display: flex; align-items: center; gap: 8px; }
+    .bar-bg {
+      flex: 1;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      min-width: 70px;
+    }
+    .bar-fill { height: 100%; border-radius: 4px; }
+    .bar-val { font-size: 12px; font-weight: 700; color: #1e293b; width: 34px; text-align: right; flex-shrink: 0; }
+
+    .mono { font-family: 'SF Mono', 'Fira Code', monospace; }
+    .review-count-note { font-size: 12.5px; color: #94a3b8; margin-bottom: 14px; }
+  </style>
+</head>
+<body>
+
+<!-- Top nav -->
+<nav style="background:white;border-bottom:1px solid #e2e8f0;padding:0 24px;">
+  <div style="max-width:960px;margin:0 auto;display:flex;align-items:center;height:52px;gap:0;">
+    <span style="font-size:13px;font-weight:700;color:#4f46e5;margin-right:28px;letter-spacing:-0.3px;">Review Intelligence</span>
+    <a href="/pipeline-demo" style="display:flex;align-items:center;height:52px;padding:0 16px;text-decoration:none;font-size:13px;font-weight:500;color:#4f46e5;border-bottom:3px solid #4f46e5;">Pipeline Overview</a>
+    <a href="/property"      style="display:flex;align-items:center;height:52px;padding:0 16px;text-decoration:none;font-size:13px;font-weight:500;color:#64748b;border-bottom:3px solid transparent;">Property Details</a>
+  </div>
+</nav>
+
+<!-- Hero ───────────────────────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-eyebrow">Wharton Hackathon · Review Intelligence</div>
+  <h1>How We Surface What to Ask</h1>
+  <p class="hero-subtitle">A multi-stage LLM pipeline that turns hotel reviews into targeted follow-up questions</p>
+  <div class="picker-wrap">
+    <span class="picker-label">Property</span>
+    <select id="propertySelect">
+      <option value="">Loading properties…</option>
+    </select>
+  </div>
+</div>
+
+<!-- Sticky Nav ──────────────────────────────────────────────────────────────── -->
+<div class="nav-bar">
+  <div class="nav-inner">
+    <a class="nav-link" href="#step1"><span class="nav-num">1</span> Amenity Pruning</a>
+    <a class="nav-link" href="#step2"><span class="nav-num">2</span> Importance Ranking</a>
+    <a class="nav-link" href="#step3"><span class="nav-num">3</span> Review Analysis</a>
+    <a class="nav-link" href="#step4"><span class="nav-num">4</span> Ask Score</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ── Step 1 ────────────────────────────────────────────────────────────── -->
+  <section class="step-section" id="step1">
+    <div class="step-hdr">
+      <div class="step-circle">1</div>
+      <div class="step-hdr-text">
+        <h2>Amenity Taxonomy &amp; Pruning</h2>
+        <p>Raw amenity strings from the Expedia dataset are inconsistent and noisy. GPT-4o maps each raw string to a clean canonical name — or prunes it entirely if it's not guest-relevant. This ensures every downstream LLM call works with concise, meaningful labels.</p>
+      </div>
+    </div>
+    <div id="step1Content" class="card">
+      <div class="loading">Select a property above to see results</div>
+    </div>
+  </section>
+
+  <!-- ── Step 2 ────────────────────────────────────────────────────────────── -->
+  <section class="step-section" id="step2">
+    <div class="step-hdr">
+      <div class="step-circle">2</div>
+      <div class="step-hdr-text">
+        <h2>Amenity Importance Ranking</h2>
+        <p>Not all amenities matter equally. GPT-4o-mini reads the property description and produces a strict ordered ranking of every pruned amenity — most to least important — combining general travel knowledge with property-specific context (e.g. a spa retreat puts spa at the top; a budget hostel puts free wifi first). The ordering is then normalized to a continuous 0–1 criticality score: rank 1 → 1.0, rank last → 0.0, linear in between. This replaces the old four-tier system and eliminates hard score jumps between neighbouring amenities.</p>
+      </div>
+    </div>
+    <div id="step2Content" class="card">
+      <div class="loading">Select a property above to see results</div>
+    </div>
+  </section>
+
+  <!-- ── Step 3 ────────────────────────────────────────────────────────────── -->
+  <section class="step-section" id="step3">
+    <div class="step-hdr">
+      <div class="step-circle">3</div>
+      <div class="step-hdr-text">
+        <h2>Per-Review Analysis Pipeline</h2>
+        <p>Each review is processed through three stages. First, the LLM identifies which amenities are mentioned. Then sentiment and detail depth are scored in parallel on the confirmed mentions only. Finally, concrete reasons are extracted for any non-neutral ratings.</p>
+      </div>
+    </div>
+
+    <div class="pd-wrap">
+
+      <!-- Stage 1 -->
+      <div class="pd-stage pd-stage-1">
+        <div class="pd-num pd-num-1">1</div>
+        <div class="pd-title">Mention Detection</div>
+        <div class="pd-desc">Which of this property's amenities does the reviewer actually reference?</div>
+        <div class="pd-out pd-out-1">amenity list</div>
+      </div>
+
+      <!-- Fork connector -->
+      <div class="pd-fork">
+        <div class="pd-fork-branch pd-fork-branch-top"></div>
+        <div class="pd-fork-branch pd-fork-branch-bot"></div>
+      </div>
+
+      <!-- Stages 2a + 2b (parallel) -->
+      <div class="pd-parallel">
+        <div class="pd-parallel-pill">∥ parallel</div>
+
+        <div class="pd-stage pd-stage-2a">
+          <div class="pd-num pd-num-2a">2a</div>
+          <div class="pd-title">Sentiment Scoring</div>
+          <div class="pd-desc">Valence (pos / neu / neg) × intensity (strong / weak) → score in [−1, 1]</div>
+          <div class="pd-out pd-out-2">sentiment</div>
+        </div>
+
+        <div class="pd-stage pd-stage-2b">
+          <div class="pd-num pd-num-2b">2b</div>
+          <div class="pd-title">Detail Scoring</div>
+          <div class="pd-desc">4 binary criteria: mentioned → specific → multiple attributes → rich context → [0, 4]</div>
+          <div class="pd-out pd-out-2">detail depth</div>
+        </div>
+      </div>
+
+      <!-- Join connector -->
+      <div class="pd-join">
+        <div class="pd-join-branch pd-join-branch-top"></div>
+        <div class="pd-join-branch pd-join-branch-bot"></div>
+      </div>
+
+      <!-- Stage 3 (conditional) -->
+      <div class="pd-stage pd-stage-3" style="flex-shrink:0">
+        <div class="pd-cond-label">if non-neutral</div>
+        <div class="pd-num pd-num-3">3</div>
+        <div class="pd-title">Reason Extraction</div>
+        <div class="pd-desc">Extracts concrete, specific phrases explaining the sentiment — not vague adjectives</div>
+        <div class="pd-out pd-out-3">reason list</div>
+      </div>
+
+    </div>
+
+    <div id="step3Content" class="card">
+      <div class="loading">Select a property above to see results</div>
+    </div>
+  </section>
+
+  <!-- ── Step 4 ────────────────────────────────────────────────────────────── -->
+  <section class="step-section" id="step4">
+    <div class="step-hdr">
+      <div class="step-circle">4</div>
+      <div class="step-hdr-text">
+        <h2>AskScore</h2>
+        <p>AskScore ranks which amenities are most worth asking future reviewers about. It weighs four signals: how much detail coverage we already have, how much reviewers disagree, whether sentiment is trending down, and how stale our last mention is — all scaled by how critically important the amenity is.</p>
+      </div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-main"><span class="f-accent">AskScore</span> = Criticality × (0.40·DetailGap + 0.20·Disagreement + 0.20·Trend + 0.15·Recency)</div>
+      <div class="formula-sub" style="margin-top:10px">DetailGap = 1 − Coverage × (avg_detail / 4) &nbsp;·&nbsp; Coverage = 1 − e<sup>−n/10</sup></div>
+      <div class="formula-sub">Disagreement = σ(sentiments) — population std dev across all mentions</div>
+      <div class="formula-sub">Trend = max(0, avg_old_sentiment − avg_recent_sentiment) — fires only when declining</div>
+      <div class="formula-sub">Recency = 1 − e<sup>−days_since_last_mention / 120</sup> — stale data scores high</div>
+      <div class="formula-note">
+        <strong>Criticality</strong> is the rank-normalized score from Step 2 — the top-ranked amenity gets 1.0, the bottom-ranked gets 0.0, all others are linearly spaced in between. It gates the whole score. &nbsp;
+        <strong>DetailGap</strong> (weight 0.40) blends coverage (how many reviews mention this) with depth (how concretely they described it). &nbsp;
+        <strong>Disagreement</strong> (weight 0.20) surfaces amenities where reviewers sharply disagree — high variance means the next guest's experience is unpredictable. &nbsp;
+        <strong>Trend</strong> (weight 0.20) flags amenities whose sentiment has recently declined, signalling a potential service change. &nbsp;
+        <strong>Recency</strong> (weight 0.15) penalises amenities whose last mention is stale so we refresh outdated coverage.
+      </div>
+    </div>
+
+    <div id="step4Content" class="card">
+      <div class="loading">Select a property above to see results</div>
+    </div>
+    <div id="step4DetailLink" style="display:none;margin-top:12px;text-align:right;">
+      <a id="detailPageLink" href="/property" style="font-size:13px;font-weight:600;color:#4f46e5;text-decoration:none;">
+        View full property details →
+      </a>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<script>
+  'use strict';
+
+  let _currentPid = null;
+
+  // ── Utilities ──────────────────────────────────────────────────────────────
+  function esc(s) {
+    return String(s ?? '')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function setLoading(id) {
+    document.getElementById(id).innerHTML = '<div class="loading">Loading…</div>';
+  }
+
+  function setError(id, msg) {
+    document.getElementById(id).innerHTML = `<div class="loading" style="color:#ef4444">${esc(msg)}</div>`;
+  }
+
+  // ── Load Properties ────────────────────────────────────────────────────────
+  async function loadProperties() {
+    const sel = document.getElementById('propertySelect');
+    try {
+      const res   = await fetch('/api/demo/properties');
+      const props = await res.json();
+      if (!props.length) {
+        sel.innerHTML = '<option value="">No pre-computed data found</option>';
+        return;
+      }
+      sel.innerHTML = '<option value="">— select a property —</option>' +
+        props.map(p => {
+          const label = [p.city, p.country].filter(Boolean).join(', ') + ` · ${p.property_id.slice(0,8)}…`;
+          return `<option value="${esc(p.property_id)}">${esc(label)}</option>`;
+        }).join('');
+    } catch(e) {
+      sel.innerHTML = '<option value="">Error loading properties</option>';
+    }
+  }
+
+  // ── Property Selection ─────────────────────────────────────────────────────
+  document.getElementById('propertySelect').addEventListener('change', function() {
+    const pid = this.value;
+    if (!pid) return;
+    _currentPid = pid;
+    ['step1Content','step2Content','step3Content','step4Content'].forEach(setLoading);
+    // Load all sections; step4 is driven by the same fetch as step2
+    loadStep1(pid);
+    loadStep2AndStep4(pid);
+    loadStep3(pid);
+  });
+
+  // ── Step 1: Amenity Pruning ────────────────────────────────────────────────
+  async function loadStep1(pid) {
+    const el = document.getElementById('step1Content');
+    try {
+      const res = await fetch(`/api/amenities/${pid}/categorized`);
+      if (!res.ok) throw new Error('No categorized amenity data');
+      const cats = await res.json();
+
+      let kept = 0, renamed = 0, pruned = 0;
+      cats.forEach(cat => cat.items.forEach(item => {
+        if (item.pruned) pruned++;
+        else if (item.changed) renamed++;
+        else kept++;
+      }));
+
+      let html = `
+        <div class="taxonomy-summary">
+          <div class="tax-stat"><div class="dot dot-kept"></div>${kept} kept unchanged</div>
+          <div class="tax-stat"><div class="dot dot-renamed"></div>${renamed} renamed to canonical form</div>
+          <div class="tax-stat"><div class="dot dot-pruned"></div>${pruned} pruned (not guest-relevant)</div>
+        </div>`;
+
+      cats.forEach(cat => {
+        if (!cat.items.length) return;
+        html += `<div class="cat-group">
+          <div class="cat-label">${esc(cat.label)}</div>
+          <div class="tag-row">`;
+        cat.items.forEach(item => {
+          if (item.pruned) {
+            html += `<span class="tag tag-pruned" title="Pruned">${esc(item.raw)}</span>`;
+          } else if (item.changed) {
+            html += `<span class="tag tag-renamed" title="Renamed">${esc(item.raw)} <span class="tag-arrow">→</span> ${esc(item.normalized)}</span>`;
+          } else {
+            html += `<span class="tag tag-kept">${esc(item.normalized)}</span>`;
+          }
+        });
+        html += `</div></div>`;
+      });
+
+      el.innerHTML = html;
+    } catch(e) {
+      setError('step1Content', 'Could not load amenity data. Is the taxonomy built?');
+    }
+  }
+
+  // ── Step 2 + Step 4: Importance + Gap Score ────────────────────────────────
+  async function loadStep2AndStep4(pid) {
+    const el2 = document.getElementById('step2Content');
+    const el4 = document.getElementById('step4Content');
+    try {
+      const [descRes, gapRes] = await Promise.all([
+        fetch(`/api/gap/description/${pid}`),
+        fetch(`/api/demo/gap-data/${pid}`),
+      ]);
+      if (!gapRes.ok) throw new Error('No pre-computed gap data for this property');
+
+      const descData = await descRes.json();
+      const gapData  = await gapRes.json();
+
+      renderStep2(descData, gapData, el2);
+      renderStep4(gapData, el4);
+    } catch(e) {
+      setError('step2Content', e.message);
+      setError('step4Content', e.message);
+    }
+  }
+
+  function renderStep2(descData, gapData, el) {
+    const tiers = { critical: [], important: [], moderate: [], minor: [] };
+    (gapData.amenities || []).forEach(a => {
+      if (tiers[a.tier]) tiers[a.tier].push(a);
+    });
+
+    const tierMeta = {
+      critical:  { pill: 'pill-critical',  chip: 'chip-critical',  score: '≥ 0.75', label: 'Critical'  },
+      important: { pill: 'pill-important', chip: 'chip-important', score: '≥ 0.50', label: 'Important' },
+      moderate:  { pill: 'pill-moderate',  chip: 'chip-moderate',  score: '≥ 0.25', label: 'Moderate'  },
+      minor:     { pill: 'pill-minor',     chip: 'chip-minor',     score: '< 0.25', label: 'Minor'     },
+    };
+
+    let html = '';
+
+    if (descData.description) {
+      html += `<div class="prop-desc-lbl">Property Description Used as Context</div>
+               <div class="prop-desc-box">${esc(descData.description)}</div>`;
+    }
+
+    Object.entries(tiers).forEach(([tier, items]) => {
+      if (!items.length) return;
+      const m = tierMeta[tier];
+      html += `<div class="tier-block">
+        <div class="tier-hdr">
+          <span class="tier-pill ${m.pill}">${m.label}</span>
+          <span class="tier-score-lbl">importance = ${m.score}</span>
+        </div>
+        <div class="tier-chips">
+          ${items.map(a => `<span class="chip ${m.chip}" title="criticality = ${a.importance.toFixed(4)}">${esc(a.amenity)} <span style="opacity:0.6;font-size:11px">${a.importance.toFixed(2)}</span></span>`).join('')}
+        </div>
+      </div>`;
+    });
+
+    el.innerHTML = html || '<div class="loading">No importance data</div>';
+  }
+
+  // ── Step 3: Review Analysis ────────────────────────────────────────────────
+  async function loadStep3(pid) {
+    try {
+      const res = await fetch(`/api/demo/review-sample/${pid}`);
+      if (!res.ok) throw new Error('No review data for this property');
+      const review = await res.json();
+      renderStep3(review, pid);
+    } catch(e) {
+      setError('step3Content', e.message);
+    }
+  }
+
+  async function refreshReview(pid) {
+    setLoading('step3Content');
+    try {
+      const res = await fetch(`/api/demo/review-sample/${pid}`);
+      if (!res.ok) throw new Error('No review data');
+      const review = await res.json();
+      renderStep3(review, pid);
+    } catch(e) {
+      setError('step3Content', e.message);
+    }
+  }
+
+  function renderStep3(review, pid) {
+    const el = document.getElementById('step3Content');
+
+    const sentConfig = {
+      'positive_strong': ['strongly positive', 'sp-pos-s', '+1.0'],
+      'positive_weak':   ['mildly positive',   'sp-pos-w', '+0.5'],
+      'neutral_':        ['neutral',            'sp-neu',   ' 0.0'],
+      'negative_weak':   ['mildly negative',    'sp-neg-w', '−0.5'],
+      'negative_strong': ['strongly negative',  'sp-neg-s', '−1.0'],
+    };
+
+    const criteriaLabels = ['mentioned', 'specific', 'multiple', 'rich'];
+
+    let html = `
+      <div class="review-box">
+        <button class="refresh-btn" onclick="refreshReview('${esc(pid)}')">↻ Another review</button>
+        ${review.date   ? `<div class="review-meta">${esc(review.date)}</div>` : ''}
+        ${review.title  ? `<div class="review-title">${esc(review.title)}</div>` : ''}
+        <div class="review-text">${esc(review.text)}</div>
+      </div>
+
+      <table class="analysis-tbl">
+        <thead>
+          <tr>
+            <th style="width:150px">Amenity</th>
+            <th style="width:110px">Stage 2a<br>Sentiment</th>
+            <th style="width:160px">Stage 2b · Detail (0–4)<br><span style="font-weight:400;text-transform:none;letter-spacing:0;color:#cbd5e1">mentioned → specific → multiple → rich</span></th>
+            <th>Stage 3 · Reasons</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+    review.amenities.forEach(a => {
+      const sentKey = `${a.sentiment_valence}_${a.sentiment_intensity}`;
+      const sc = sentConfig[sentKey] || ['—', 'sp-unk', '—'];
+      const d  = a.detail || 0;
+
+      const pipHtml = criteriaLabels.map((lbl, i) => {
+        const on = d > i;
+        return `<div class="pip ${on ? 'pip-on' : 'pip-off'}" title="${lbl}"></div>`;
+      }).join('');
+
+      let reasonsHtml = '—';
+      if (a.reasons && a.reasons.length > 0) {
+        reasonsHtml = `<ul class="reason-list">${a.reasons.map(r => `<li class="reason-item">${esc(r)}</li>`).join('')}</ul>`;
+      } else if (a.sentiment !== null && a.sentiment !== 0) {
+        reasonsHtml = `<span class="no-reason">sentiment expressed but no concrete reason given</span>`;
+      }
+
+      html += `<tr>
+        <td class="amenity-cell">${esc(a.amenity)}</td>
+        <td>
+          <span class="sent-pill ${sc[1]}">${sc[0]}</span>
+          <div style="font-size:11px;color:#94a3b8;margin-top:3px;font-family:monospace">${sc[2]}</div>
+        </td>
+        <td>
+          <div class="pips">${pipHtml}<span class="pip-score">${d}/4</span></div>
+        </td>
+        <td>${reasonsHtml}</td>
+      </tr>`;
+    });
+
+    html += `</tbody></table>`;
+    el.innerHTML = html;
+  }
+
+  // ── Step 4: Gap Score ──────────────────────────────────────────────────────
+  function renderStep4(gapData, el) {
+    // Update the "view details" link with this property's id
+    const linkWrap = document.getElementById('step4DetailLink');
+    const link     = document.getElementById('detailPageLink');
+    if (gapData.property_id) {
+      link.href = `/property/${gapData.property_id}`;
+      linkWrap.style.display = 'block';
+    }
+    const amenities  = gapData.amenities || [];
+    const revCount   = gapData.review_count || 0;
+
+    if (!amenities.length) {
+      el.innerHTML = '<div class="loading">No gap data available</div>';
+      return;
+    }
+
+    const tierPillClass = {
+      critical:  'pill-critical',
+      important: 'pill-important',
+      moderate:  'pill-moderate',
+      minor:     'pill-minor',
+    };
+
+    // component colour map
+    const compColors = {
+      detail_gap:    '#6366f1',
+      disagreement:  '#f59e0b',
+      trend:         '#ef4444',
+      recency:       '#f97316',
+    };
+
+    let html = `
+      <div class="review-count-note">Aggregated from <strong>${revCount}</strong> reviews with amenity mentions</div>
+      <table class="gap-tbl">
+        <thead>
+          <tr>
+            <th style="width:150px">Amenity</th>
+            <th style="width:100px">Criticality</th>
+            <th style="width:55px" title="1 − coverage × (avg_detail/4)">Detail<br>Gap</th>
+            <th style="width:55px" title="σ of sentiments">Disagr.</th>
+            <th style="width:55px" title="decline in recent vs old sentiment">Trend</th>
+            <th style="width:60px" title="staleness of last mention">Recency</th>
+            <th>AskScore</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+    amenities.forEach(a => {
+      const askPct   = Math.round(a.ask_score * 100);
+      const barColor = askPct >= 65 ? '#ef4444' : askPct >= 35 ? '#f97316' : '#94a3b8';
+      const pc       = tierPillClass[a.tier] || 'pill-moderate';
+      const comp     = a.components || {};
+
+      function compBar(val, color) {
+        const pct = Math.round((val || 0) * 100);
+        return `<div style="display:flex;align-items:center;gap:4px">
+          <div style="flex:1;height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;min-width:32px">
+            <div style="width:${pct}%;height:100%;background:${color};border-radius:3px"></div>
+          </div>
+          <span style="font-size:11px;font-weight:700;color:#475569;width:26px;text-align:right;font-family:monospace">${(val||0).toFixed(2)}</span>
+        </div>`;
+      }
+
+      html += `<tr>
+        <td style="font-weight:600">${esc(a.amenity)}</td>
+        <td><span class="tier-pill ${pc}">${a.importance.toFixed(2)}</span></td>
+        <td>${compBar(comp.detail_gap,   compColors.detail_gap)}</td>
+        <td>${compBar(comp.disagreement, compColors.disagreement)}</td>
+        <td>${compBar(comp.trend,        compColors.trend)}</td>
+        <td>${compBar(comp.recency,      compColors.recency)}</td>
+        <td>
+          <div class="bar-wrap">
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:${askPct}%;background:${barColor}"></div>
+            </div>
+            <span class="bar-val mono">${a.ask_score.toFixed(3)}</span>
+          </div>
+        </td>
+      </tr>`;
+    });
+
+    html += `</tbody></table>`;
+    el.innerHTML = html;
+  }
+
+  // ── Scroll spy ─────────────────────────────────────────────────────────────
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+      if (link) link.classList.add('active');
+    });
+  }, { rootMargin: '-35% 0px -35% 0px' });
+
+  document.querySelectorAll('.step-section').forEach(s => spy.observe(s));
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  loadProperties();
+</script>
+</body>
+</html>

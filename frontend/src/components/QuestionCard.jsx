@@ -27,6 +27,10 @@ export default function QuestionCard({
 
       <h2 className="section-title section-title--compact">{question.label}</h2>
 
+      {question.askReason && (
+        <p className="question-reason">{question.askReason}</p>
+      )}
+
       <textarea
         className="details-textarea"
         placeholder={question.placeholder || "Type your answer..."}
@@ -58,4 +62,3 @@ export default function QuestionCard({
     </section>
   );
 }
-
