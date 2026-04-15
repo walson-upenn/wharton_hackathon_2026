@@ -28,6 +28,7 @@ def _load_csv(path: Path) -> list[dict]:
 
 @lru_cache(maxsize=1)
 def load_pipeline_data() -> dict:
+    print(SOURCES_DIR)
     descriptions = _load_csv(SOURCES_DIR / "Description_PROC.csv")
     reviews = _load_csv(SOURCES_DIR / "Reviews_PROC.csv")
 
