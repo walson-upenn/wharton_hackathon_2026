@@ -46,33 +46,37 @@ export default function QuestionCard({
       </div>
 
       <div className="question-actions">
-        {currentIndex > 0 ? (
-          <button
-            type="button"
-            className="neutral-button"
-            onClick={onPreviousQuestion}
-          >
-            Previous
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="neutral-button"
-            onClick={onBack}
-          >
-            ← Return to previous step
-          </button>
-        )}
+        <div>
+          {currentIndex > 0 ? (
+            <button
+              type="button"
+              className="neutral-button"
+              onClick={onPreviousQuestion}
+            >
+              Previous
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="neutral-button"
+              onClick={onBack}
+            >
+              ← Return to previous step
+            </button>
+          )}
+        </div>
 
-        {!isLast && (
-          <button
-            type="button"
-            className="neutral-button neutral-button--strong"
-            onClick={onNext}
-          >
-            Next
-          </button>
-        )}
+        <div>
+          {!isLast && (
+            <button
+              type="button"
+              className="neutral-button"
+              onClick={onNext}
+            >
+              Next →
+            </button>
+          )}
+        </div>
       </div>
     </section>
   );
