@@ -5,6 +5,7 @@ import PropertyCard from "./components/PropertyCard";
 import OverallRating from "./components/OverallRating";
 import QuestionCard from "./components/QuestionCard";
 import VoiceReviewPanel from "./components/VoiceReviewPanel";
+import ProgressBar from "./components/ProgressBar";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -40,6 +41,9 @@ export default function App() {
   const [voiceReview, setVoiceReview] = useState(null);
   const [submissionStatus, setSubmissionStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [noneOfThese, setNoneOfThese] = useState(false);
+
 
   const [answers, setAnswers] = useState({
     q_overall: 0,
@@ -80,6 +84,7 @@ export default function App() {
         setSubmissionStatus("");
         setIsSubmitting(false);
         setAnswers({ q_overall: 0 });
+        setNoneOfThese(false);
       } catch (error) {
         setLoadError(error.message);
       }
@@ -103,11 +108,20 @@ export default function App() {
   }, [currentQuestionIndex, textQuestions.length]);
 
   const setupComplete =
-    answers.q_overall > 0 &&
-    travelType.trim().length > 0 &&
-    stayUsage.length > 0;
+  answers.q_overall > 0 &&
+  travelType.trim().length > 0 &&
+  (stayUsage.length > 0 || noneOfThese);
 
   const currentQuestion = textQuestions[currentQuestionIndex];
+  const step1Progress = [
+  answers.q_overall > 0,
+  travelType.length > 0,
+  stayUsage.length > 0 || noneOfThese,
+].filter(Boolean).length / 3;
+
+const step2Progress = textQuestions.length > 0
+  ? textQuestions.filter(q => (answers[q.id] || "").trim().length > 0).length / textQuestions.length
+  : 0;
 
   const handleQuestionChange = (questionId, value) => {
     setAnswers((prev) => ({
@@ -117,12 +131,20 @@ export default function App() {
   };
 
   const handleToggleStayUsage = (option) => {
-    setStayUsage((prev) =>
-      prev.includes(option)
-        ? prev.filter((item) => item !== option)
-        : [...prev, option]
-    );
-  };
+  setNoneOfThese(false);
+  setStayUsage((prev) =>
+    prev.includes(option)
+      ? prev.filter((item) => item !== option)
+      : [...prev, option]
+  );
+};
+
+const handleNoneOfThese = () => {
+  setNoneOfThese((prev) => {
+    if (!prev) setStayUsage([]);
+    return !prev;
+  });
+};
 
   const switchStage = (nextStage) => {
     setStageAnimateIn(false);
@@ -346,8 +368,8 @@ export default function App() {
               stageAnimateIn ? "is-visible" : "is-exiting"
             }`}
           >
+            <ProgressBar step={1} stepProgress={step1Progress} />
             <section className="form-stage-intro stage-header">
-              <div className="form-stage-intro__eyebrow">Step 1 of 2</div>
               <h1 className="form-stage-intro__title">
                 A few quick details first
               </h1>
@@ -382,19 +404,26 @@ export default function App() {
                         {option}
                       </button>
                     ))}
+                    <button
+                    type="button"
+                    className={`chip-button chip-button--none ${noneOfThese ? "is-selected" : ""}`}
+                    onClick={handleNoneOfThese}
+                  >
+                    None of these
+                  </button>
                   </div>
                 </div>
               )}
             </OverallRating>
 
-            <div className="setup-actions setup-actions--single">
+            <div className="setup-actions--single">
               <button
                 type="button"
                 className="submit-review-button submit-review-button--yellow"
                 disabled={!setupComplete}
-                onClick={() => switchStage("form_questions")}
+                onClick={() => noneOfThese ? handleSubmit() : switchStage("form_questions")}
               >
-                Continue
+                {noneOfThese ? "Submit review" : "Continue"}
               </button>
             </div>
           </div>
@@ -406,22 +435,15 @@ export default function App() {
               stageAnimateIn ? "is-visible" : "is-exiting"
             }`}
           >
-            <section className="form-stage-intro stage-header stage-header--with-action">
+            <ProgressBar step={2} stepProgress={step2Progress} />
+
+            <section className="form-stage-intro stage-header">
               <div className="form-stage-intro__content">
-                <div className="form-stage-intro__eyebrow">Step 2 of 2</div>
                 <h1 className="form-stage-intro__title">Just two questions</h1>
                 <p className="form-stage-intro__text">
                   A sentence or two is enough.
                 </p>
               </div>
-
-              <button
-                type="button"
-                className="stage-back-button"
-                onClick={() => switchStage("form_setup")}
-              >
-                Back
-              </button>
             </section>
 
             {currentQuestion && (
@@ -434,6 +456,7 @@ export default function App() {
                 total={textQuestions.length}
                 onNext={handleNextQuestion}
                 onPreviousQuestion={handlePreviousQuestion}
+                onBack={() => switchStage("form_setup")}
                 animateIn={questionAnimateIn}
               />
             )}

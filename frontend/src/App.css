@@ -814,3 +814,119 @@ textarea {
 .question-cta-button--yellow:hover {
   background: var(--yellow-hover);
 }
+
+
+/* ── Progress bar ── */
+.progress-wrap {
+  margin-bottom: 20px;
+}
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.progress-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.progress-pct {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.progress-track {
+  height: 6px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--yellow);
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.progress-steps {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+}
+.progress-step {
+  flex: 1;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--border);
+  transition: background 0.3s;
+}
+.progress-step.is-done { background: var(--yellow); }
+.progress-step.is-partial { background: var(--yellow); opacity: 0.45; }
+
+/* ── "None of these" square chip ── */
+.chip-button--none {
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.chip-button--none.is-selected {
+  border-color: #667085;
+  background: #f8f9fa;
+  color: var(--text);
+}
+.chip-none-box {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ── Star hover fix ── */
+.star-button:hover,
+.star-button:hover ~ .star-button {
+  color: #d2d6dc;
+}
+.stars-row:hover .star-button {
+  color: var(--yellow);
+}
+.stars-row .star-button:hover ~ .star-button {
+  color: #d2d6dc;
+}
+
+/* ── Textarea character count ── */
+.textarea-wrap {
+  position: relative;
+  margin-top: 18px;
+}
+.textarea-wrap .details-textarea {
+  margin-top: 0;
+  padding-bottom: 28px;
+}
+.char-count {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-size: 11px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.char-count--warn {
+  color: #b54708;
+}
+
+.progress-with-back {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.progress-with-back .progress-wrap {
+  flex: 1;
+  margin-bottom: 0;
+}
+.progress-with-back .stage-back-button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}

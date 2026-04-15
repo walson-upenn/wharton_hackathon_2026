@@ -1,5 +1,6 @@
-const STAR_LABELS = ["", "Terrible", "Poor", "Okay", "Good", "Excellent"];
+import { useState } from "react";
 
+const STAR_LABELS = ["", "Terrible", "Poor", "Okay", "Good", "Excellent"];
 const TRAVEL_TYPES = ["Solo", "Couple", "Family", "Business", "Group"];
 
 export default function OverallRating({
@@ -10,6 +11,9 @@ export default function OverallRating({
   onTravelTypeChange,
   children,
 }) {
+  const [hovered, setHovered] = useState(0);
+  const display = hovered || value;
+
   return (
     <section className="review-card">
       <div className="section-kicker">Overall</div>
@@ -20,8 +24,10 @@ export default function OverallRating({
           <button
             key={star}
             type="button"
-            className={`star-button ${value >= star ? "is-active" : ""}`}
+            className={`star-button ${display >= star ? "is-active" : ""}`}
             onClick={() => onChange(star)}
+            onMouseEnter={() => setHovered(star)}
+            onMouseLeave={() => setHovered(0)}
             aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
           >
             ★
@@ -30,7 +36,7 @@ export default function OverallRating({
       </div>
 
       <div className="stars-caption">
-        {value ? STAR_LABELS[value] : "Tap to rate"}
+        {display ? STAR_LABELS[display] : "Tap to rate"}
       </div>
 
       <div className="travel-block">

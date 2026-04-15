@@ -6,14 +6,13 @@ export default function QuestionCard({
   total,
   onNext,
   onPreviousQuestion,
+  onBack,
   animateIn,
 }) {
-  if (question.type !== "text") {
-    return null;
-  }
+  if (question.type !== "text") return null;
 
   const isLast = currentIndex === total - 1;
-  const hasInput = value.trim().length > 0;
+  const charCount = value.length;
 
   return (
     <section
@@ -22,7 +21,9 @@ export default function QuestionCard({
       }`}
     >
       <div className="question-topline">
-        <span className="section-kicker">Question {currentIndex + 1} of {total}</span>
+        <span className="section-kicker">
+          Question {currentIndex + 1} of {total}
+        </span>
       </div>
 
       <h2 className="section-title section-title--compact">{question.label}</h2>
@@ -31,33 +32,47 @@ export default function QuestionCard({
         <p className="question-reason">{question.askReason}</p>
       )}
 
-      <textarea
-        className="details-textarea"
-        placeholder={question.placeholder || "Type your answer..."}
-        value={value}
-        onChange={(e) => onChange(question.id, e.target.value)}
-      />
+      <div className="textarea-wrap">
+        <textarea
+          className="details-textarea"
+          placeholder={question.placeholder || "Type your answer..."}
+          value={value}
+          maxLength={500}
+          onChange={(e) => onChange(question.id, e.target.value)}
+        />
+        <div className={`char-count ${charCount > 450 ? "char-count--warn" : ""}`}>
+          {charCount} / 500
+        </div>
+      </div>
 
       <div className="question-actions">
-        {currentIndex > 0 && (
+        {currentIndex > 0 ? (
           <button
             type="button"
             className="neutral-button"
             onClick={onPreviousQuestion}
           >
-            Previous question
+            Previous
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="neutral-button"
+            onClick={onBack}
+          >
+            ← Return to previous step
           </button>
         )}
 
-        <button
-          type="button"
-          className={`neutral-button ${
-            hasInput ? "question-cta-button--yellow" : "neutral-button--strong"
-          }`}
-          onClick={onNext}
-        >
-          {isLast ? "Done" : "Next"}
-        </button>
+        {!isLast && (
+          <button
+            type="button"
+            className="neutral-button neutral-button--strong"
+            onClick={onNext}
+          >
+            Next
+          </button>
+        )}
       </div>
     </section>
   );
