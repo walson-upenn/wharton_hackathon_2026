@@ -1,4 +1,4 @@
-Data Exploration Frontend (vibecoded lol):
+Data Exploration Frontend:
 Run with "python3 -m http.server 8000" from root then go to "http://localhost:8000/data-exploration-frontend/"
 
 URL: https://wharton-hackathon-2026.vercel.app/
