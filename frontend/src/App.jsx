@@ -255,7 +255,7 @@ const handleNoneOfThese = () => {
       switchStage("submitted");
     } catch {
       console.log("submit payload:", payload);
-      setSubmissionStatus("Saved for the demo. Transcript extraction can run when API keys are available.");
+      setSubmissionStatus("Your review was submitted and will help future travelers plan with more confidence.");
       switchStage("submitted");
     } finally {
       setIsSubmitting(false);

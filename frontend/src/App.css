@@ -6,8 +6,8 @@
   --muted: #667085;
   --accent: #3662d8;
   --accent-soft: #eef3ff;
-  --yellow: #ffcb05;
-  --yellow-hover: #f2c200;
+  --yellow: #fddb33;
+  --yellow-hover: #edca16;
 }
 
 * {
@@ -290,10 +290,10 @@ textarea {
   padding: 13px 18px;
   min-height: 48px;
   background:
-    linear-gradient(#fffdf5, #fffdf5) padding-box,
-    linear-gradient(120deg, #ffcb05 0%, #f6b31a 42%, #d98f00 72%, #ffdc4a 100%) border-box;
+    linear-gradient(#fffdf2, #fffdf2) padding-box,
+    linear-gradient(120deg, #ffe56f 0%, #fddb33 42%, #d9b50d 72%, #fff2a8 100%) border-box;
   color: #191e3b;
-  box-shadow: 0 12px 24px rgba(25, 30, 59, 0.12), 0 0 0 4px rgba(255, 203, 5, 0.16);
+  box-shadow: 0 12px 24px rgba(25, 30, 59, 0.12), 0 0 0 4px rgba(253, 219, 51, 0.16);
   cursor: pointer;
   font-weight: 700;
   overflow: hidden;
@@ -302,7 +302,7 @@ textarea {
 
 .ai-voice-button:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 16px 30px rgba(25, 30, 59, 0.16), 0 0 0 5px rgba(255, 203, 5, 0.22);
+  box-shadow: 0 16px 30px rgba(25, 30, 59, 0.16), 0 0 0 5px rgba(253, 219, 51, 0.22);
 }
 
 .ai-voice-button:disabled {
@@ -1398,7 +1398,7 @@ textarea {
 
 .rpd-node--purple { background: #f5f3ff; border: 1px solid #c4b5fd; }
 .rpd-node--teal   { background: #f0fdf9; border: 1px solid #6ee7cf; }
-.rpd-node--amber  { background: #fffbeb; border: 1px solid #fcd34d; }
+.rpd-node--amber  { background: #fff8d9; border: 1px solid #fddb33; }
 
 .rpd-node__num {
   font-size: 11px;
@@ -1440,7 +1440,7 @@ textarea {
 
 .rpd-chip--purple { background: #ede9fe; color: #5b21b6; }
 .rpd-chip--teal   { background: #ccfbf1; color: #0f766e; }
-.rpd-chip--amber  { background: #fef3c7; color: #b45309; }
+.rpd-chip--amber  { background: #fff2a8; color: #6b5700; }
 
 /* ── Parallel block (dashed teal border) ── */
 
@@ -1483,9 +1483,9 @@ textarea {
 }
 
 .rpd-conditional__label {
-  background: #fef3c7;
-  color: #b45309;
-  border: 1px solid #fcd34d;
+  background: #fff2a8;
+  color: #6b5700;
+  border: 1px solid #fddb33;
   border-bottom: none;
   font-size: 10px;
   font-weight: 700;
