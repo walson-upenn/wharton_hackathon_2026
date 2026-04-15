@@ -2157,8 +2157,8 @@ textarea {
 .property-card-slim {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
+  gap: 16px;
+  padding: 16px;
   margin-bottom: 16px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -2166,26 +2166,26 @@ textarea {
   overflow: hidden;
 }
 .property-card-slim__photo {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+  width: 100px;
+  height: 100px;
+  border-radius: 16px;
   background-size: cover;
   background-position: center;
   flex-shrink: 0;
 }
 .property-card-slim__name {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
 }
 .property-card-slim__meta {
-  margin-top: 3px;
-  font-size: 13px;
+  margin-top: 4px;
+  font-size: 14px;
   color: var(--muted);
 }
 .property-card-slim__pill {
   display: inline-block;
-  margin-top: 6px;
-  padding: 4px 10px;
+  margin-top: 8px;
+  padding: 5px 12px;
   font-size: 12px;
   background: #f3f5f8;
   border-radius: 999px;
