@@ -5,7 +5,7 @@ export default function QuestionCard({
   currentIndex,
   total,
   onNext,
-  onSkip,
+  onPreviousQuestion,
   animateIn,
 }) {
   if (question.type !== "text") {
@@ -13,6 +13,7 @@ export default function QuestionCard({
   }
 
   const isLast = currentIndex === total - 1;
+  const hasInput = value.trim().length > 0;
 
   return (
     <section
@@ -34,13 +35,21 @@ export default function QuestionCard({
       />
 
       <div className="question-actions">
-        <button type="button" className="neutral-button" onClick={onSkip}>
-          Skip
-        </button>
+        {currentIndex > 0 && (
+          <button
+            type="button"
+            className="neutral-button"
+            onClick={onPreviousQuestion}
+          >
+            Previous question
+          </button>
+        )}
 
         <button
           type="button"
-          className="neutral-button neutral-button--strong"
+          className={`neutral-button ${
+            hasInput ? "question-cta-button--yellow" : "neutral-button--strong"
+          }`}
           onClick={onNext}
         >
           {isLast ? "Done" : "Next"}
@@ -49,3 +58,4 @@ export default function QuestionCard({
     </section>
   );
 }
+

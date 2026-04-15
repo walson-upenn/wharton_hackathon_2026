@@ -10,8 +10,6 @@ export default function App() {
   const [session] = useState(mockReviewSession);
 
   const [viewMode, setViewMode] = useState("agent");
-  // "agent" | "form_setup" | "form_questions"
-
   const [stageAnimateIn, setStageAnimateIn] = useState(true);
   const [questionAnimateIn, setQuestionAnimateIn] = useState(true);
 
@@ -73,9 +71,9 @@ export default function App() {
     }
   };
 
-  const handleSkipQuestion = () => {
-    if (currentQuestionIndex < textQuestions.length - 1) {
-      triggerQuestionTransition(currentQuestionIndex + 1);
+  const handlePreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      triggerQuestionTransition(currentQuestionIndex - 1);
     }
   };
 
@@ -199,7 +197,7 @@ export default function App() {
               stageAnimateIn ? "is-visible" : "is-exiting"
             }`}
           >
-            <section className="form-stage-intro">
+            <section className="form-stage-intro stage-header">
               <div className="form-stage-intro__eyebrow">Step 1 of 2</div>
               <h1 className="form-stage-intro__title">
                 A few quick details first
@@ -260,24 +258,22 @@ export default function App() {
               stageAnimateIn ? "is-visible" : "is-exiting"
             }`}
           >
-            <section className="form-stage-intro form-stage-intro--question-stage">
-              <div className="form-stage-intro__split">
-                <div className="form-stage-intro__content">
-                  <div className="form-stage-intro__eyebrow">Step 2 of 2</div>
-                  <h1 className="form-stage-intro__title">Just two questions</h1>
-                  <p className="form-stage-intro__text">
-                    A sentence or two is enough.
-                  </p>
-                </div>
-
-                <button
-                  type="button"
-                  className="text-link-button text-link-button--back"
-                  onClick={() => switchStage("form_setup")}
-                >
-                  Back
-                </button>
+            <section className="form-stage-intro stage-header stage-header--with-action">
+              <div className="form-stage-intro__content">
+                <div className="form-stage-intro__eyebrow">Step 2 of 2</div>
+                <h1 className="form-stage-intro__title">Just two questions</h1>
+                <p className="form-stage-intro__text">
+                  A sentence or two is enough.
+                </p>
               </div>
+
+              <button
+                type="button"
+                className="stage-back-button"
+                onClick={() => switchStage("form_setup")}
+              >
+                Back
+              </button>
             </section>
 
             {currentQuestion && (
@@ -289,7 +285,7 @@ export default function App() {
                 currentIndex={currentQuestionIndex}
                 total={textQuestions.length}
                 onNext={handleNextQuestion}
-                onSkip={handleSkipQuestion}
+                onPreviousQuestion={handlePreviousQuestion}
                 animateIn={questionAnimateIn}
               />
             )}

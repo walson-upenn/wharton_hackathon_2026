@@ -271,6 +271,16 @@ textarea {
   background: #f5f6f8;
 }
 
+.question-cta-button--yellow {
+  background: var(--yellow);
+  color: #191e3b;
+  border: none;
+}
+
+.question-cta-button--yellow:hover {
+  background: var(--yellow-hover);
+}
+
 .submit-review-button {
   width: 100%;
   border: none;
@@ -498,7 +508,7 @@ textarea {
 }
 
 .form-stage-intro {
-  margin: 10px 0 14px;
+  margin: 8px 0 10px;
 }
 
 .form-stage-intro__eyebrow {
@@ -510,7 +520,7 @@ textarea {
 }
 
 .form-stage-intro__title {
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   font-size: 24px;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -518,7 +528,7 @@ textarea {
 }
 
 .form-stage-intro__text {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   font-size: 14px;
   color: var(--muted);
   line-height: 1.45;
@@ -613,10 +623,93 @@ textarea {
   }
 
   .text-link-button--back {
-    margin-top: 0;
+    color: var(--text);
+    font-weight: 600;
+    white-space: nowrap;
+    align-self: flex-start;
+    margin-top: 2px;
+    font-size: 15px;
   }
 
+
   .question-actions {
-    justify-content: flex-start;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
   }
+
+}
+
+.stage-header {
+  margin: 8px 0 10px;
+  padding: 0 6px;
+}
+
+.stage-header--with-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.form-stage-intro__content {
+  min-width: 0;
+}
+
+.form-stage-intro__eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.form-stage-intro__title {
+  margin: 4px 0 0;
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.form-stage-intro__text {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.stage-back-button {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.stage-back-button:hover {
+  border-color: #cfd4dc;
+  background: #fafbfc;
+}
+
+.question-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.question-cta-button--yellow {
+  background: var(--yellow);
+  color: #191e3b;
+  border: none;
+}
+
+.question-cta-button--yellow:hover {
+  background: var(--yellow-hover);
 }
