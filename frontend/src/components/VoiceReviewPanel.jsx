@@ -320,12 +320,20 @@ export default function VoiceReviewPanel({ session, onFallback, onVoiceComplete 
           </div>
 
           <div className="agent-live-panel__right">
-            <div className={`voice-wave voice-wave--left ${hasStarted ? "is-active" : ""}`}>
+            <div className={`voice-wave voice-wave--left ${hasStarted ? "is-active" : ""}`} aria-hidden="true">
               <span />
               <span />
               <span />
             </div>
-            <div className="mic-button mic-button--minimal" aria-hidden="true">
+            <button
+              type="button"
+              className="mic-button mic-button--minimal"
+              onClick={conversation.status === "connected" ? handleClose : handleStart}
+              disabled={isStarting || conversation.status === "connecting"}
+              aria-label={
+                conversation.status === "connected" ? "Finish voice review" : "Start voice review"
+              }
+            >
               <svg
                 viewBox="0 0 24 24"
                 className="mic-svg"
@@ -340,7 +348,7 @@ export default function VoiceReviewPanel({ session, onFallback, onVoiceComplete 
                 <path d="M12 18v3" />
                 <path d="M8 21h8" />
               </svg>
-            </div>
+            </button>
           </div>
         </div>
       </div>
