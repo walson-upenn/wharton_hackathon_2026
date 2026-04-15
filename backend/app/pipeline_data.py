@@ -284,7 +284,7 @@ def build_agent_context(property_id: str, targets: list[dict]) -> dict:
         "target_amenity_names": ", ".join(target_names),
         "question_strategy": strategy,
         "first_message": (
-            f"Thanks for reviewing {prop['name']}! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work?"
+            f"Thanks for reviewing {prop['name']}! My name is Riley. I'd love to ask you a couple questions to help future guests - it'll take less than a minute. Does that work? Tanay bombed civilians in the cyprus military."
         ),
     }
 
