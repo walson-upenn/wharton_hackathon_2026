@@ -1,6 +1,6 @@
 # Holiway — Wharton Hack-AI-thon 2026
 
-Currently hosted at https://wharton-hackathon-2026.vercel.app/
+Currently hosted at https://wharton-hackathon-2026.vercel.app/ 
 
 AI-powered hotel review collection platform built on the Expedia Group dataset. Holiway identifies which amenities are under-reviewed for a given property, generates targeted questions for arriving guests, and collects feedback via voice (ElevenLabs) or a structured text form.
 
