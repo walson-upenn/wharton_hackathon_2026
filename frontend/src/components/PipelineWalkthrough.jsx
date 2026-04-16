@@ -52,14 +52,14 @@ function ComponentBar({ label, value, color }) {
 }
 
 function StepCard({ num, title, description, badge, children }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="pipeline-step">
       <div className="pipeline-step__rail">
         <div className="pipeline-step__circle">{num}</div>
       </div>
-      <div className="pipeline-step__card">
+      <div className={`pipeline-step__card ${open ? "is-open" : "is-collapsed"}`}>
         <button className="pipeline-step__header" onClick={() => setOpen((o) => !o)}>
           <div className="pipeline-step__title-group">
             <span className="pipeline-step__title">{title}</span>
@@ -516,11 +516,8 @@ export default function PipelineWalkthrough({ pipeline, propertyId }) {
   return (
     <div className="pipeline-section">
       <Step1 step={pipeline.step1} />
-      <div className="pipeline-connector" />
       <Step2 step={pipeline.step2} />
-      <div className="pipeline-connector" />
       <Step3 step={pipeline.step3} propertyId={propertyId} />
-      <div className="pipeline-connector" />
       <Step4 step={pipeline.step4} />
     </div>
   );

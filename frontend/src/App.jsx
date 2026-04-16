@@ -7,6 +7,7 @@ import QuestionCard from "./components/QuestionCard";
 import VoiceReviewPanel from "./components/VoiceReviewPanel";
 import ProgressBar from "./components/ProgressBar";
 import ManagerView from "./components/ManagerView";
+import PipelineView from "./components/PipelineView";
 import { getPropertyPhoto } from "./data/propertyPhotos";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
@@ -292,6 +293,21 @@ const handleNoneOfThese = () => {
     );
   }
 
+  if (appMode === "pipeline") {
+    return (
+      <div className="page-shell">
+        <ReviewHeader properties={properties} selectedPropertyId={selectedPropertyId} onPropertyChange={setSelectedPropertyId} />
+        <div className="view-switcher view-switcher--left">
+          <button className="view-switcher__btn" onClick={() => setAppMode("manager")}>
+            <div className="view-switcher__arrow">←</div>
+            <span className="view-switcher__label">Manager view</span>
+          </button>
+        </div>
+        <PipelineView propertyId={selectedPropertyId} />
+      </div>
+    );
+  }
+
   if (appMode === "manager") {
     return (
       <div className="page-shell">
@@ -300,6 +316,12 @@ const handleNoneOfThese = () => {
           <button className="view-switcher__btn" onClick={() => setAppMode("guest")}>
             <div className="view-switcher__arrow">←</div>
             <span className="view-switcher__label">Guest view</span>
+          </button>
+        </div>
+        <div className="view-switcher view-switcher--right">
+          <button className="view-switcher__btn" onClick={() => setAppMode("pipeline")}>
+            <div className="view-switcher__arrow">→</div>
+            <span className="view-switcher__label">Pipeline</span>
           </button>
         </div>
         <ManagerView

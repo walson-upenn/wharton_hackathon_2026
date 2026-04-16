@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import PropertyOverview from "./PropertyOverview";
-import { getPropertyPhoto } from "../data/propertyPhotos";
+import PipelineWalkthrough from "./PipelineWalkthrough";
 
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   import.meta.env.VITE_API_URL ||
   "http://localhost:5000";
 
-export default function ManagerView({ propertyId }) {
+export default function PipelineView({ propertyId }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -22,7 +21,7 @@ export default function ManagerView({ propertyId }) {
       try {
         const res = await fetch(`${API_BASE_URL}/api/manager/overview/${propertyId}`);
         const json = await res.json();
-        if (!res.ok) throw new Error(json.error || "Failed to load manager data.");
+        if (!res.ok) throw new Error(json.error || "Failed to load pipeline data.");
         setData(json);
       } catch (e) {
         setError(e.message);
@@ -34,19 +33,12 @@ export default function ManagerView({ propertyId }) {
     fetchData();
   }, [propertyId]);
 
-  const starStr = (rating) => {
-    const n = parseInt(rating, 10);
-    if (!n || n < 1) return "";
-    return "★".repeat(Math.min(n, 5));
-  };
-
   return (
     <main className="page-content page-content--wide">
-
       {loading && (
         <div className="manager-state-card">
           <div className="section-kicker">Loading</div>
-          <p className="manager-state-card__text">Fetching property data…</p>
+          <p className="manager-state-card__text">Fetching pipeline data…</p>
         </div>
       )}
 
@@ -59,24 +51,7 @@ export default function ManagerView({ propertyId }) {
 
       {data && !loading && (
         <>
-          <div className="manager-hero">
-            <div
-              className="manager-hero__photo"
-              style={{ backgroundImage: `url(${getPropertyPhoto(propertyId)})` }}
-            />
-            <div className="manager-hero__info">
-              <div className="manager-hero__location">{data.property.location}</div>
-              <h1 className="manager-hero__name">{data.property.name}</h1>
-              {data.property.starRating && (
-                <div className="manager-hero__stars">{starStr(data.property.starRating)}</div>
-              )}
-              {data.property.description && (
-                <p className="manager-hero__desc">{data.property.description}</p>
-              )}
-            </div>
-          </div>
-
-          <PropertyOverview data={data.overview} />
+          <PipelineWalkthrough pipeline={data.pipeline} propertyId={propertyId} />
         </>
       )}
     </main>

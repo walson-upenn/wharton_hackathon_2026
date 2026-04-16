@@ -1567,23 +1567,10 @@ textarea {
 .pipeline-section {
   display: flex;
   flex-direction: column;
+  gap: 16px;
   margin-bottom: 32px;
 }
 
-/* Dashed connector between steps, aligned to circle centre (16px from left) */
-.pipeline-connector {
-  width: 2px;
-  height: 24px;
-  margin-left: 15px;
-  align-self: flex-start;
-  background: repeating-linear-gradient(
-    to bottom,
-    #d0d5dd 0px,
-    #d0d5dd 5px,
-    transparent 5px,
-    transparent 10px
-  );
-}
 
 .pipeline-step {
   display: flex;
@@ -1636,6 +1623,11 @@ textarea {
   border: none;
   cursor: pointer;
   text-align: left;
+  transition: padding 0.25s ease;
+}
+
+.pipeline-step__card.is-collapsed .pipeline-step__header {
+  padding: 28px 28px;
 }
 
 .pipeline-step__header:hover {
@@ -1653,6 +1645,11 @@ textarea {
   font-weight: 700;
   color: var(--text);
   line-height: 1.25;
+  transition: font-size 0.25s ease;
+}
+
+.pipeline-step__card.is-collapsed .pipeline-step__title {
+  font-size: 19px;
 }
 
 .pipeline-step__desc {
@@ -1661,6 +1658,12 @@ textarea {
   color: var(--muted);
   margin-top: 3px;
   line-height: 1.4;
+  transition: font-size 0.25s ease, margin-top 0.25s ease;
+}
+
+.pipeline-step__card.is-collapsed .pipeline-step__desc {
+  font-size: 14px;
+  margin-top: 6px;
 }
 
 .pipeline-step__badge {
@@ -1673,6 +1676,12 @@ textarea {
   border-radius: 999px;
   white-space: nowrap;
   align-self: center;
+  transition: font-size 0.25s ease, padding 0.25s ease;
+}
+
+.pipeline-step__card.is-collapsed .pipeline-step__badge {
+  font-size: 13px;
+  padding: 5px 14px;
 }
 
 .pipeline-step__chevron {
@@ -1680,6 +1689,11 @@ textarea {
   font-size: 10px;
   color: var(--muted);
   align-self: center;
+  transition: font-size 0.25s ease;
+}
+
+.pipeline-step__card.is-collapsed .pipeline-step__chevron {
+  font-size: 13px;
 }
 
 .pipeline-step__body {
